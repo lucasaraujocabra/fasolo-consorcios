@@ -84,30 +84,26 @@
   });
 
   /* =========================================================================
-     3. THE METHOD. A stepper you operate, with arrow-key support.
+     3. THE METHOD. Four blocks down the page; one open at a time.
      ====================================================================== */
-  var stps = $$(".stp");
-  function selectStep(n) {
-    stps.forEach(function (b) { b.setAttribute("aria-selected", String(b.dataset.sp === n)); });
-    $$(".sp").forEach(function (p) {
-      var on = p.dataset.sp === n;
-      p.hidden = !on;
-      if (on) { p.setAttribute("data-on", "1"); } else { p.removeAttribute("data-on"); }
+  var msBtns = $$(".vs__b");
+  msBtns.forEach(function (btn, i) {
+    btn.addEventListener("click", function () {
+      var wasOpen = btn.getAttribute("aria-expanded") === "true";
+      msBtns.forEach(function (b) { b.setAttribute("aria-expanded", "false"); });
+      btn.setAttribute("aria-expanded", wasOpen ? "false" : "true");
+      if (!wasOpen && hasGSAP && !reduce) {
+        var inner = btn.nextElementSibling.querySelector(".vs__in");
+        gsap.fromTo(inner.children, { opacity: 0, y: 12 },
+          { opacity: 1, y: 0, duration: .4, stagger: .06, ease: "power2.out", delay: .12 });
+      }
+      if (hasGSAP && !reduce) setTimeout(function () { ScrollTrigger.refresh(); }, 480);
     });
-    var shown = $('.sp[data-sp="' + n + '"]');
-    if (shown && hasGSAP && !reduce) {
-      gsap.fromTo(shown.children, { opacity: 0, y: 14 },
-        { opacity: 1, y: 0, duration: .42, stagger: .05, ease: "power2.out" });
-    }
-  }
-  stps.forEach(function (b, i) {
-    b.addEventListener("click", function () { selectStep(b.dataset.sp); });
-    b.addEventListener("keydown", function (e) {
-      var d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+    btn.addEventListener("keydown", function (ev) {
+      var d = ev.key === "ArrowDown" ? 1 : ev.key === "ArrowUp" ? -1 : 0;
       if (!d) return;
-      e.preventDefault();
-      var next = stps[(i + d + stps.length) % stps.length];
-      next.focus(); selectStep(next.dataset.sp);
+      ev.preventDefault();
+      msBtns[(i + d + msBtns.length) % msBtns.length].focus();
     });
   });
 

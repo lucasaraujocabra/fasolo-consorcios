@@ -56,6 +56,22 @@ Vermelho nunca ocupa superfície grande: briefing veta.
 Três raios, com regra: `4px` inputs pequenos, `8px` campos e linhas,
 `16px`/`22px` cards e mídia, `999px` **só** em botão.
 
+### Ícones
+
+**Phosphor duotone**, 32 glifos, embutidos uma vez como sprite SVG no topo do
+`index.html` e usados com `<use href="#i-nome">`. Duotone quer dizer que cada
+glifo carrega uma camada fantasma a 20% sob a sólida, então o ícone lê como um
+objeto pequeno e não como um pictograma de fio. A cor vem de `currentColor`,
+o que faz a camada fantasma seguir o acento de graça.
+
+Cor por contexto, e isso é hierarquia, não decoração:
+`--red` nos destinos e no item aberto (conteúdo principal),
+`--bone-2` nos blocos em repouso, `--gold` só nos prêmios.
+
+⚠️ Ícone vive dentro de `.itile`, que é um `<span>`. Cuidado com regra de
+elemento genérica tipo `.componente span{...}`: ela vence `.itile` na cascata e
+apaga o ícone sem erro nenhum. Foi o que aconteceu com os prêmios uma vez.
+
 ### Grão
 
 `body::after` aplica um ruído SVG fixo em `mix-blend-mode: overlay`. É ele que
@@ -74,12 +90,12 @@ O hero mais dez seções numeradas. O número `(001)` não é enfeite: é o mesm
 | — | Hero | manchete + trilho de 3 objetivos clicáveis |
 | 001 | O problema | lista numerada que troca o diagrama ao lado |
 | 002 | A grade de contemplação | **peça de assinatura**: 6 portas acendendo no scroll |
-| 003 | O método | stepper de 4 etapas, operável por teclado |
+| 003 | O método | quatro blocos verticais, um aberto por vez, seta navega |
 | 004 | Simulador | cálculo ao vivo, comparação com financiamento |
-| 005 | As soluções | abas ligadas ao objetivo escolhido |
+| 005 | As soluções | abas ligadas ao objetivo, seis blocos com ícone |
 | 006 | Os resultados | depoimento em vídeo com deck de seleção |
 | 007 | O fundador | Jair como autoridade, dentro da estrutura |
-| 008 | Reconhecimento | prêmios, fotos reais de premiação, HS |
+| 008 | Reconhecimento | oito blocos com ícone dourado, fotos reais, HS |
 | 009 | Dúvidas | FAQ em duas colunas |
 | 010 | Sua simulação | formulário, com o resultado do simulador junto |
 
@@ -116,7 +132,7 @@ O bloco termina com a ressalva de que é estimativa para comparação, não prop
    Falta `nome`, `citacao` e `video` no array `DEPOIMENTOS` no topo do `app.js`.
    Preencher os três campos por entrada e o módulo vai ao ar sem mais nenhuma
    alteração. O briefing é explícito: depoimento sem identificação e prova não entra.
-3. **Artes dos selos de premiação.** Hoje são tiles tipográficos.
+3. **Artes dos selos de premiação.** Hoje são blocos com ícone Phosphor.
 4. **Fotos de entregas reais** (Bento Gonçalves, Porto Alegre, Santa Maria,
    Capão da Canoa), se a galeria de entregas da copy for construída.
 
