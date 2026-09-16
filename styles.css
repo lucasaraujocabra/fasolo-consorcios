@@ -60,8 +60,11 @@
 
 *,*::before,*::after{box-sizing:border-box}
 
-html{scroll-behavior:smooth}
-@media(prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
+/* No `scroll-behavior: smooth` here, on purpose. ScrollTrigger sets the scroll
+   position itself while it refreshes; with native smooth scrolling the browser
+   ANIMATES that set instead of jumping, so ScrollTrigger measures a moving
+   target and pins the next section at the wrong offset, dropping it on top of
+   the one you are reading. Anchors are scrolled smoothly from app.js instead. */
 
 body{
   margin:0;

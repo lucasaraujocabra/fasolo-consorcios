@@ -154,6 +154,28 @@ O briefing tem uma lista longa de vetos. As que mais condicionaram o desenho:
 - a marca é protagonista; o Jair é fundador e autoridade, não dono de página pessoal
 - **zero travessão** em texto que renderiza
 
+## Armadilha registrada: scroll suave nativo x pin do ScrollTrigger
+
+⛔ **Não colocar `scroll-behavior: smooth` no `html`.** A seção `(002)` usa
+`ScrollTrigger` com `pin: true`. Durante o `refresh()`, o ScrollTrigger
+reposiciona o scroll programaticamente para remedir a página. Com scroll suave
+nativo ligado, o browser **anima** esse reposicionamento, o ScrollTrigger mede um
+alvo em movimento e ativa o pin na posição errada: a grade vira `position: fixed`
+e cai em cima da seção que você está lendo, que parece ficar em branco.
+
+Sintoma: clicar num item de "O problema" fazia a seção sumir e aparecer um vazio
+enorme. Não dá erro no console, e só aparece quando existe um `refresh()` e um
+pin na mesma página.
+
+Correção, nas duas pontas:
+1. o scroll suave das âncoras é feito no `app.js`, com
+   `window.scrollTo({behavior:"smooth"})`, com deslocamento de 78px para limpar
+   o menu fixo. O CSS fica em `auto`.
+2. `refreshIfResized()` só chama `ScrollTrigger.refresh()` quando a altura do
+   documento mudou de verdade, e com meio segundo de folga. A lista do problema
+   não muda a altura da seção (quem manda nela é o painel sticky), então não
+   refrescava nada e ainda assim quebrava a página.
+
 ## Acessibilidade e performance
 
 Contraste AA em todos os pares de texto. Foco visível. Abas e steppers com

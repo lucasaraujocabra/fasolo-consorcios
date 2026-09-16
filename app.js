@@ -14,6 +14,36 @@
   var brl = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
   var money = function (n) { return brl.format(Math.round(n)); };
 
+  /* ScrollTrigger.refresh() is expensive and, with a pinned section on the page,
+     not free of side effects. Only call it when the document actually changed
+     height, and only once the layout has settled. */
+  var lastDocH = 0, refreshTimer;
+  function refreshIfResized() {
+    if (typeof ScrollTrigger === "undefined") return;
+    clearTimeout(refreshTimer);
+    refreshTimer = setTimeout(function () {
+      var h = document.documentElement.scrollHeight;
+      if (Math.abs(h - lastDocH) < 2) return;
+      lastDocH = h;
+      ScrollTrigger.refresh();
+    }, 520);
+  }
+
+  /* Smooth anchor scrolling lives here rather than in CSS: see the note at the
+     top of styles.css for why `scroll-behavior: smooth` cannot be used. */
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!a) return;
+    var id = a.getAttribute("href");
+    if (!id || id.length < 2) return;
+    var target = document.querySelector(id);
+    if (!target) return;
+    e.preventDefault();
+    var top = target.getBoundingClientRect().top + window.scrollY - 78;
+    window.scrollTo({ top: Math.max(0, top), behavior: reduce ? "auto" : "smooth" });
+    history.replaceState(null, "", id);
+  });
+
   /* =========================================================================
      1. OBJECTIVE
      One answer, chosen in the hero, carried through the simulator, the
@@ -79,7 +109,7 @@
           gsap.fromTo(panel, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: .4, ease: "power2.out" });
         }
       }
-      if (hasGSAP && !reduce) setTimeout(function () { ScrollTrigger.refresh(); }, 440);
+      if (hasGSAP && !reduce) refreshIfResized();
     });
   });
 
@@ -97,7 +127,7 @@
         gsap.fromTo(inner.children, { opacity: 0, y: 12 },
           { opacity: 1, y: 0, duration: .4, stagger: .06, ease: "power2.out", delay: .12 });
       }
-      if (hasGSAP && !reduce) setTimeout(function () { ScrollTrigger.refresh(); }, 480);
+      if (hasGSAP && !reduce) refreshIfResized();
     });
     btn.addEventListener("keydown", function (ev) {
       var d = ev.key === "ArrowDown" ? 1 : ev.key === "ArrowUp" ? -1 : 0;
@@ -407,5 +437,9 @@
     scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true }
   });
 
-  window.addEventListener("load", function () { ScrollTrigger.refresh(); });
+  window.addEventListener("load", function () {
+    ScrollTrigger.refresh();
+    lastDocH = document.documentElement.scrollHeight;
+  });
+  lastDocH = document.documentElement.scrollHeight;
 })();
