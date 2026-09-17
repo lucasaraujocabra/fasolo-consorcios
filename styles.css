@@ -2071,3 +2071,6 @@ h1,h2,h3,h4,.hmedia__n,.strip__n,.out__big,.gcol__ratio{font-family:var(--font-s
   .dock .dock__ca{display:none}
   .dock .dock__cta{padding-right:.9rem}
 }
+
+/* o tile de início acompanha a pílula do dock, e não o raio dos tiles de seção */
+.dock .dtile--home .dtile__g{border-radius:50%}
