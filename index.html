@@ -16,7 +16,9 @@
 <body>
 
 <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg"><defs>
+<symbol id="i-arrow-right" viewBox="0 0 256 256"><path d="M216,128l-72,72V56Z" opacity="0.2"/><path d="M221.66,122.34l-72-72A8,8,0,0,0,136,56v64H40a8,8,0,0,0,0,16h96v64a8,8,0,0,0,13.66,5.66l72-72A8,8,0,0,0,221.66,122.34ZM152,180.69V75.31L204.69,128Z"/></symbol>
 <symbol id="i-arrow-up-right" viewBox="0 0 256 256"><path d="M192,64V168L88,64Z" opacity="0.2"/><path d="M192,56H88a8,8,0,0,0-5.66,13.66L128.69,116,58.34,186.34a8,8,0,0,0,11.32,11.32L140,127.31l46.34,46.35A8,8,0,0,0,200,168V64A8,8,0,0,0,192,56Zm-8,92.69-38.34-38.34h0L107.31,72H184Z"/></symbol>
+<symbol id="i-arrow-up" viewBox="0 0 256 256"><path d="M200,112H56l72-72Z" opacity="0.2"/><path d="M205.66,106.34l-72-72a8,8,0,0,0-11.32,0l-72,72A8,8,0,0,0,56,120h64v96a8,8,0,0,0,16,0V120h64a8,8,0,0,0,5.66-13.66ZM75.31,104,128,51.31,180.69,104Z"/></symbol>
 <symbol id="i-bank" viewBox="0 0 256 256"><path d="M232,96H24L128,32Z" opacity="0.2"/><path d="M24,104H48v64H32a8,8,0,0,0,0,16H224a8,8,0,0,0,0-16H208V104h24a8,8,0,0,0,4.19-14.81l-104-64a8,8,0,0,0-8.38,0l-104,64A8,8,0,0,0,24,104Zm40,0H96v64H64Zm80,0v64H112V104Zm48,64H160V104h32ZM128,41.39,203.74,88H52.26ZM248,208a8,8,0,0,1-8,8H16a8,8,0,0,1,0-16H240A8,8,0,0,1,248,208Z"/></symbol>
 <symbol id="i-barn" viewBox="0 0 256 256"><path d="M184,120v80H72V120Z" opacity="0.2"/><path d="M240,192h-8V130.57l1.49,2.08a8,8,0,1,0,13-9.3l-40-56a8,8,0,0,0-2-1.94L137,18.77l-.1-.07a16,16,0,0,0-17.76,0l-.1.07L51.45,65.42a8,8,0,0,0-2,1.94l-40,56a8,8,0,1,0,13,9.3L24,130.57V192H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM40,108.17,61.7,77.79,128,32l66.3,45.78L216,108.17V192H192V120a8,8,0,0,0-8-8H72a8,8,0,0,0-8,8v72H40Zm88,42L97,128H159Zm48-14.62v48.91L141.76,160ZM114.24,160,80,184.46V135.55ZM128,169.83,159,192H97ZM104,88a8,8,0,0,1,8-8h32a8,8,0,1,1,0,16H112A8,8,0,0,1,104,88Z"/></symbol>
 <symbol id="i-blueprint" viewBox="0 0 256 256"><path d="M232,64V200H48a24,24,0,0,1,0-48H64V64Z" opacity="0.2"/><path d="M232,56H72V40a8,8,0,0,0-8-8H48A32,32,0,0,0,16,64V176a32,32,0,0,0,32,32H232a8,8,0,0,0,8-8V64A8,8,0,0,0,232,56ZM32,64A16,16,0,0,1,48,48h8v96H48a31.82,31.82,0,0,0-16,4.29ZM224,192H48a16,16,0,0,1,0-32H64a8,8,0,0,0,8-8V72H224ZM104,136a8,8,0,0,0,0,16h16v8a8,8,0,0,0,16,0v-8h24v8a8,8,0,0,0,16,0v-8h16a8,8,0,0,0,0-16H176V120h16a8,8,0,0,0,0-16H176V96a8,8,0,0,0-16,0v8H136V96a8,8,0,0,0-16,0v8H104a8,8,0,0,0,0,16h16v16Zm32-16h24v16H136Z"/></symbol>
@@ -34,20 +36,26 @@
 <symbol id="i-crosshair" viewBox="0 0 256 256"><path d="M160,128a32,32,0,1,1-32-32A32,32,0,0,1,160,128Z" opacity="0.2"/><path d="M232,120h-8.34A96.14,96.14,0,0,0,136,32.34V24a8,8,0,0,0-16,0v8.34A96.14,96.14,0,0,0,32.34,120H24a8,8,0,0,0,0,16h8.34A96.14,96.14,0,0,0,120,223.66V232a8,8,0,0,0,16,0v-8.34A96.14,96.14,0,0,0,223.66,136H232a8,8,0,0,0,0-16Zm-96,87.6V200a8,8,0,0,0-16,0v7.6A80.15,80.15,0,0,1,48.4,136H56a8,8,0,0,0,0-16H48.4A80.15,80.15,0,0,1,120,48.4V56a8,8,0,0,0,16,0V48.4A80.15,80.15,0,0,1,207.6,120H200a8,8,0,0,0,0,16h7.6A80.15,80.15,0,0,1,136,207.6ZM128,88a40,40,0,1,0,40,40A40,40,0,0,0,128,88Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,152Z"/></symbol>
 <symbol id="i-dice-five" viewBox="0 0 256 256"><path d="M216,64V192a24,24,0,0,1-24,24H64a24,24,0,0,1-24-24V64A24,24,0,0,1,64,40H192A24,24,0,0,1,216,64Z" opacity="0.2"/><path d="M192,32H64A32,32,0,0,0,32,64V192a32,32,0,0,0,32,32H192a32,32,0,0,0,32-32V64A32,32,0,0,0,192,32Zm16,160a16,16,0,0,1-16,16H64a16,16,0,0,1-16-16V64A16,16,0,0,1,64,48H192a16,16,0,0,1,16,16ZM104,92A12,12,0,1,1,92,80,12,12,0,0,1,104,92Zm72,0a12,12,0,1,1-12-12A12,12,0,0,1,176,92Zm-72,72a12,12,0,1,1-12-12A12,12,0,0,1,104,164Zm36-36a12,12,0,1,1-12-12A12,12,0,0,1,140,128Zm36,36a12,12,0,1,1-12-12A12,12,0,0,1,176,164Z"/></symbol>
 <symbol id="i-door" viewBox="0 0 256 256"><path d="M200,40V224H56V40a8,8,0,0,1,8-8H192A8,8,0,0,1,200,40Z" opacity="0.2"/><path d="M232,216H208V40a16,16,0,0,0-16-16H64A16,16,0,0,0,48,40V216H24a8,8,0,0,0,0,16H232a8,8,0,0,0,0-16ZM64,40H192V216H64Zm104,92a12,12,0,1,1-12-12A12,12,0,0,1,168,132Z"/></symbol>
+<symbol id="i-envelope-simple" viewBox="0 0 256 256"><path d="M224,56l-96,88L32,56Z" opacity="0.2"/><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"/></symbol>
+<symbol id="i-facebook-logo" viewBox="0 0 256 256"><path d="M224,128a96,96,0,1,1-96-96A96,96,0,0,1,224,128Z" opacity="0.2"/><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,191.63V152h24a8,8,0,0,0,0-16H136V112a16,16,0,0,1,16-16h16a8,8,0,0,0,0-16H152a32,32,0,0,0-32,32v24H96a8,8,0,0,0,0,16h24v63.63a88,88,0,1,1,16,0Z"/></symbol>
 <symbol id="i-gavel" viewBox="0 0 256 256"><path d="M149.66,45.66l-64,64a8,8,0,0,1-11.32,0l-16-16a8,8,0,0,1,0-11.32l64-64a8,8,0,0,1,11.32,0l16,16A8,8,0,0,1,149.66,45.66Zm88,76.68-16-16a8,8,0,0,0-11.32,0l-64,64a8,8,0,0,0,0,11.32l16,16a8,8,0,0,0,11.32,0l64-64A8,8,0,0,0,237.66,122.34Z" opacity="0.2"/><path d="M243.32,116.69l-16-16a16,16,0,0,0-20.84-1.53L156.84,49.52a16,16,0,0,0-1.52-20.84l-16-16a16,16,0,0,0-22.63,0l-64,64a16,16,0,0,0,0,22.63l16,16a16,16,0,0,0,20.83,1.52L96.69,124,31.31,189.38A25,25,0,0,0,66.63,224.7L132,159.32l7.17,7.16a16,16,0,0,0,1.52,20.84l16,16a16,16,0,0,0,22.63,0l64-64A16,16,0,0,0,243.32,116.69ZM80,104,64,88l64-64,16,16ZM55.32,213.38a9,9,0,0,1-12.69,0,9,9,0,0,1,0-12.68L108,135.32,120.69,148ZM101,105.66,145.66,61,195,110.34,150.35,155ZM168,192l-16-16,4-4h0l56-56h0l4-4,16,16Z"/></symbol>
 <symbol id="i-hand-coins" viewBox="0 0 256 256"><path d="M16,152H48v56H16a8,8,0,0,1-8-8V160A8,8,0,0,1,16,152ZM204,56a28,28,0,0,0-12,2.71h0A28,28,0,1,0,176,85.29h0A28,28,0,1,0,204,56Z" opacity="0.2"/><path d="M230.33,141.06a24.43,24.43,0,0,0-21.24-4.23l-41.84,9.62A28,28,0,0,0,140,112H89.94a31.82,31.82,0,0,0-22.63,9.37L44.69,144H16A16,16,0,0,0,0,160v40a16,16,0,0,0,16,16H120a7.93,7.93,0,0,0,1.94-.24l64-16a6.94,6.94,0,0,0,1.19-.4L226,182.82l.44-.2a24.6,24.6,0,0,0,3.93-41.56ZM16,160H40v40H16Zm203.43,8.21-38,16.18L119,200H56V155.31l22.63-22.62A15.86,15.86,0,0,1,89.94,128H140a12,12,0,0,1,0,24H112a8,8,0,0,0,0,16h32a8.32,8.32,0,0,0,1.79-.2l67-15.41.31-.08a8.6,8.6,0,0,1,6.3,15.9ZM164,96a36,36,0,0,0,5.9-.48,36,36,0,1,0,28.22-47A36,36,0,1,0,164,96Zm60-12a20,20,0,1,1-20-20A20,20,0,0,1,224,84ZM164,40a20,20,0,0,1,19.25,14.61,36,36,0,0,0-15,24.93A20.42,20.42,0,0,1,164,80a20,20,0,0,1,0-40Z"/></symbol>
 <symbol id="i-handshake" viewBox="0 0 256 256"><path d="M200,152l-40,40L96,176,40,136,72.68,70.63,128,56l55.32,14.63L183.6,72H144L98.34,116.29a8,8,0,0,0,1.38,12.42C117.23,139.9,141,139.13,160,120Z" opacity="0.2"/><path d="M254.3,107.91,228.78,56.85a16,16,0,0,0-21.47-7.15L182.44,62.13,130.05,48.27a8.14,8.14,0,0,0-4.1,0L73.56,62.13,48.69,49.7a16,16,0,0,0-21.47,7.15L1.7,107.9a16,16,0,0,0,7.15,21.47l27,13.51,55.49,39.63a8.06,8.06,0,0,0,2.71,1.25l64,16a8,8,0,0,0,7.6-2.1l55.07-55.08,26.42-13.21a16,16,0,0,0,7.15-21.46Zm-54.89,33.37L165,113.72a8,8,0,0,0-10.68.61C136.51,132.27,116.66,130,104,122L147.24,80h31.81l27.21,54.41ZM41.53,64,62,74.22,36.43,125.27,16,115.06Zm116,119.13L99.42,168.61l-49.2-35.14,28-56L128,64.28l9.8,2.59-45,43.68-.08.09a16,16,0,0,0,2.72,24.81c20.56,13.13,45.37,11,64.91-5L188,152.66Zm62-57.87-25.52-51L214.47,64,240,115.06Zm-87.75,92.67a8,8,0,0,1-7.75,6.06,8.13,8.13,0,0,1-1.95-.24L80.41,213.33a7.89,7.89,0,0,1-2.71-1.25L51.35,193.26a8,8,0,0,1,9.3-13l25.11,17.94L126,208.24A8,8,0,0,1,131.82,217.94Z"/></symbol>
 <symbol id="i-headset" viewBox="0 0 256 256"><path d="M80,144v40a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V128H64A16,16,0,0,1,80,144Zm112-16a16,16,0,0,0-16,16v40a16,16,0,0,0,16,16h32V128Z" opacity="0.2"/><path d="M201.89,54.66A104.08,104.08,0,0,0,24,128v56a24,24,0,0,0,24,24H64a24,24,0,0,0,24-24V144a24,24,0,0,0-24-24H40.36A88.12,88.12,0,0,1,190.54,65.93,87.39,87.39,0,0,1,215.65,120H192a24,24,0,0,0-24,24v40a24,24,0,0,0,24,24h24a24,24,0,0,1-24,24H136a8,8,0,0,0,0,16h56a40,40,0,0,0,40-40V128A103.41,103.41,0,0,0,201.89,54.66ZM64,136a8,8,0,0,1,8,8v40a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V136Zm128,56a8,8,0,0,1-8-8V144a8,8,0,0,1,8-8h24v56Z"/></symbol>
 <symbol id="i-house-line" viewBox="0 0 256 256"><path d="M216,116.69V216H152V152H104v64H40V116.69l82.34-82.35a8,8,0,0,1,11.32,0Z" opacity="0.2"/><path d="M240,208H224V136l2.34,2.34A8,8,0,0,0,237.66,127L139.31,28.68a16,16,0,0,0-22.62,0L18.34,127a8,8,0,0,0,11.32,11.31L32,136v72H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM48,120l80-80,80,80v88H160V152a8,8,0,0,0-8-8H104a8,8,0,0,0-8,8v56H48Zm96,88H112V160h32Z"/></symbol>
+<symbol id="i-instagram-logo" viewBox="0 0 256 256"><path d="M176,32H80A48,48,0,0,0,32,80v96a48,48,0,0,0,48,48h96a48,48,0,0,0,48-48V80A48,48,0,0,0,176,32ZM128,168a40,40,0,1,1,40-40A40,40,0,0,1,128,168Z" opacity="0.2"/><path d="M176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm64-84a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"/></symbol>
 <symbol id="i-key" viewBox="0 0 256 256"><path d="M232,98.36C230.73,136.92,198.67,168,160.09,168a71.68,71.68,0,0,1-26.92-5.17h0L120,176H96v24H72v24H40a8,8,0,0,1-8-8V187.31a8,8,0,0,1,2.34-5.65l58.83-58.83h0A71.68,71.68,0,0,1,88,95.91c0-38.58,31.08-70.64,69.64-71.87A72,72,0,0,1,232,98.36Z" opacity="0.2"/><path d="M216.57,39.43A80,80,0,0,0,83.91,120.78L28.69,176A15.86,15.86,0,0,0,24,187.31V216a16,16,0,0,0,16,16H72a8,8,0,0,0,8-8V208H96a8,8,0,0,0,8-8V184h16a8,8,0,0,0,5.66-2.34l9.56-9.57A79.73,79.73,0,0,0,160,176h.1A80,80,0,0,0,216.57,39.43ZM224,98.1c-1.09,34.09-29.75,61.86-63.89,61.9H160a63.7,63.7,0,0,1-23.65-4.51,8,8,0,0,0-8.84,1.68L116.69,168H96a8,8,0,0,0-8,8v16H72a8,8,0,0,0-8,8v16H40V187.31l58.83-58.82a8,8,0,0,0,1.68-8.84A63.72,63.72,0,0,1,96,95.92c0-34.14,27.81-62.8,61.9-63.89A64,64,0,0,1,224,98.1ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"/></symbol>
+<symbol id="i-linkedin-logo" viewBox="0 0 256 256"><path d="M224,40V216a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V40a8,8,0,0,1,8-8H216A8,8,0,0,1,224,40Z" opacity="0.2"/><path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84A12,12,0,1,1,88,72,12,12,0,0,1,100,84Z"/></symbol>
 <symbol id="i-lock-key-open" viewBox="0 0 256 256"><path d="M208,88H48a8,8,0,0,0-8,8V208a8,8,0,0,0,8,8H208a8,8,0,0,0,8-8V96A8,8,0,0,0,208,88Zm-80,72a20,20,0,1,1,20-20A20,20,0,0,1,128,160Z" opacity="0.2"/><path d="M208,80H96V56a32,32,0,0,1,32-32c15.37,0,29.2,11,32.16,25.59a8,8,0,0,0,15.68-3.18C171.32,24.15,151.2,8,128,8A48.05,48.05,0,0,0,80,56V80H48A16,16,0,0,0,32,96V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V96A16,16,0,0,0,208,80Zm0,128H48V96H208V208Zm-80-96a28,28,0,0,0-8,54.83V184a8,8,0,0,0,16,0V166.83A28,28,0,0,0,128,112Zm0,40a12,12,0,1,1,12-12A12,12,0,0,1,128,152Z"/></symbol>
 <symbol id="i-lock-simple" viewBox="0 0 256 256"><path d="M216,96V208a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V96a8,8,0,0,1,8-8H208A8,8,0,0,1,216,96Z" opacity="0.2"/><path d="M208,80H176V56a48,48,0,0,0-96,0V80H48A16,16,0,0,0,32,96V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V96A16,16,0,0,0,208,80ZM96,56a32,32,0,0,1,64,0V80H96ZM208,208H48V96H208V208Z"/></symbol>
 <symbol id="i-magnifying-glass" viewBox="0 0 256 256"><path d="M192,112a80,80,0,1,1-80-80A80,80,0,0,1,192,112Z" opacity="0.2"/><path d="M229.66,218.34,179.6,168.28a88.21,88.21,0,1,0-11.32,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"/></symbol>
+<symbol id="i-map-pin" viewBox="0 0 256 256"><path d="M128,24a80,80,0,0,0-80,80c0,72,80,128,80,128s80-56,80-128A80,80,0,0,0,128,24Zm0,112a32,32,0,1,1,32-32A32,32,0,0,1,128,136Z" opacity="0.2"/><path d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z"/></symbol>
 <symbol id="i-map-trifold" viewBox="0 0 256 256"><path d="M160,72V216L96,184V40Z" opacity="0.2"/><path d="M228.92,49.69a8,8,0,0,0-6.86-1.45L160.93,63.52,99.58,32.84a8,8,0,0,0-5.52-.6l-64,16A8,8,0,0,0,24,56V200a8,8,0,0,0,9.94,7.76l61.13-15.28,61.35,30.68A8.15,8.15,0,0,0,160,224a8,8,0,0,0,1.94-.24l64-16A8,8,0,0,0,232,200V56A8,8,0,0,0,228.92,49.69ZM104,52.94l48,24V203.06l-48-24ZM40,62.25l48-12v127.5l-48,12Zm176,131.5-48,12V78.25l48-12Z"/></symbol>
 <symbol id="i-medal" viewBox="0 0 256 256"><path d="M176,96a48,48,0,1,1-48-48A48,48,0,0,1,176,96Z" opacity="0.2"/><path d="M216,96A88,88,0,1,0,72,163.83V240a8,8,0,0,0,11.58,7.16L128,225l44.43,22.21A8.07,8.07,0,0,0,176,248a8,8,0,0,0,8-8V163.83A87.85,87.85,0,0,0,216,96ZM56,96a72,72,0,1,1,72,72A72.08,72.08,0,0,1,56,96ZM168,227.06l-36.43-18.21a8,8,0,0,0-7.16,0L88,227.06V174.37a87.89,87.89,0,0,0,80,0ZM128,152A56,56,0,1,0,72,96,56.06,56.06,0,0,0,128,152Zm0-96A40,40,0,1,1,88,96,40,40,0,0,1,128,56Z"/></symbol>
 <symbol id="i-motorcycle" viewBox="0 0 256 256"><path d="M248,160a32,32,0,1,1-32-32A32,32,0,0,1,248,160ZM40,128a32,32,0,1,0,32,32A32,32,0,0,0,40,128Z" opacity="0.2"/><path d="M216,120a41,41,0,0,0-6.6.55l-5.82-15.14A55.64,55.64,0,0,1,216,104a8,8,0,0,0,0-16H196.88L183.47,53.13A8,8,0,0,0,176,48H144a8,8,0,0,0,0,16h26.51l9.23,24H152c-18.5,0-33.5,4.31-43.37,12.46a16,16,0,0,1-16.76,2.07C81.29,97.72,31.13,77.33,26.71,75.6L21,73.36A17.74,17.74,0,0,0,16,72a8,8,0,0,0-2.87,15.46h0c.46.18,47.19,18.3,72.13,29.63a32.15,32.15,0,0,0,33.56-4.29c4.86-4,14.57-8.8,33.19-8.8h18.82a71.74,71.74,0,0,0-24.17,36.59A15.86,15.86,0,0,1,131.32,152H79.2a40,40,0,1,0,0,16h52.12a31.91,31.91,0,0,0,30.74-23.1,56,56,0,0,1,26.59-33.72l5.82,15.13A40,40,0,1,0,216,120ZM40,168H62.62a24,24,0,1,1,0-16H40a8,8,0,0,0,0,16Zm176,16a24,24,0,0,1-15.58-42.23l8.11,21.1a8,8,0,1,0,14.94-5.74L215.35,136l.65,0a24,24,0,0,1,0,48Z"/></symbol>
 <symbol id="i-paint-roller" viewBox="0 0 256 256"><path d="M208,64v64a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V64a8,8,0,0,1,8-8H200A8,8,0,0,1,208,64Z" opacity="0.2"/><path d="M232,88H216V64a16,16,0,0,0-16-16H48A16,16,0,0,0,32,64V88H16a8,8,0,0,0,0,16H32v24a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V104h16v50L131.6,182.65A16.07,16.07,0,0,0,120,198v34a8,8,0,0,0,16,0V198l100.4-28.68A16.07,16.07,0,0,0,248,154V104A16,16,0,0,0,232,88Zm-32,40H48V64H200v64Z"/></symbol>
 <symbol id="i-phone-x" viewBox="0 0 256 256"><path d="M215.94,182.08A48.33,48.33,0,0,1,168,224,136,136,0,0,1,32,88,48.33,48.33,0,0,1,73.92,40.06a8,8,0,0,1,8.3,4.8l21.13,47.2a8,8,0,0,1-.66,7.53L81.32,125a7.93,7.93,0,0,0-.54,7.81c8.27,16.93,25.77,34.22,42.75,42.41a7.92,7.92,0,0,0,7.83-.59l25-21.3a8,8,0,0,1,7.59-.69l47.16,21.13A8,8,0,0,1,215.94,182.08Z" opacity="0.2"/><path d="M146.34,98.34,164.69,80,146.34,61.66a8,8,0,0,1,11.32-11.32L176,68.69l18.34-18.35a8,8,0,0,1,11.32,11.32L187.32,80l18.34,18.34a8,8,0,0,1-11.32,11.32L176,91.31l-18.34,18.35a8,8,0,0,1-11.32-11.32Zm77.54,84.74A56.26,56.26,0,0,1,168,232C88.6,232,24,167.4,24,88A56.26,56.26,0,0,1,72.92,32.12a16,16,0,0,1,16.62,9.52l21.12,47.15,0,.12A16,16,0,0,1,109.39,104c-.18.27-.37.52-.57.77L88,129.45c7.49,15.22,23.41,31,38.83,38.51l24.34-20.71a8.12,8.12,0,0,1,.75-.56,16,16,0,0,1,15.17-1.4l.13.06,47.11,21.11A16,16,0,0,1,223.88,183.08Zm-15.88-2s-.07,0-.11,0h0l-47-21.05-24.35,20.71a8.44,8.44,0,0,1-.74.56,16,16,0,0,1-15.75,1.14c-18.73-9.05-37.4-27.58-46.46-46.11a16,16,0,0,1,1-15.7,6.13,6.13,0,0,1,.57-.77L96,95.15l-21-47a.61.61,0,0,1,0-.12A40.2,40.2,0,0,0,40,88,128.14,128.14,0,0,0,168,216,40.21,40.21,0,0,0,208,181.07Z"/></symbol>
+<symbol id="i-phone" viewBox="0 0 256 256"><path d="M223.94,174.08A48.33,48.33,0,0,1,176,216,136,136,0,0,1,40,80,48.33,48.33,0,0,1,81.92,32.06a8,8,0,0,1,8.3,4.8l21.13,47.2a8,8,0,0,1-.66,7.53L89.32,117a7.93,7.93,0,0,0-.54,7.81c8.27,16.93,25.77,34.22,42.75,42.41a7.92,7.92,0,0,0,7.83-.59l25-21.3a8,8,0,0,1,7.59-.69l47.16,21.13A8,8,0,0,1,223.94,174.08Z" opacity="0.2"/><path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46ZM176,208A128.14,128.14,0,0,1,48,80,40.2,40.2,0,0,1,82.87,40a.61.61,0,0,0,0,.12l21,47L83.2,111.86a6.13,6.13,0,0,0-.57.77,16,16,0,0,0-1,15.7c9.06,18.53,27.73,37.06,46.46,46.11a16,16,0,0,0,15.75-1.14,8.44,8.44,0,0,0,.74-.56L168.89,152l47,21.05h0s.08,0,.11,0A40.21,40.21,0,0,1,176,208Z"/></symbol>
 <symbol id="i-piggy-bank" viewBox="0 0 256 256"><path d="M240,112v32a16,16,0,0,1-16,16h-8l-18.1,50.69a8,8,0,0,1-7.54,5.31H177.64a8,8,0,0,1-7.54-5.31L166.29,200H97.71L93.9,210.69A8,8,0,0,1,86.36,216H73.64a8,8,0,0,1-7.54-5.31L53,174a79.7,79.7,0,0,1-21-54h0a80,80,0,0,1,80-80h32a80,80,0,0,1,73.44,48.22,82.22,82.22,0,0,1,2.9,7.78H224A16,16,0,0,1,240,112Z" opacity="0.2"/><path d="M192,116a12,12,0,1,1-12-12A12,12,0,0,1,192,116ZM152,64H112a8,8,0,0,0,0,16h40a8,8,0,0,0,0-16Zm96,48v32a24,24,0,0,1-24,24h-2.36l-16.21,45.38A16,16,0,0,1,190.36,224H177.64a16,16,0,0,1-15.07-10.62L160.65,208h-57.3l-1.92,5.38A16,16,0,0,1,86.36,224H73.64a16,16,0,0,1-15.07-10.62L46,178.22a87.69,87.69,0,0,1-21.44-48.38A16,16,0,0,0,16,144a8,8,0,0,1-16,0,32,32,0,0,1,24.28-31A88.12,88.12,0,0,1,112,32H216a8,8,0,0,1,0,16H194.61a87.93,87.93,0,0,1,30.17,37c.43,1,.85,2,1.25,3A24,24,0,0,1,248,112Zm-16,0a8,8,0,0,0-8-8h-3.66a8,8,0,0,1-7.64-5.6A71.9,71.9,0,0,0,144,48H112A72,72,0,0,0,58.91,168.64a8,8,0,0,1,1.64,2.71L73.64,208H86.36l3.82-10.69A8,8,0,0,1,97.71,192h68.58a8,8,0,0,1,7.53,5.31L177.64,208h12.72l18.11-50.69A8,8,0,0,1,216,152h8a8,8,0,0,0,8-8Z"/></symbol>
 <symbol id="i-play-circle" viewBox="0 0 256 256"><path d="M128,32a96,96,0,1,0,96,96A96,96,0,0,0,128,32ZM108,168V88l64,40Z" opacity="0.2"/><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm48.24-94.78-64-40A8,8,0,0,0,100,88v80a8,8,0,0,0,12.24,6.78l64-40a8,8,0,0,0,0-13.56ZM116,153.57V102.43L156.91,128Z"/></symbol>
 <symbol id="i-quotes" viewBox="0 0 256 256"><path d="M108,72v72H40a8,8,0,0,1-8-8V72a8,8,0,0,1,8-8h60A8,8,0,0,1,108,72Zm108-8H156a8,8,0,0,0-8,8v64a8,8,0,0,0,8,8h68V72A8,8,0,0,0,216,64Z" opacity="0.2"/><path d="M100,56H40A16,16,0,0,0,24,72v64a16,16,0,0,0,16,16h60v8a32,32,0,0,1-32,32,8,8,0,0,0,0,16,48.05,48.05,0,0,0,48-48V72A16,16,0,0,0,100,56Zm0,80H40V72h60ZM216,56H156a16,16,0,0,0-16,16v64a16,16,0,0,0,16,16h60v8a32,32,0,0,1-32,32,8,8,0,0,0,0,16,48.05,48.05,0,0,0,48-48V72A16,16,0,0,0,216,56Zm0,80H156V72h60Z"/></symbol>
@@ -64,6 +72,8 @@
 <symbol id="i-trophy" viewBox="0 0 256 256"><path d="M200,48v63.1c0,39.7-31.75,72.6-71.45,72.9A72,72,0,0,1,56,112V48Z" opacity="0.2"/><path d="M232,64H208V48a8,8,0,0,0-8-8H56a8,8,0,0,0-8,8V64H24A16,16,0,0,0,8,80V96a40,40,0,0,0,40,40h3.65A80.13,80.13,0,0,0,120,191.61V216H96a8,8,0,0,0,0,16h64a8,8,0,0,0,0-16H136V191.58c31.94-3.23,58.44-25.64,68.08-55.58H208a40,40,0,0,0,40-40V80A16,16,0,0,0,232,64ZM48,120A24,24,0,0,1,24,96V80H48v32q0,4,.39,8Zm144-8.9c0,35.52-29,64.64-64,64.9a64,64,0,0,1-64-64V56H192ZM232,96a24,24,0,0,1-24,24h-.5a81.81,81.81,0,0,0,.5-8.9V80h24Z"/></symbol>
 <symbol id="i-truck" viewBox="0 0 256 256"><path d="M248,120v64a8,8,0,0,1-8,8H216a24,24,0,0,0-48,0H104a24,24,0,0,0-48,0H32a8,8,0,0,1-8-8V144H184V120Z" opacity="0.2"/><path d="M255.42,117l-14-35A15.93,15.93,0,0,0,226.58,72H192V64a8,8,0,0,0-8-8H32A16,16,0,0,0,16,72V184a16,16,0,0,0,16,16H49a32,32,0,0,0,62,0h50a32,32,0,0,0,62,0h17a16,16,0,0,0,16-16V120A7.94,7.94,0,0,0,255.42,117ZM192,88h34.58l9.6,24H192ZM32,72H176v64H32ZM80,208a16,16,0,1,1,16-16A16,16,0,0,1,80,208Zm81-24H111a32,32,0,0,0-62,0H32V152H176v12.31A32.11,32.11,0,0,0,161,184Zm31,24a16,16,0,1,1,16-16A16,16,0,0,1,192,208Zm48-24H223a32.06,32.06,0,0,0-31-24V128h48Z"/></symbol>
 <symbol id="i-users-three" viewBox="0 0 256 256"><path d="M168,144a40,40,0,1,1-40-40A40,40,0,0,1,168,144ZM64,56A32,32,0,1,0,96,88,32,32,0,0,0,64,56Zm128,0a32,32,0,1,0,32,32A32,32,0,0,0,192,56Z" opacity="0.2"/><path d="M244.8,150.4a8,8,0,0,1-11.2-1.6A51.6,51.6,0,0,0,192,128a8,8,0,0,1,0-16,24,24,0,1,0-23.24-30,8,8,0,1,1-15.5-4A40,40,0,1,1,219,117.51a67.94,67.94,0,0,1,27.43,21.68A8,8,0,0,1,244.8,150.4ZM190.92,212a8,8,0,1,1-13.85,8,57,57,0,0,0-98.15,0,8,8,0,1,1-13.84-8,72.06,72.06,0,0,1,33.74-29.92,48,48,0,1,1,58.36,0A72.06,72.06,0,0,1,190.92,212ZM128,176a32,32,0,1,0-32-32A32,32,0,0,0,128,176ZM72,120a8,8,0,0,0-8-8A24,24,0,1,1,87.24,82a8,8,0,1,0,15.5-4A40,40,0,1,0,37,117.51,67.94,67.94,0,0,0,9.6,139.19a8,8,0,1,0,12.8,9.61A51.6,51.6,0,0,1,64,128,8,8,0,0,0,72,120Z"/></symbol>
+<symbol id="i-whatsapp-logo" viewBox="0 0 256 256"><path d="M128,32A96,96,0,0,0,44.89,176.07L32.42,213.46a8,8,0,0,0,10.12,10.12l37.39-12.47A96,96,0,1,0,128,32Zm24,152a80,80,0,0,1-80-80,32,32,0,0,1,32-32l16,32-12.32,18.47a48.19,48.19,0,0,0,25.85,25.85L152,136l32,16A32,32,0,0,1,152,184Z" opacity="0.2"/><path d="M187.58,144.84l-32-16a8,8,0,0,0-8,.5l-14.69,9.8a40.55,40.55,0,0,1-16-16l9.8-14.69a8,8,0,0,0,.5-8l-16-32A8,8,0,0,0,104,64a40,40,0,0,0-40,40,88.1,88.1,0,0,0,88,88,40,40,0,0,0,40-40A8,8,0,0,0,187.58,144.84ZM152,176a72.08,72.08,0,0,1-72-72A24,24,0,0,1,99.29,80.46l11.48,23L101,118a8,8,0,0,0-.73,7.51,56.47,56.47,0,0,0,30.15,30.15A8,8,0,0,0,138,155l14.62-9.74,23,11.48A24,24,0,0,1,152,176ZM128,24A104,104,0,0,0,36.18,176.88L24.83,210.93a16,16,0,0,0,20.24,20.24l34.05-11.35A104,104,0,1,0,128,24Zm0,192a87.87,87.87,0,0,1-44.06-11.81,8,8,0,0,0-6.54-.67L40,216,52.47,178.6a8,8,0,0,0-.66-6.54A88,88,0,1,1,128,216Z"/></symbol>
+<symbol id="i-youtube-logo" viewBox="0 0 256 256"><path d="M226.59,71.53a16,16,0,0,0-9.63-11C183.48,47.65,128,48,128,48s-55.48-.35-89,12.58a16,16,0,0,0-9.63,11C27.07,80.54,24,98.09,24,128s3.07,47.46,5.41,56.47A16,16,0,0,0,39,195.42C72.52,208.35,128,208,128,208s55.48.35,89-12.58a16,16,0,0,0,9.63-10.95c2.34-9,5.41-26.56,5.41-56.47S228.93,80.54,226.59,71.53ZM112,160V96l48,32Z" opacity="0.2"/><path d="M164.44,121.34l-48-32A8,8,0,0,0,104,96v64a8,8,0,0,0,12.44,6.66l48-32a8,8,0,0,0,0-13.32ZM120,145.05V111l25.58,17ZM234.33,69.52a24,24,0,0,0-14.49-16.4C185.56,39.88,131,40,128,40s-57.56-.12-91.84,13.12a24,24,0,0,0-14.49,16.4C19.08,79.5,16,97.74,16,128s3.08,48.5,5.67,58.48a24,24,0,0,0,14.49,16.41C69,215.56,120.4,216,127.34,216h1.32c6.94,0,58.37-.44,91.18-13.11a24,24,0,0,0,14.49-16.41c2.59-10,5.67-28.22,5.67-58.48S236.92,79.5,234.33,69.52Zm-15.49,113a8,8,0,0,1-4.77,5.49c-31.65,12.22-85.48,12-86.12,12s-54.37.18-86-12a8,8,0,0,1-4.77-5.49C34.8,173.39,32,156.57,32,128s2.8-45.39,5.16-54.47A8,8,0,0,1,41.93,68C73.58,55.82,127.4,56,128.05,56s54.37-.18,86,12a8,8,0,0,1,4.77,5.49C221.2,82.61,224,99.43,224,128S221.2,173.39,218.84,182.47Z"/></symbol>
 </defs></svg>
 
 
@@ -74,12 +84,12 @@
     </a>
 
     <nav class="nav__links" aria-label="Seções da página">
-      <a href="#problema"><span>O problema</span><sup>001</sup></a>
-      <a href="#grade"><span>A grade</span><sup>002</sup></a>
-      <a href="#metodo"><span>O método</span><sup>003</sup></a>
-      <a href="#simulador"><span>Simulador</span><sup>004</sup></a>
-      <a href="#solucoes"><span>Soluções</span><sup>005</sup></a>
-      <a href="#resultados"><span>Resultados</span><sup>006</sup></a>
+      <a href="#problema">O problema</a>
+      <a href="#grade">A grade</a>
+      <a href="#metodo">O método</a>
+      <a href="#simulador">Simulador</a>
+      <a href="#solucoes">Soluções</a>
+      <a href="#resultados">Resultados</a>
     </nav>
 
     <a class="btn" href="#simulacao"><span>Receber minha simulação</span><i class="btn__c" aria-hidden="true"><svg class="ic"><use href="#i-arrow-up-right"></use></svg></i></a>
@@ -133,19 +143,19 @@
     <span class="obj__k">01</span>
     <span class="obj__t">Quero um imóvel</span>
     <span class="obj__d">Casa, comercial, rural, terreno, construção ou reforma.</span>
-    <span class="obj__go">Ver meu caminho</span>
+    <span class="obj__go">Ver meu caminho</span><svg class="ic obj__arrow" aria-hidden="true"><use href="#i-arrow-up-right"></use></svg>
   </button>
   <button class="obj" type="button" data-obj="Veículo" aria-pressed="false">
     <span class="obj__k">02</span>
     <span class="obj__t">Quero um veículo</span>
     <span class="obj__d">Leves, pesados, motos, náuticos, agro e linha amarela.</span>
-    <span class="obj__go">Ver meu caminho</span>
+    <span class="obj__go">Ver meu caminho</span><svg class="ic obj__arrow" aria-hidden="true"><use href="#i-arrow-up-right"></use></svg>
   </button>
   <button class="obj" type="button" data-obj="Investimento" aria-pressed="false">
     <span class="obj__k">03</span>
     <span class="obj__t">Quero investir</span>
     <span class="obj__d">Alavancagem, renda imobiliária e capital para o negócio.</span>
-    <span class="obj__go">Ver meu caminho</span>
+    <span class="obj__go">Ver meu caminho</span><svg class="ic obj__arrow" aria-hidden="true"><use href="#i-arrow-up-right"></use></svg>
   </button>
 </div>
 
@@ -247,7 +257,7 @@
               <div class="door" style="height:12%"><span class="door__l">·</span></div>
             </div>
           </div>
-          <p style="font-size:11.5px;color:var(--ash);margin-top:.5rem">
+          <p style="font-size:15px;color:var(--ash);margin-top:.5rem">
             No consórcio comum. Nos grupos onde alocamos você, as seis abrem juntas.
           </p>
         </div>
@@ -538,16 +548,31 @@
           <a class="lnk" href="#simulador">Calcular a parcela</a>
         </div>
       </div>
-      <div class="dbox">
-        <p class="dbox__h">Um crédito, seis destinos<span>6</span></p>
-        <ul class="dlist">
-          <li><svg class="ic dl__i" aria-hidden="true"><use href="#i-house-line"></use></svg><span><b>Residencial</b>primeira casa ou upgrade</span></li>
-          <li><svg class="ic dl__i" aria-hidden="true"><use href="#i-buildings"></use></svg><span><b>Comercial</b>sede própria no lugar do aluguel</span></li>
-          <li><svg class="ic dl__i" aria-hidden="true"><use href="#i-barn"></use></svg><span><b>Rural</b>terra produtiva e patrimônio</span></li>
-          <li><svg class="ic dl__i" aria-hidden="true"><use href="#i-map-trifold"></use></svg><span><b>Terreno</b>garantir a localização agora</span></li>
-          <li><svg class="ic dl__i" aria-hidden="true"><use href="#i-crane-tower"></use></svg><span><b>Construção</b>do projeto à obra</span></li>
-          <li><svg class="ic dl__i" aria-hidden="true"><use href="#i-paint-roller"></use></svg><span><b>Reforma</b>valorizar o que você já tem</span></li>
-        </ul>
+      <div class="scards">
+        <article class="scard"><span class="scard__m scard__m--art" data-slot="1"><svg class="ic scard__big" aria-hidden="true"><use href="#i-house-line"></use></svg></span>
+          <span class="scard__t">Residencial</span>
+          <span class="scard__s">primeira casa ou upgrade</span>
+        </article>
+        <article class="scard"><span class="scard__m"><img src="assets/sede/fachada.webp" alt="Comercial na Fasolo Consórcios." loading="lazy" decoding="async"></span>
+          <span class="scard__t">Comercial</span>
+          <span class="scard__s">sede própria no lugar do aluguel</span>
+        </article>
+        <article class="scard"><span class="scard__m scard__m--art" data-slot="1"><svg class="ic scard__big" aria-hidden="true"><use href="#i-barn"></use></svg></span>
+          <span class="scard__t">Rural</span>
+          <span class="scard__s">terra produtiva e patrimônio</span>
+        </article>
+        <article class="scard"><span class="scard__m scard__m--art" data-slot="1"><svg class="ic scard__big" aria-hidden="true"><use href="#i-map-trifold"></use></svg></span>
+          <span class="scard__t">Terreno</span>
+          <span class="scard__s">garantir a localização agora</span>
+        </article>
+        <article class="scard"><span class="scard__m scard__m--art" data-slot="1"><svg class="ic scard__big" aria-hidden="true"><use href="#i-crane-tower"></use></svg></span>
+          <span class="scard__t">Construção</span>
+          <span class="scard__s">do projeto à obra</span>
+        </article>
+        <article class="scard"><span class="scard__m scard__m--art" data-slot="1"><svg class="ic scard__big" aria-hidden="true"><use href="#i-paint-roller"></use></svg></span>
+          <span class="scard__t">Reforma</span>
+          <span class="scard__s">valorizar o que você já tem</span>
+        </article>
       </div>
     </div>
 
@@ -561,16 +586,31 @@
           <a class="lnk" href="#simulador">Calcular a parcela</a>
         </div>
       </div>
-      <div class="dbox">
-        <p class="dbox__h">Qual é o seu próximo veículo<span>6</span></p>
-        <ul class="dlist">
-          <li><svg class="ic dl__i" aria-hidden="true"><use href="#i-car-profile"></use></svg><span><b>Veículos leves</b>novo ou seminovo</span></li>
-          <li><svg class="ic dl__i" aria-hidden="true"><use href="#i-motorcycle"></use></svg><span><b>Motocicletas</b>trabalho ou lazer</span></li>
-          <li><svg class="ic dl__i" aria-hidden="true"><use href="#i-truck"></use></svg><span><b>Pesados e frota</b>caminhões e carretas</span></li>
-          <li><svg class="ic dl__i" aria-hidden="true"><use href="#i-tractor"></use></svg><span><b>Maquinário agro</b>tratores e colheitadeiras</span></li>
-          <li><svg class="ic dl__i" aria-hidden="true"><use href="#i-bulldozer"></use></svg><span><b>Linha amarela</b>máquinas de construção</span></li>
-          <li><svg class="ic dl__i" aria-hidden="true"><use href="#i-sailboat"></use></svg><span><b>Náuticos</b>embarcações</span></li>
-        </ul>
+      <div class="scards">
+        <article class="scard"><span class="scard__m"><img src="assets/sede/estande.webp" alt="Veículos leves na Fasolo Consórcios." loading="lazy" decoding="async"></span>
+          <span class="scard__t">Veículos leves</span>
+          <span class="scard__s">novo ou seminovo</span>
+        </article>
+        <article class="scard"><span class="scard__m scard__m--art" data-slot="1"><svg class="ic scard__big" aria-hidden="true"><use href="#i-motorcycle"></use></svg></span>
+          <span class="scard__t">Motocicletas</span>
+          <span class="scard__s">trabalho ou lazer</span>
+        </article>
+        <article class="scard"><span class="scard__m scard__m--art" data-slot="1"><svg class="ic scard__big" aria-hidden="true"><use href="#i-truck"></use></svg></span>
+          <span class="scard__t">Pesados e frota</span>
+          <span class="scard__s">caminhões e carretas</span>
+        </article>
+        <article class="scard"><span class="scard__m scard__m--art" data-slot="1"><svg class="ic scard__big" aria-hidden="true"><use href="#i-tractor"></use></svg></span>
+          <span class="scard__t">Maquinário agro</span>
+          <span class="scard__s">tratores e colheitadeiras</span>
+        </article>
+        <article class="scard"><span class="scard__m scard__m--art" data-slot="1"><svg class="ic scard__big" aria-hidden="true"><use href="#i-bulldozer"></use></svg></span>
+          <span class="scard__t">Linha amarela</span>
+          <span class="scard__s">máquinas de construção</span>
+        </article>
+        <article class="scard"><span class="scard__m scard__m--art" data-slot="1"><svg class="ic scard__big" aria-hidden="true"><use href="#i-sailboat"></use></svg></span>
+          <span class="scard__t">Náuticos</span>
+          <span class="scard__s">embarcações</span>
+        </article>
       </div>
     </div>
 
@@ -584,15 +624,27 @@
           <a class="lnk" href="#resultados">Ver os resultados</a>
         </div>
       </div>
-      <div class="dbox">
-        <p class="dbox__h">Cinco formas de fazer o consórcio trabalhar<span>5</span></p>
-        <ul class="dlist">
-          <li><svg class="ic dl__i" aria-hidden="true"><use href="#i-trend-up"></use></svg><span><b>Venda de contemplado</b>comprar bem, contemplar com estratégia</span></li>
-          <li><svg class="ic dl__i" aria-hidden="true"><use href="#i-key"></use></svg><span><b>Aposentadoria imobiliária</b>renda de aluguel planejada</span></li>
-          <li><svg class="ic dl__i" aria-hidden="true"><use href="#i-blueprint"></use></svg><span><b>Terreno e construção</b>patrimônio em duas etapas</span></li>
-          <li><svg class="ic dl__i" aria-hidden="true"><use href="#i-briefcase"></use></svg><span><b>Capital para o negócio</b>alavancagem sem juros tradicionais</span></li>
-          <li><svg class="ic dl__i" aria-hidden="true"><use href="#i-piggy-bank"></use></svg><span><b>Previdência</b>disciplina de aporte com bem no final</span></li>
-        </ul>
+      <div class="scards">
+        <article class="scard"><span class="scard__m scard__m--art" data-slot="1"><svg class="ic scard__big" aria-hidden="true"><use href="#i-trend-up"></use></svg></span>
+          <span class="scard__t">Venda de contemplado</span>
+          <span class="scard__s">comprar bem, contemplar com estratégia</span>
+        </article>
+        <article class="scard"><span class="scard__m scard__m--art" data-slot="1"><svg class="ic scard__big" aria-hidden="true"><use href="#i-key"></use></svg></span>
+          <span class="scard__t">Aposentadoria imobiliária</span>
+          <span class="scard__s">renda de aluguel planejada</span>
+        </article>
+        <article class="scard"><span class="scard__m scard__m--art" data-slot="1"><svg class="ic scard__big" aria-hidden="true"><use href="#i-blueprint"></use></svg></span>
+          <span class="scard__t">Terreno e construção</span>
+          <span class="scard__s">patrimônio em duas etapas</span>
+        </article>
+        <article class="scard"><span class="scard__m"><img src="assets/sede/operacao.webp" alt="Capital para o negócio na Fasolo Consórcios." loading="lazy" decoding="async"></span>
+          <span class="scard__t">Capital para o negócio</span>
+          <span class="scard__s">alavancagem sem juros tradicionais</span>
+        </article>
+        <article class="scard"><span class="scard__m scard__m--art" data-slot="1"><svg class="ic scard__big" aria-hidden="true"><use href="#i-piggy-bank"></use></svg></span>
+          <span class="scard__t">Previdência</span>
+          <span class="scard__s">disciplina de aporte com bem no final</span>
+        </article>
       </div>
     </div>
   </div>
@@ -628,7 +680,7 @@
         </blockquote>
         <div class="who">
           <span class="who__n" id="whoN">Cliente contemplado</span>
-          <span class="who__c" id="whoC">Bento Gonçalves, RS</span>
+          <span class="who__c"><svg class="ic who__pin" aria-hidden="true"><use href="#i-map-pin"></use></svg><span id="whoC">Bento Gonçalves, RS</span></span>
           <span class="chip"><i></i><span id="whoB">Imóvel residencial</span></span>
         </div>
         <div class="depo__nav">
@@ -766,64 +818,47 @@
     <div class="shead">
       <h2 data-rev style="max-width:14ch">Confiança não se pede. Se prova.</h2>
       <p class="sub shead__r" data-rev>
-        Sete prêmios, dois anos de verificação pública sem uma reclamação, e uma
-        administradora autorizada pelo Banco Central por trás de cada cota.
+        Sete prêmios do mercado e da rede. E, atrás de cada cota, uma administradora
+        autorizada pelo Banco Central.
       </p>
     </div>
 
-    <div class="rgrid">
-      <div class="rbox rbox--gold" data-rev>
-        <p class="rbox__h"><svg class="ic" aria-hidden="true"><use href="#i-trophy"></use></svg><span>Prêmios no mercado</span><b>05</b></p>
-        <ul class="rlist">
-          <li><svg class="ic rl__i" aria-hidden="true"><use href="#i-trophy"></use></svg><span><b>Top of Mind</b>Empresa de Consórcio</span></li>
-          <li><svg class="ic rl__i" aria-hidden="true"><use href="#i-buildings"></use></svg><span><b>SECOVI</b>Destaque do Setor Imobiliário</span></li>
-          <li><svg class="ic rl__i" aria-hidden="true"><use href="#i-star"></use></svg><span><b>Evandro Behr</b>Oscar da Cultura</span></li>
-          <li><svg class="ic rl__i" aria-hidden="true"><use href="#i-medal"></use></svg><span><b>Profissionais &amp; Negócios</b>Santa Maria, RS</span></li>
-          <li><svg class="ic rl__i" aria-hidden="true"><use href="#i-certificate"></use></svg><span><b>Destaque Empresarial</b>Santa Maria, RS</span></li>
+    <div class="pbox" data-rev>
+      <p class="pbox__h"><svg class="ic" aria-hidden="true"><use href="#i-trophy"></use></svg><span>Prêmios e destaques</span><b>07</b></p>
+      <ul class="plist">
+        <li><svg class="ic pl__i" aria-hidden="true"><use href="#i-trophy"></use></svg><span><b>Top of Mind</b>Empresa de Consórcio</span></li>
+        <li><svg class="ic pl__i" aria-hidden="true"><use href="#i-buildings"></use></svg><span><b>SECOVI</b>Destaque do Setor Imobiliário</span></li>
+        <li><svg class="ic pl__i" aria-hidden="true"><use href="#i-star"></use></svg><span><b>Evandro Behr</b>Oscar da Cultura</span></li>
+        <li><svg class="ic pl__i" aria-hidden="true"><use href="#i-medal"></use></svg><span><b>Profissionais &amp; Negócios</b>Santa Maria, RS</span></li>
+        <li><svg class="ic pl__i" aria-hidden="true"><use href="#i-certificate"></use></svg><span><b>Destaque Empresarial</b>Santa Maria, RS</span></li>
+        <li><svg class="ic pl__i" aria-hidden="true"><use href="#i-trophy"></use></svg><span><b>Destaque Nacional</b>HS Consórcios</span></li>
+        <li><svg class="ic pl__i" aria-hidden="true"><use href="#i-headset"></use></svg><span><b>Mérito Atendimento</b>HS Consórcios</span></li>
+      </ul>
+    </div>
+
+    <!-- the institutional guarantee sits inside the photo of the night it was
+         handed over: the claim and its evidence as one block -->
+    <figure class="guard" data-rev>
+      <img src="assets/premio.webp" alt="Equipe da Fasolo Consórcios em premiação da HS Consórcios." loading="lazy" decoding="async">
+      <div class="guard__panel">
+        <p class="guard__k"><svg class="ic" aria-hidden="true"><use href="#i-shield-check"></use></svg><span>Verificação e autorização</span></p>
+        <h3 class="guard__t">A operação não é nossa sozinha. É de uma administradora autorizada.</h3>
+        <ul class="glist">
+            <li><svg class="ic gl__i" aria-hidden="true"><use href="#i-seal-check"></use></svg><span><b>Dois anos no Reclame AQUI</b>Verificada, zero reclamações.</span></li>
+            <li><svg class="ic gl__i" aria-hidden="true"><use href="#i-bank"></use></svg><span><b>Autorizada pelo Banco Central</b>HS Administradora, CNPJ 73.516.106/0001-16.</span></li>
+            <li><svg class="ic gl__i" aria-hidden="true"><use href="#i-scales"></use></svg><span><b>Lei nº 11.795/2008</b>Contemplação assegurada, com parcelas em dia.</span></li>
         </ul>
+        <p class="guard__p">
+          Nossa operação é alocada na HS Consórcios, uma das 25 marcas do Grupo Herval,
+          reconhecida no Guia das Melhores Empresas para o Consumidor 2026 do Reclame AQUI.
+        </p>
       </div>
-
-      <div class="rcol">
-        <div class="rbox rbox--gold" data-rev>
-          <p class="rbox__h"><svg class="ic" aria-hidden="true"><use href="#i-medal"></use></svg><span>Na rede HS Consórcios</span><b>02</b></p>
-          <ul class="rlist">
-          <li><svg class="ic rl__i" aria-hidden="true"><use href="#i-trophy"></use></svg><span><b>Destaque Nacional</b>HS Consórcios</span></li>
-          <li><svg class="ic rl__i" aria-hidden="true"><use href="#i-headset"></use></svg><span><b>Mérito Atendimento</b>HS Consórcios</span></li>
-          </ul>
-        </div>
-        <div class="rbox rbox--green" data-rev>
-          <p class="rbox__h"><svg class="ic" aria-hidden="true"><use href="#i-shield-check"></use></svg><span>Verificação e autorização</span></p>
-          <ul class="rlist">
-          <li><svg class="ic rl__i" aria-hidden="true"><use href="#i-seal-check"></use></svg><span><b>Dois anos no Reclame AQUI</b>Verificada, zero reclamações</span></li>
-          <li><svg class="ic rl__i" aria-hidden="true"><use href="#i-bank"></use></svg><span><b>Autorizada pelo Banco Central</b>HS Administradora, CNPJ 73.516.106/0001-16</span></li>
-          <li><svg class="ic rl__i" aria-hidden="true"><use href="#i-scales"></use></svg><span><b>Lei nº 11.795/2008</b>Contemplação assegurada, com parcelas em dia</span></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="shots">
-      <figure class="shot" data-rev>
-        <img src="assets/premio.webp" alt="Equipe da Fasolo Consórcios em premiação da HS Consórcios." loading="lazy" decoding="async">
-        <figcaption>Premiação HS Consórcios, com a equipe da Fasolo.</figcaption>
-      </figure>
-      <figure class="shot" data-rev>
-        <img src="assets/palco.webp" alt="Jair Fasolo no palco durante evento da HS Consórcios." loading="lazy" decoding="async">
-        <figcaption>Destaque Nacional HS Consórcios.</figcaption>
-      </figure>
-    </div>
-
-    <div class="hs" data-rev>
-      <p class="hs__k"><svg class="ic hs__i" aria-hidden="true"><use href="#i-handshake"></use></svg>Por que operamos com a HS Consórcios</p>
-      <p>
-        Nossa operação é alocada na HS Consórcios, uma das 25 marcas do Grupo Herval, autorizada pelo
-        Banco Central e reconhecida no Guia das Melhores Empresas para o Consumidor 2026 do Reclame AQUI.
-      </p>
-    </div>
+      <figcaption class="guard__cap">Premiação HS Consórcios, com a equipe da Fasolo.</figcaption>
+    </figure>
   </div>
 </section>
 
-<!-- ======================= (009) DÚVIDAS ======================= -->
+<!-- ======================= (010) DÚVIDAS ======================= -->
 <section class="light sect" id="duvidas">
   <div class="wrap">
     <p class="reg" data-rev><span class="reg__n">(010)</span><span class="reg__t">Dúvidas</span></p>
@@ -849,7 +884,7 @@
   </div>
 </section>
 
-<!-- ======================= (010) SIMULAÇÃO ======================= -->
+<!-- ======================= (011) SIMULAÇÃO ======================= -->
 <section class="dark sect" id="simulacao" style="border-top:1px solid var(--line)">
   <div class="wrap form__grid">
     <div data-rev>
@@ -905,7 +940,7 @@
 
         <div class="form__go">
           <button class="btn btn--lg" type="submit"><span>Receber minha simulação agora</span><i class="btn__c" aria-hidden="true"><svg class="ic"><use href="#i-arrow-up-right"></use></svg></i></button>
-          <span style="font-size:11.5px;color:var(--ash);max-width:24ch">Não enviamos promoção. Só a sua simulação.</span>
+          <span style="font-size:15px;color:var(--ash);max-width:24ch">Não enviamos promoção. Só a sua simulação.</span>
         </div>
       </form>
 
@@ -947,22 +982,66 @@
 <footer class="foot dark">
   <div class="wrap">
     <div class="foot__top">
-      <a class="logo" href="#top" aria-label="Fasolo Consórcios">
-        <img class="logo__m logo__m--dark" src="assets/logo-fasolo.webp" width="900" height="256" alt="Fasolo Consórcios"><img class="logo__m logo__m--light" src="assets/logo-fasolo-dark.webp" width="900" height="256" alt="" aria-hidden="true">
-      </a>
-      <div class="foot__c">
-        <span>Rua Duque de Caxias 1084, Santa Maria, RS</span>
-        <a href="tel:+5555999886372">(55) 99988-6372</a>
-        <a href="mailto:contato@fasoloconsorcios.com.br">contato@fasoloconsorcios.com.br</a>
+      <div class="foot__say">
+        <h2>Seu objetivo merece mais do que uma parcela.</h2>
+        <p>Merece uma estratégia. Fale com um especialista e receba a sua simulação no WhatsApp.</p>
+        <div class="foot__cta">
+          <a class="btn btn--lg" href="#simulacao"><span>Receber minha simulação</span><i class="btn__c" aria-hidden="true"><svg class="ic"><use href="#i-arrow-up-right"></use></svg></i></a>
+        </div>
+      </div>
+      <button class="foot__up" type="button" id="toTop" aria-label="Voltar ao topo"><svg class="ic" aria-hidden="true"><use href="#i-arrow-up"></use></svg></button>
+    </div>
+
+    <div class="foot__grid">
+      <div class="fcol">
+        <p class="fcol__h">Navegar</p>
+        <ul>
+          <li><span class="fcol__n">01</span><a href="#grade">A grade</a></li>
+          <li><span class="fcol__n">02</span><a href="#metodo">O método</a></li>
+          <li><span class="fcol__n">03</span><a href="#simulador">Simulador</a></li>
+          <li><span class="fcol__n">04</span><a href="#solucoes">Soluções</a></li>
+          <li><span class="fcol__n">05</span><a href="#resultados">Resultados</a></li>
+          <li><span class="fcol__n">06</span><a href="#duvidas">Dúvidas</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <p class="fcol__h">Soluções</p>
+        <ul>
+          <li><span class="fcol__n">01</span><a href="#solucoes">Consórcio imobiliário</a></li>
+          <li><span class="fcol__n">02</span><a href="#solucoes">Consórcio de veículos</a></li>
+          <li><span class="fcol__n">03</span><a href="#solucoes">Consórcio como investimento</a></li>
+          <li><span class="fcol__n">04</span><a href="#simulacao">Estudo de viabilidade</a></li>
+        </ul>
+      </div>
+      <div class="fcol fcol--contact">
+        <p class="fcol__h">Contato</p>
+        <ul>
+          <li><svg class="ic fcol__i" aria-hidden="true"><use href="#i-phone"></use></svg><a href="tel:+5555999886372">(55) 99988-6372</a></li>
+          <li><svg class="ic fcol__i" aria-hidden="true"><use href="#i-envelope-simple"></use></svg><a href="mailto:contato@fasoloconsorcios.com.br">contato@fasoloconsorcios.com.br</a></li>
+          <li><svg class="ic fcol__i" aria-hidden="true"><use href="#i-map-pin"></use></svg><span>Rua Duque de Caxias 1084, Santa Maria, RS</span></li>
+        </ul>
+        <div class="foot__soc">
+          <a href="https://www.instagram.com/fasoloconsorcios/" aria-label="Instagram da Fasolo Consórcios"><svg class="ic" aria-hidden="true"><use href="#i-instagram-logo"></use></svg></a>
+          <a href="https://www.youtube.com/@fasoloconsorcios" aria-label="YouTube da Fasolo Consórcios"><svg class="ic" aria-hidden="true"><use href="#i-youtube-logo"></use></svg></a>
+          <a href="https://www.facebook.com/fasoloconsorcios/" aria-label="Facebook da Fasolo Consórcios"><svg class="ic" aria-hidden="true"><use href="#i-facebook-logo"></use></svg></a>
+        </div>
       </div>
     </div>
+  </div>
+
+  <div class="foot__mark" aria-hidden="true">
+    <img src="assets/wordmark.webp" alt="">
+  </div>
+
+  <div class="wrap foot__end">
     <p class="foot__l">
-      Corretora autorizada, código 2575/2438. Grupos administrados pela HS Administradora de Consórcio
-      Ltda, CNPJ 73.516.106/0001-16, autorizada pelo Banco Central. Contemplação assegurada pela Lei
-      nº 11.795/2008, com parcelas em dia. A Fasolo não promete data certa de contemplação, lance
-      vencedor, aprovação cadastral, aprovação do bem ou liberação imediata do crédito. Os valores do
-      simulador são estimativa para comparação e não constituem proposta comercial.
+      Corretora autorizada, código 2575/2438. Grupos administrados pela HS Administradora de
+      Consórcio Ltda, CNPJ 73.516.106/0001-16, autorizada pelo Banco Central. Contemplação
+      assegurada pela Lei nº 11.795/2008, com parcelas em dia. A Fasolo não promete data certa de
+      contemplação, lance vencedor, aprovação cadastral, aprovação do bem ou liberação imediata do
+      crédito. Os valores do simulador são estimativa para comparação, não proposta comercial.
     </p>
+    <p class="foot__c">© 2026 Fasolo Consórcios</p>
   </div>
 </footer>
 

@@ -45,6 +45,13 @@ Vermelho nunca ocupa superfície grande: briefing veta.
 
 ### Tipografia
 
+**Duas famílias, e nada abaixo de 15px.** Decidido em 17/09: `--sm`, `--xs` e
+`--mono` valem todos 15px, e nenhum valor fixo no CSS ou inline no HTML fica
+abaixo disso. O que dependia de tipo miúdo foi refeito, não encolhido: os
+rótulos das portas viraram texto só para leitor de tela (a legenda abaixo já
+dizia o mesmo), a parcela do dock virou uma linha, e o tracking das etiquetas
+mono caiu para compensar a largura.
+
 - **Schibsted Grotesk** (400/500/600/700) em tudo. Grotesco editorial de jornal,
   escolhido por soar analítico e não bancário. Títulos em peso 500 com
   `letter-spacing: -.042em`.
@@ -68,11 +75,17 @@ Cor por contexto, e isso é hierarquia, não decoração:
 `--red` nos destinos e no item aberto (conteúdo principal),
 `--bone-2` nos blocos em repouso, `--gold` só nos prêmios.
 
-⚠️⚠️ **Substituição de CSS por índice de string é perigosa neste arquivo.**
-Trocar o bloco do botão procurando por `.btn{` casou com `.nav .btn{` dentro de
-um media query, comeu as regras do logo e deixou **uma chave aberta**. Tudo
-depois dela some sem erro: o ícone vira SVG de 150px, a caixa de soluções não
-vira grid. Conferir sempre `abre == fecha` de chaves depois de editar o CSS.
+⛔⛔ **Não editar este CSS fatiando por índice de string.** Já custou caro duas
+vezes:
+1. trocar o bloco do botão procurando `.btn{` casou com `.nav .btn{` dentro de
+   um media query, comeu as regras do logo e deixou **uma chave aberta**;
+2. cortar de um cabeçalho de bloco até outro comeu ÍCONES, STEPPER, CARDS,
+   SECTION HEAD e o TEMA CLARO inteiro. ~9KB sumiram sem um único erro.
+
+O sintoma é sempre silencioso: ícone vira SVG de 150px (o default), grid vira
+block, tema não aplica. **A regra agora é: só substituição de string exata e
+única, ou acrescentar no fim do arquivo.** Regra repetida mais abaixo vence, que
+é o comportamento desejado. Conferir sempre `{` == `}` depois de editar.
 
 ⚠️ Ícone vive dentro de `.itile`, que é um `<span>`. Cuidado com regra de
 elemento genérica tipo `.componente span{...}`: ela vence `.itile` na cascata e
@@ -120,6 +133,14 @@ escolha fica no `localStorage`, dentro de try/catch.
 em fundo claro, `--red-lift` (#FF3B45) em fundo escuro. O `--red` da marca em
 texto pequeno sobre preto dá **4.06:1** e reprova.
 
+### Footer
+
+Sobre voxt, blink e brikken: o painel se descola com topo arredondado, carrega
+uma frase de fecho com CTA, três colunas de links numeradas, contato com ícones,
+redes, botão de voltar ao topo, e o wordmark grande alinhado à esquerda.
+⚠️ Wordmark cortado pela metade da letra lê como bug, não como sangria: mostrar
+inteiro (`assets/wordmark.webp`, recorte só da palavra).
+
 ### Grão
 
 `body::after` aplica um ruído SVG fixo em `mix-blend-mode: overlay`. É ele que
@@ -140,11 +161,11 @@ O hero mais dez seções numeradas. O número `(001)` não é enfeite: é o mesm
 | 002 | A grade de contemplação | **peça de assinatura**: cabeçalho por coluna e 6 portas acendendo no scroll |
 | 003 | O método | quatro blocos verticais, um aberto por vez, seta navega |
 | 004 | Simulador | cálculo ao vivo, comparação com financiamento |
-| 005 | As soluções | abas ligadas ao objetivo, copy à esquerda e uma caixa de destinos à direita |
+| 005 | As soluções | abas, copy e CTA no topo, destinos como cards com mídia |
 | 006 | Os resultados | uma caixa única: player, citação, navegação e deck |
 | 007 | O fundador | Jair como autoridade, dentro da estrutura |
 | 008 | A casa | carrossel fluido da sede, operação, time e estande |
-| 009 | Reconhecimento | três caixas agrupadas: mercado, rede HS, verificação |
+| 009 | Reconhecimento | prêmios numa lista, garantia dentro da foto da premiação |
 | 010 | Dúvidas | FAQ em duas colunas |
 | 011 | Sua simulação | formulário, com o resultado do simulador junto |
 

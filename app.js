@@ -287,7 +287,8 @@
     var b = document.createElement("button");
     b.type = "button"; b.className = "tcard"; b.setAttribute("role", "tab");
     b.setAttribute("aria-selected", String(i === 0));
-    b.innerHTML = "<b>" + d.cidade + "</b><span>" + d.bem + "</span>";
+    b.innerHTML = '<b><svg class="ic" aria-hidden="true"><use href="#i-map-pin"></use></svg>'
+      + d.cidade + "</b><span>" + d.bem + "</span>";
     b.addEventListener("click", function () { paintDepo(i, true); });
     reel.appendChild(b);
   });
@@ -372,6 +373,11 @@
   window.addEventListener("resize", onScroll, { passive: true });
   onScroll();
 
+
+  var toTop = $("#toTop");
+  if (toTop) toTop.addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+  });
 
   /* =========================================================================
      10. THEME
