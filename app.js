@@ -190,6 +190,9 @@
       $("#rPrazo").textContent = n + " meses";
       $("#rParc").textContent = money(parcelaC);
     }
+    var dl = $("#dockLive"), dp = $("#dockParcela");
+    if (dl && dp && sCred.dataset.touched) { dl.hidden = false; dp.textContent = money(parcelaC); }
+
     var fc = $("#credito"), fp = $("#parcela");
     if (fc && !fc.dataset.touched) fc.value = money(C);
     if (fp && !fp.dataset.touched) fp.value = money(parcelaC);
@@ -197,7 +200,7 @@
 
   [sCred, sPrazo, sTx, sFr, sJur].forEach(function (el) {
     if (!el) return;
-    el.addEventListener("input", compute);
+    el.addEventListener("input", function () { sCred.dataset.touched = "1"; compute(); });
   });
   ["credito", "parcela"].forEach(function (id) {
     var el = document.getElementById(id);
@@ -351,6 +354,11 @@
         if (i === cur) { a.setAttribute("aria-current", "true"); }
         else { a.removeAttribute("aria-current"); }
       });
+      var here = cur >= 0 ? navLinks[cur].getAttribute("href") : null;
+      $$(".dock__i").forEach(function (a) {
+        if (a.getAttribute("href") === here) { a.setAttribute("aria-current", "true"); }
+        else { a.removeAttribute("aria-current"); }
+      });
 
       // the dock appears once the hero is behind you and hides over the form
       var dock = $("#dock"), formTop = $("#simulacao").getBoundingClientRect().top;
@@ -363,6 +371,138 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", onScroll, { passive: true });
   onScroll();
+
+
+  /* =========================================================================
+     10. THEME
+     The dock's round button. Only tokens move; see the LIGHT THEME block in
+     styles.css. The choice is a per-viewer convenience, so localStorage is
+     wrapped and the page renders correctly when it comes back empty.
+     ====================================================================== */
+  var themeBtn = $("#themeBtn");
+  function applyTheme(t) {
+    if (t === "light") { document.documentElement.setAttribute("data-theme", "light"); }
+    else { document.documentElement.removeAttribute("data-theme"); }
+    if (themeBtn) themeBtn.setAttribute("aria-pressed", String(t === "light"));
+    try { localStorage.setItem("fasolo-theme", t); } catch (e) {}
+  }
+  try {
+    var saved = localStorage.getItem("fasolo-theme");
+    if (saved === "light") applyTheme("light");
+  } catch (e) {}
+  if (themeBtn) {
+    themeBtn.addEventListener("click", function () {
+      applyTheme(document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light");
+      if (hasGSAP && !reduce) ScrollTrigger.refresh();
+    });
+  }
+
+  /* =========================================================================
+     11. DOCK
+     Magnification: the pointer's distance to each item drives its scale, so
+     the one under the cursor grows most and its neighbours taper off. This is
+     pointer feedback, not decoration, which is why it runs on hover only.
+     ====================================================================== */
+  var dockItems = $$(".dock__i");
+  var dockWrap = $("#dockItems");
+  if (dockWrap && !reduce) {
+    dockWrap.addEventListener("pointermove", function (e) {
+      dockItems.forEach(function (it) {
+        var r = it.getBoundingClientRect();
+        var d = Math.abs(e.clientX - (r.left + r.width / 2));
+        var k = Math.max(0, 1 - d / 190);            // falls off over ~190px
+        it.style.transform = "scale(" + (1 + k * 0.17) + ") translateY(" + (-k * 4) + "px)";
+      });
+    });
+    dockWrap.addEventListener("pointerleave", function () {
+      dockItems.forEach(function (it) { it.style.transform = ""; });
+    });
+  }
+
+  /* =========================================================================
+     12. CAROUSEL  (008)
+     One seamless track. It always drifts; scroll velocity and a hand throw add
+     to the same velocity, and that velocity also skews the cards. No library:
+     the whole thing is one position, one velocity and a wrap.
+     ====================================================================== */
+  (function () {
+    var track = $("#cTrack");
+    if (!track) return;
+    var bar = $("#cBar");
+    var slides = $$(".cslide", track);
+    if (!slides.length) return;
+
+    // duplicate the set so the wrap has something to show on both sides
+    slides.forEach(function (s) { track.appendChild(s.cloneNode(true)); });
+
+    var setW = 0, x = 0, vel = 0, drift = -0.55, dragging = false, lastX = 0, raf;
+
+    function measure() {
+      setW = 0;
+      var gap = parseFloat(getComputedStyle(track).gap) || 0;
+      slides.forEach(function (s) { setW += s.getBoundingClientRect().width + gap; });
+    }
+    measure();
+    window.addEventListener("resize", measure, { passive: true });
+
+    function wrap(v) {
+      if (!setW) return v;
+      while (v <= -setW) v += setW;
+      while (v > 0) v -= setW;
+      return v;
+    }
+
+    function frame() {
+      if (track.dataset.frozen) { raf = requestAnimationFrame(frame); return; }
+      if (!dragging) vel *= 0.93;
+      if (Math.abs(vel) < 0.01) vel = 0;
+      x = wrap(x + drift + vel);
+      var skew = Math.max(-7, Math.min(7, (drift + vel) * 0.8));
+      track.style.transform = "translate3d(" + x.toFixed(2) + "px,0,0) skewX(" + skew.toFixed(2) + "deg)";
+      if (bar && setW) bar.style.transform = "translateX(" + (-x / setW * 460).toFixed(1) + "%)";
+      raf = requestAnimationFrame(frame);
+    }
+
+    // only run while the section is on screen
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { if (!raf) raf = requestAnimationFrame(frame); }
+        else if (raf) { cancelAnimationFrame(raf); raf = null; }
+      });
+    }, { rootMargin: "200px" });
+    io.observe(track.parentNode);
+
+    // hand throw
+    track.addEventListener("pointerdown", function (e) {
+      dragging = true; lastX = e.clientX; vel = 0;
+      track.classList.add("is-grab");
+      track.setPointerCapture(e.pointerId);
+    });
+    track.addEventListener("pointermove", function (e) {
+      if (!dragging) return;
+      var dx = e.clientX - lastX; lastX = e.clientX;
+      x = wrap(x + dx);
+      vel = dx * 0.55;
+    });
+    ["pointerup", "pointercancel"].forEach(function (ev) {
+      track.addEventListener(ev, function () { dragging = false; track.classList.remove("is-grab"); });
+    });
+    track.addEventListener("click", function (e) {
+      if (Math.abs(vel) > 2) e.preventDefault();
+    }, true);
+
+    // the page's own scroll speed feeds the same velocity
+    if (hasGSAP && !reduce) {
+      ScrollTrigger.create({
+        trigger: track.parentNode, start: "top bottom", end: "bottom top",
+        onUpdate: function (self) {
+          var v = self.getVelocity() / 260;
+          vel += Math.max(-26, Math.min(26, v));
+        }
+      });
+    }
+    if (reduce) { drift = 0; track.style.transform = "translate3d(0,0,0)"; }
+  })();
 
   /* =========================================================================
      9. MOTION

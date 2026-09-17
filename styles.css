@@ -22,13 +22,16 @@
   --line-2:#352C28;
 
   --bone:#F5F2EF;
+  --act-b:#F5F2EF;
+  --act-b-fg:#0A0807;
   --bone-2:#E9E4DF;
   --ash:#A0958E;          /* secondary on dark   6.9:1 */
   --ash-ink:#6B615B;      /* secondary on light  5.2:1 */
 
   --red:#E2050F;
   --red-2:#FF2A33;
-  --red-ink:#A8060E;      /* small red text on light */
+  --red-ink:#A8060E;      /* small red text on light ground  6.9:1 */
+  --red-lift:#FF3B45;     /* small red text on dark ground   5.5:1 */
   --red-deep:#8E040C;
   --gold:#C79A4B;
   --green:#3FA46A;        /* semantic only: the saved amount */
@@ -112,7 +115,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 /* two acts. The brief asks for both: black for authority, white for clarity
    and reading comfort. The flip happens twice, each time the page changes job. */
 .dark{background:var(--ink);color:var(--bone)}
-.light{background:var(--bone);color:var(--ink)}
+.light{background:var(--act-b);color:var(--act-b-fg)}
 .light .sub{color:var(--ash-ink)}
 
 /* ============================================================================
@@ -125,7 +128,7 @@ button,input,select,textarea{font:inherit;color:inherit}
   font-family:"Geist Mono",ui-monospace,monospace;font-size:var(--mono);
   letter-spacing:.06em;
 }
-.reg__n{color:var(--red)}
+.reg__n{color:var(--red-lift)}
 .reg__t{color:var(--ash);text-transform:uppercase;letter-spacing:.14em}
 .light .reg__t{color:var(--ash-ink)}
 .reg::after{content:"";flex:1;height:1px;background:var(--line)}
@@ -161,13 +164,14 @@ button,input,select,textarea{font:inherit;color:inherit}
 .nav__prog{position:absolute;left:0;bottom:-1px;height:2px;background:var(--red);width:0}
 @media(max-width:1000px){ .nav__links{display:none} .nav .btn{margin-left:auto} }
 
-.logo{display:flex;align-items:center;gap:.65rem;text-decoration:none;flex:none}
-.logo svg{width:23px;height:29px;flex:none}
-.logo__w{font-size:1.1rem;font-weight:600;letter-spacing:-.045em;line-height:1}
-.logo__w small{
-  display:block;font-family:"Geist Mono",monospace;font-size:8.5px;
-  letter-spacing:.2em;color:var(--ash);font-weight:400;margin-top:3px;
-}
+.logo{display:flex;align-items:center;text-decoration:none;flex:none}
+.logo__m{width:clamp(126px,12vw,152px);height:auto}
+/* the mark ships in two lockups: light type for the dark act, dark type for
+   the light theme. Swapping the file beats filtering, which would kill the red. */
+.logo__m--light{display:none}
+:root[data-theme="light"] .logo__m--dark{display:none}
+:root[data-theme="light"] .logo__m--light{display:block}
+.foot .logo__m{width:168px}
 
 .btn{
   position:relative;display:inline-flex;align-items:center;gap:.7rem;
@@ -335,7 +339,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .obj__t{font-size:clamp(1.15rem,2vw,1.55rem);font-weight:500;letter-spacing:-.035em;line-height:1.1}
 .obj__d{font-size:var(--sm);color:var(--ash);max-width:32ch}
 .obj__go{
-  margin-top:.35rem;font-size:var(--xs);font-weight:600;color:var(--red);
+  margin-top:.35rem;font-size:var(--xs);font-weight:600;color:var(--red-lift);
   display:flex;align-items:center;gap:.4rem;opacity:0;transform:translateY(4px);
   transition:opacity .3s var(--e),transform .3s var(--e);
 }
@@ -767,24 +771,134 @@ details.q p{padding-bottom:1.35rem;font-size:var(--sm);color:var(--ash-ink);max-
 @media(max-width:480px){ .fields{grid-template-columns:minmax(0,1fr)} }
 
 /* ============================================================================
-   STICKY CTA BAR
+   (008) CAROUSEL
+   Fluid, not a slider. One seamless track that always drifts, takes speed from
+   the page's scroll velocity, and can be thrown by hand with inertia. The skew
+   is tied to the same velocity, which is what makes it read as motion with
+   weight rather than a list sliding past.
+   ========================================================================== */
+.casa{overflow:hidden}
+.carousel{
+  position:relative;margin-top:clamp(2rem,4vw,3rem);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+}
+.carousel__track{
+  display:flex;gap:clamp(.75rem,1.4vw,1.15rem);width:max-content;
+  will-change:transform;cursor:grab;touch-action:pan-y;
+  padding-inline:clamp(1.25rem,4vw,3.25rem);
+}
+.carousel__track.is-grab{cursor:grabbing}
+.cslide{
+  margin:0;flex:none;position:relative;border-radius:var(--r-lg);overflow:hidden;
+  border:1px solid var(--line);background:var(--ink-2);
+  transform-origin:center bottom;
+}
+.cslide[data-ar="4/5"]{width:clamp(210px,20vw,280px)}
+.cslide[data-ar="3/2"]{width:clamp(280px,27vw,380px)}
+.cslide img{
+  width:100%;height:clamp(260px,30vw,380px);object-fit:cover;
+  user-select:none;-webkit-user-drag:none;
+  transition:transform .6s var(--e);
+}
+.cslide:hover img{transform:scale(1.04)}
+.cslide figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:2.4rem .95rem .85rem;
+  background:linear-gradient(transparent,rgba(8,6,5,.9) 58%);
+  pointer-events:none;
+}
+.cslide figcaption b{display:block;font-size:var(--sm);font-weight:600;letter-spacing:-.02em;color:#F5F2EF}
+.cslide figcaption span{display:block;margin-top:.15rem;font-size:11px;color:#B5ABA4;line-height:1.35}
+.carousel__ui{
+  display:flex;align-items:center;gap:1.25rem;margin-top:1.35rem;
+}
+.carousel__hint{
+  display:flex;align-items:center;gap:.5rem;flex:none;
+  font-family:"Geist Mono",monospace;font-size:var(--mono);letter-spacing:.09em;color:var(--ash);
+}
+.carousel__hint .ic{width:14px;height:14px;color:var(--red)}
+.carousel__bar{flex:1;height:2px;background:var(--line);border-radius:2px;overflow:hidden;min-width:0}
+.carousel__bar i{display:block;height:100%;width:18%;background:var(--red);border-radius:2px}
+
+/* ============================================================================
+   DOCK
+   A floating control strip, not a banner. Items magnify toward the pointer the
+   way the macOS dock does: the hovered one grows most, its neighbours less.
    ========================================================================== */
 .dock{
-  position:fixed;left:50%;bottom:0;transform:translate(-50%,130%);z-index:65;
-  width:min(680px,calc(100% - 2rem));
+  position:fixed;left:50%;bottom:0;transform:translate(-50%,150%);z-index:65;
   margin-bottom:calc(1rem + env(safe-area-inset-bottom,0px));
-  background:color-mix(in srgb,var(--ink-2) 92%,transparent);
-  backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);
-  border:1px solid var(--line-2);border-radius:var(--r-pill);
-  padding:.55rem .55rem .55rem 1.35rem;
-  display:flex;align-items:center;gap:1rem;justify-content:space-between;
-  box-shadow:0 18px 50px -14px rgba(0,0,0,.75);
-  transition:transform .5s var(--e);
+  max-width:calc(100vw - 1.5rem);
+  display:flex;align-items:center;gap:.4rem;
+  padding:.4rem;border-radius:var(--r-pill);
+  background:color-mix(in srgb,var(--ink-2) 96%,transparent);
+  backdrop-filter:blur(22px) saturate(1.5);-webkit-backdrop-filter:blur(22px) saturate(1.5);
+  border:1px solid var(--line-2);
+  box-shadow:0 2px 6px rgba(0,0,0,.4),0 24px 60px -18px rgba(0,0,0,.85);
+  transition:transform .55s var(--e);
 }
 .dock.on{transform:translate(-50%,0)}
-.dock p{font-size:var(--xs);color:var(--ash);line-height:1.35;min-width:0}
-.dock p b{display:block;color:var(--bone);font-weight:600;font-size:var(--sm);letter-spacing:-.02em}
-@media(max-width:560px){ .dock p b{font-size:var(--xs)} .dock p span{display:none} .dock{padding-left:1.1rem} }
+
+.dock__ico{
+  position:relative;width:42px;height:42px;flex:none;border:0;cursor:pointer;
+  border-radius:14px;display:grid;place-items:center;
+  background:rgba(255,255,255,.07);color:var(--bone-2);
+  transition:background .26s var(--e),color .26s var(--e);
+}
+.dock__ico:hover{background:rgba(255,255,255,.13);color:var(--bone)}
+.dock__ico .ic{width:19px;height:19px}
+.dock__sun,.dock__moon{
+  position:absolute;inset:0;display:grid;place-items:center;
+  transition:opacity .3s var(--e),transform .45s var(--e);
+}
+.dock__sun{opacity:0;transform:rotate(-70deg) scale(.6)}
+.dock__moon{opacity:1;transform:none}
+:root[data-theme="light"] .dock__sun{opacity:1;transform:none}
+:root[data-theme="light"] .dock__moon{opacity:0;transform:rotate(70deg) scale(.6)}
+
+.dock__items{display:flex;align-items:center;gap:.15rem;padding-inline:.15rem}
+.dock__i{
+  display:flex;align-items:center;gap:.45rem;text-decoration:none;
+  padding:.55rem .8rem;border-radius:var(--r-pill);
+  font-size:var(--xs);font-weight:600;letter-spacing:-.01em;color:var(--bone);
+  white-space:nowrap;transform-origin:center bottom;
+  transition:color .22s var(--e),background .22s var(--e);
+  will-change:transform;
+}
+.dock__g{display:grid;place-items:center;flex:none}
+.dock__g .ic{width:16px;height:16px}
+.dock__i:hover,.dock__i[aria-current="true"]{background:rgba(255,255,255,.1)}
+.dock__i[aria-current="true"] .dock__g{color:var(--red)}
+
+.dock__live{
+  display:flex;flex-direction:column;justify-content:center;flex:none;
+  padding:.3rem .85rem;border-left:1px solid var(--line-2);border-right:1px solid var(--line-2);
+  margin-inline:.2rem;
+}
+.dock__lk{font-family:"Geist Mono",monospace;font-size:9px;letter-spacing:.11em;color:var(--bone-2);opacity:.75;text-transform:uppercase}
+.dock__live b{font-family:"Geist Mono",monospace;font-size:var(--sm);font-weight:500;letter-spacing:-.02em;color:var(--bone)}
+
+.dock__cta{
+  display:flex;align-items:center;gap:.65rem;flex:none;text-decoration:none;
+  padding:.35rem 1.1rem .35rem .35rem;border-radius:var(--r-pill);
+  background:linear-gradient(180deg,#F0141E,var(--red) 52%,#C50710);color:#fff;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 1px 2px rgba(0,0,0,.35);
+  transition:transform .16s var(--e),box-shadow .3s var(--e),filter .3s var(--e);
+}
+.dock__cta img{width:36px;height:36px;border-radius:50%;object-fit:cover;flex:none;
+  box-shadow:0 0 0 1px rgba(255,255,255,.28)}
+.dock__cta b{display:block;font-size:var(--xs);font-weight:600;letter-spacing:-.015em;line-height:1.2}
+.dock__cta span{font-size:10px;line-height:1.3;color:rgba(255,255,255,.88)}
+.dock__cta:hover{transform:translateY(-1px);filter:saturate(1.08);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 14px 30px -12px rgba(226,5,15,.7)}
+
+@media(max-width:1180px){ .dock__live{display:none} }
+@media(max-width:1000px){ .dock__l{display:none} .dock__i{padding:.55rem .6rem} }
+@media(max-width:620px){
+  .dock__items{display:none}
+  .dock__cta span{display:none}
+  .dock__cta{padding-right:.9rem}
+}
 
 /* ============================================================================
    FOOTER
@@ -914,7 +1028,7 @@ details.q p{padding-bottom:1.35rem;font-size:var(--sm);color:var(--ash-ink);max-
 }
 .dbox__h span{
   margin-left:auto;font-family:"Geist Mono",monospace;font-size:var(--mono);
-  color:var(--red);font-weight:400;
+  color:var(--red-lift);font-weight:400;
 }
 .dlist{margin:0;padding:0;list-style:none}
 .dlist li{
@@ -1023,6 +1137,44 @@ details.q p{padding-bottom:1.35rem;font-size:var(--sm);color:var(--ash-ink);max-
 
 /* icon inside the solution intro */
 .solp__l h3{display:flex;align-items:flex-start;gap:1rem}
+
+
+/* ============================================================================
+   LIGHT THEME
+   The brief asks for both: black for authority, white for reading comfort. The
+   dock's toggle flips act A (the dark sections) to a warm near-white and lets
+   act B shift with it, so the two acts still read apart in either theme.
+   Only tokens change here. No component redefines a colour of its own.
+   ========================================================================== */
+:root[data-theme="light"]{
+  --ink:#FBF9F7;
+  --ink-2:#F4F0EC;
+  --ink-3:#ECE6E0;
+  --line:#E2DAD2;
+  --line-2:#CDC2B8;
+  --bone:#14100E;
+  --bone-2:#2B2420;
+  --ash:#6E635C;
+  --act-b:#EDE6DF;
+  color-scheme:light;
+}
+/* small red text needs the darker red on a light ground */
+:root[data-theme="light"] .reg__n,
+:root[data-theme="light"] .obj__go,
+:root[data-theme="light"] .dbox__h span,
+:root[data-theme="light"] .carousel__hint .ic,
+:root[data-theme="light"] .dock__i[aria-current="true"] .dock__g{color:var(--red-ink)}
+/* surfaces that were lifted by a white wash need the opposite on a light ground */
+:root[data-theme="light"] .dock__ico{background:rgba(10,8,7,.06)}
+:root[data-theme="light"] .dock__ico:hover{background:rgba(10,8,7,.11)}
+:root[data-theme="light"] .dock__i:hover,
+:root[data-theme="light"] .dock__i[aria-current="true"]{background:rgba(10,8,7,.07)}
+:root[data-theme="light"] .dlist li:hover,
+:root[data-theme="light"] .blk:hover{background:rgba(10,8,7,.03)}
+:root[data-theme="light"] .rlist li,
+:root[data-theme="light"] .dlist li{border-bottom-color:rgba(10,8,7,.08)}
+:root[data-theme="light"] .btn--ghost{box-shadow:inset 0 0 0 1px var(--line-2)}
+:root[data-theme="light"] body::after{opacity:.22;mix-blend-mode:multiply}
 
 /* ============================================================================
    REVEAL. Resting state is visible; JS opts in to animating.

@@ -91,6 +91,35 @@ uma pílula de texto. Serve `.btn`, `.btn--lg` e `.btn--ghost`.
 na borda oposta. Sem isso a página inteira encosta na esquerda e sobra branco na
 direita, que foi a crítica principal da revisão de 17/09.
 
+### Carrossel (008)
+
+Fluido, não um slider. Uma trilha só, duplicada para o wrap ser contínuo. Ela
+sempre deriva; a **velocidade de scroll da página** e um arremesso com a mão
+somam na mesma velocidade, e essa velocidade também **inclina os cards**. É a
+inclinação que faz a coisa ler como movimento com peso, e não como uma lista
+passando. Sem biblioteca: uma posição, uma velocidade e um wrap. Só roda quando
+a seção está na tela (IntersectionObserver).
+
+### Dock
+
+Faixa flutuante, não banner. Botão redondo de tema, atalhos que **magnificam na
+direção do ponteiro** como o dock do macOS (a distância do cursor a cada item
+define a escala), a **parcela ao vivo** do simulador assim que o visitante mexe
+nos controles, e o CTA com a foto do Jair e duas linhas. Referência:
+jords.co.uk. A magnificação é feedback de ponteiro, então não roda em
+`prefers-reduced-motion` nem em toque.
+
+### Tema claro
+
+O botão redondo do dock troca os tokens do ato escuro para um quase-branco
+quente e desloca o ato claro junto, para os dois atos continuarem se
+distinguindo. **Só tokens mudam**, nenhum componente redefine cor própria. A
+escolha fica no `localStorage`, dentro de try/catch.
+
+⚠️ Vermelho pequeno precisa de valor diferente por fundo: `--red-ink` (#A8060E)
+em fundo claro, `--red-lift` (#FF3B45) em fundo escuro. O `--red` da marca em
+texto pequeno sobre preto dá **4.06:1** e reprova.
+
 ### Grão
 
 `body::after` aplica um ruído SVG fixo em `mix-blend-mode: overlay`. É ele que
@@ -114,9 +143,10 @@ O hero mais dez seções numeradas. O número `(001)` não é enfeite: é o mesm
 | 005 | As soluções | abas ligadas ao objetivo, copy à esquerda e uma caixa de destinos à direita |
 | 006 | Os resultados | uma caixa única: player, citação, navegação e deck |
 | 007 | O fundador | Jair como autoridade, dentro da estrutura |
-| 008 | Reconhecimento | três caixas agrupadas: mercado, rede HS, verificação |
-| 009 | Dúvidas | FAQ em duas colunas |
-| 010 | Sua simulação | formulário, com o resultado do simulador junto |
+| 008 | A casa | carrossel fluido da sede, operação, time e estande |
+| 009 | Reconhecimento | três caixas agrupadas: mercado, rede HS, verificação |
+| 010 | Dúvidas | FAQ em duas colunas |
+| 011 | Sua simulação | formulário, com o resultado do simulador junto |
 
 ### O objetivo atravessa a página
 
@@ -144,15 +174,19 @@ O bloco termina com a ressalva de que é estimativa para comparação, não prop
 
 ## O que falta, e de quem depende
 
-1. **Logo oficial em SVG.** O "F" monoline no `index.html` é um redesenho meu a
-   partir da foto de perfil da marca. Substituir pelo arquivo original.
+1. ~~Logo oficial~~ ✅ **resolvido em 17/09**: a marca oficial entrou em
+   `assets/logo-fasolo.webp` (tipo claro, para o ato escuro) e
+   `assets/logo-fasolo-dark.webp` (tipo escuro, para o tema claro). São PNGs
+   recortados do pacote oficial e convertidos para WebP com alfa. Se aparecer
+   um SVG da marca, troca direto.
 2. **Depoimentos.** O módulo está pronto e é a prioridade do projeto, mas roda em
    estado de espera. As cidades e os tipos de bem são reais, da copy aprovada.
    Falta `nome`, `citacao` e `video` no array `DEPOIMENTOS` no topo do `app.js`.
    Preencher os três campos por entrada e o módulo vai ao ar sem mais nenhuma
    alteração. O briefing é explícito: depoimento sem identificação e prova não entra.
 3. **Artes dos selos de premiação.** Hoje são blocos com ícone Phosphor.
-4. **Fotos de entregas reais** (Bento Gonçalves, Porto Alegre, Santa Maria,
+4. **Vídeos dos depoimentos.**
+5. **Fotos de entregas reais** (Bento Gonçalves, Porto Alegre, Santa Maria,
    Capão da Canoa), se a galeria de entregas da copy for construída.
 
 Nada de banco de imagens genérico: o briefing veta explicitamente, e é por isso
