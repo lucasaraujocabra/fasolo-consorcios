@@ -2205,3 +2205,19 @@ h1,h2,h3,h4,.hmedia__n,.strip__n,.out__big,.gcol__ratio{font-family:var(--font-s
   .prob__panel{ min-height:0 }
   .pvfig img{ height:clamp(124px,34vw,170px) }
 }
+
+/* ---------------------------------------------------------------------------
+   REVISÃO 17/09 (5) — a banda passa a aceitar foto institucional clara
+   O Lucas pediu imagem de banco de imagens, e essas fotos são claras: luz de
+   janela, escritório branco. A banda vive num painel preto, então sem
+   tratamento a foto grita e a seção se parte em duas. Quem resolve é o
+   componente, não a foto: dessatura de leve, puxa para o quente da página e
+   afunda a base até o preto, para o texto abaixo continuar nascendo do escuro.
+   ------------------------------------------------------------------------- */
+.pvfig img{ filter:saturate(.76) contrast(1.04) brightness(.86) }
+.pvfig::after{
+  background:
+    linear-gradient(180deg,rgba(10,8,7,.34) 0%,rgba(10,8,7,.06) 40%,rgba(10,8,7,.88) 100%),
+    radial-gradient(120% 110% at 6% 0%,rgba(226,5,15,.14),transparent 58%),
+    linear-gradient(0deg,rgba(74,50,36,.18),rgba(74,50,36,.18));
+}
