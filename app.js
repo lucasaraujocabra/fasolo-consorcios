@@ -391,7 +391,7 @@
 
   var rows = gsap.utils.toArray("#grows .grow");
   var bars = rows.map(function (r) { return r.querySelector(".grow__bar"); });
-  var dots = rows.map(function (r) { return r.querySelector(".grow__d"); });
+  var glyphs = rows.map(function (r) { return r.querySelector(".grow__i"); });
   var metas = rows.map(function (r) { return r.querySelector(".grow__m"); });
   var counter = $("#doorCount");
 
@@ -399,9 +399,9 @@
 
   mm.add("(min-width: 900px)", function () {
     gsap.set(bars, { scaleX: 0 });
-    gsap.set(dots, { backgroundColor: "#2A2320", boxShadow: "0 0 0 0px rgba(226,5,15,0)" });
+    gsap.set(glyphs, { color: "#3A322E" });
     gsap.set(metas, { opacity: .4 });
-    counter.textContent = "0 / 6";
+    counter.innerHTML = '0<em>/6</em>';
 
     var tl = gsap.timeline({
       scrollTrigger: {
@@ -409,14 +409,14 @@
         pin: true, scrub: .6, invalidateOnRefresh: true,
         onUpdate: function (self) {
           var open = Math.min(6, Math.floor(self.progress * 7.2));
-          counter.textContent = open + " / 6";
+          counter.innerHTML = open + '<em>/6</em>';
         }
       }
     });
     rows.forEach(function (r, i) {
       var at = i * 0.9;
       tl.to(bars[i], { scaleX: 1, duration: 1, ease: "power2.out" }, at)
-        .to(dots[i], { backgroundColor: "#E2050F", boxShadow: "0 0 0 4px rgba(226,5,15,0.13)", duration: .5 }, at)
+        .to(glyphs[i], { color: "#E2050F", duration: .5 }, at)
         .to(metas[i], { opacity: 1, duration: .5 }, at);
     });
     tl.to({}, { duration: 1.2 });

@@ -68,9 +68,28 @@ Cor por contexto, e isso é hierarquia, não decoração:
 `--red` nos destinos e no item aberto (conteúdo principal),
 `--bone-2` nos blocos em repouso, `--gold` só nos prêmios.
 
+⚠️⚠️ **Substituição de CSS por índice de string é perigosa neste arquivo.**
+Trocar o bloco do botão procurando por `.btn{` casou com `.nav .btn{` dentro de
+um media query, comeu as regras do logo e deixou **uma chave aberta**. Tudo
+depois dela some sem erro: o ícone vira SVG de 150px, a caixa de soluções não
+vira grid. Conferir sempre `abre == fecha` de chaves depois de editar o CSS.
+
 ⚠️ Ícone vive dentro de `.itile`, que é um `<span>`. Cuidado com regra de
 elemento genérica tipo `.componente span{...}`: ela vence `.itile` na cascata e
 apaga o ícone sem erro nenhum. Foi o que aconteceu com os prêmios uma vez.
+
+### Botão
+
+Pílula com gradiente vertical, brilho interno no topo, sombra de contato e um
+**chip circular** com seta diagonal. No hover a seta sai pela diagonal e o
+preenchimento clareia. O chip é o que faz o botão ler como controle e não como
+uma pílula de texto. Serve `.btn`, `.btn--lg` e `.btn--ghost`.
+
+### Equilíbrio das seções
+
+`.shead` põe a manchete à esquerda e o texto de apoio **alinhado à direita**,
+na borda oposta. Sem isso a página inteira encosta na esquerda e sobra branco na
+direita, que foi a crítica principal da revisão de 17/09.
 
 ### Grão
 
@@ -87,15 +106,15 @@ O hero mais dez seções numeradas. O número `(001)` não é enfeite: é o mesm
 
 | # | Seção | O dispositivo |
 |---|---|---|
-| — | Hero | manchete + trilho de 3 objetivos clicáveis |
+| — | Hero | manchete + componente de mídia + trilho de 3 objetivos |
 | 001 | O problema | lista numerada que troca o diagrama ao lado |
-| 002 | A grade de contemplação | **peça de assinatura**: 6 portas acendendo no scroll |
+| 002 | A grade de contemplação | **peça de assinatura**: cabeçalho por coluna e 6 portas acendendo no scroll |
 | 003 | O método | quatro blocos verticais, um aberto por vez, seta navega |
 | 004 | Simulador | cálculo ao vivo, comparação com financiamento |
-| 005 | As soluções | abas ligadas ao objetivo, seis blocos com ícone |
-| 006 | Os resultados | depoimento em vídeo com deck de seleção |
+| 005 | As soluções | abas ligadas ao objetivo, copy à esquerda e uma caixa de destinos à direita |
+| 006 | Os resultados | uma caixa única: player, citação, navegação e deck |
 | 007 | O fundador | Jair como autoridade, dentro da estrutura |
-| 008 | Reconhecimento | oito blocos com ícone dourado, fotos reais, HS |
+| 008 | Reconhecimento | três caixas agrupadas: mercado, rede HS, verificação |
 | 009 | Dúvidas | FAQ em duas colunas |
 | 010 | Sua simulação | formulário, com o resultado do simulador junto |
 
