@@ -52,14 +52,11 @@ rótulos das portas viraram texto só para leitor de tela (a legenda abaixo já
 dizia o mesmo), a parcela do dock virou uma linha, e o tracking das etiquetas
 mono caiu para compensar a largura.
 
-**Provador de fontes no dock.** `--font-sans` é um token, e o botão `Aa` troca a
-família de toda a página. Oito opções: Schibsted Grotesk (atual), Inter,
-Helvetica Neue (stack do sistema, sem webfont), Geist, Instrument Sans, Plus
-Jakarta Sans, Manrope e Bricolage Grotesque. Cada face só é baixada quando
-escolhida (ou no hover da opção), então quem nunca abre o menu não paga nada.
-A escolha fica no `localStorage`. **A mono dos dados não muda**, de propósito.
+**A fonte é a Geist** (400/500/600/700), escolhida pelo Lucas em 17/09 depois de
+testar oito opções num provador que ficou no dock durante a decisão. O provador
+saiu; `--font-sans` continua sendo token, então trocar a família é uma linha.
 
-- **Schibsted Grotesk** (400/500/600/700) é o padrão. Grotesco editorial de jornal,
+- **Geist** em tudo. Grotesco editorial de jornal,
   escolhido por soar analítico e não bancário. Títulos em peso 500 com
   `letter-spacing: -.042em`.
 - **Geist Mono** (400/500) só onde o conteúdo é dado: o registro `(001)`, os
@@ -157,6 +154,28 @@ uma frase de fecho com CTA, três colunas de links numeradas, contato com ícone
 redes, botão de voltar ao topo, e o wordmark grande alinhado à esquerda.
 ⚠️ Wordmark cortado pela metade da letra lê como bug, não como sangria: mostrar
 inteiro (`assets/wordmark.webp`, recorte só da palavra).
+
+### Os dois atos
+
+A página alterna claro e escuro, começando **claro** no hero (decisão de 17/09:
+branco no topo passa segurança). A ordem é: claro (hero, trilho, números),
+escuro (problema, grade), claro (método), escuro (simulador), claro (soluções),
+escuro (resultados, fundador, casa, reconhecimento), claro (dúvidas), escuro
+(simulação, footer).
+
+⭐ **`.light` redefine os MESMOS tokens**, localmente. Como são custom
+properties, tudo que está dentro herda: um card escrito para o fundo preto
+funciona no branco sem uma linha a mais. É o mesmo mecanismo do tema, por seção.
+
+⚠️ O preço disso: dentro de `.light`, `--ink` vira SUPERFÍCIE (branco) e
+`--bone` vira TEXTO (escuro). As seções que já eram claras foram escritas com a
+convenção oposta e inverteram. Sintoma: link secundário branco sobre branco,
+invisível. Há um bloco de reinversão no fim do arquivo; qualquer componente novo
+que use `--ink` como cor de texto precisa entrar nele.
+
+⚠️ E cuidado com ordem: `.light .sol__tab` tem a mesma especificidade de
+`.sol__tab[aria-selected="true"]` e, vindo depois, apagou o estado ativo. Estado
+precisa de seletor mais específico que a variante de ato.
 
 ### Grão
 

@@ -1580,6 +1580,115 @@ h1,h2,h3,h4,.hmedia__n,.strip__n,.out__big,.gcol__ratio{font-family:var(--font-s
 .foot__end{justify-items:start}
 @media(max-width:860px){ .foot__up{position:static;align-self:center} }
 
+
+/* ============================================================================
+   REVISÃO 17/09 (3)
+   Fonte definida: Geist. O ato claro passa a redefinir os MESMOS tokens, o que
+   deixa qualquer componente funcionar nos dois fundos sem regra própria.
+   ========================================================================== */
+
+:root{--font-sans:"Geist",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+
+/* ----------------------------------------------------------------------------
+   O ATO CLARO
+   Em vez de escrever uma variante para cada componente, o ato claro redefine os
+   tokens localmente. Como são custom properties, tudo que está dentro herda:
+   um card escrito para o fundo preto funciona no branco sem tocar no código.
+   É o mesmo mecanismo do tema, só que por seção.
+   -------------------------------------------------------------------------- */
+.light{
+  --ink:#FFFFFF;
+  --ink-2:#F8F5F2;
+  --ink-3:#F0EBE6;
+  --line:#E4DDD6;
+  --line-2:#CFC5BC;
+  --bone:#0F0C0B;
+  --bone-2:#2B2521;
+  --ash:#6B615B;
+  --red-lift:var(--red-ink);
+  background:#FBF9F7;
+  color:var(--bone);
+}
+.light .sub{color:var(--ash)}
+/* superfícies que eram "clareadas" com branco precisam do oposto no claro */
+.light .obj:hover{background:var(--ink-2)}
+.light .obj[aria-pressed="true"]{background:var(--ink-3)}
+.light .sbox__i{background:rgba(10,8,7,.04)}
+.light .sbox:hover .sbox__i{background:rgba(226,5,15,.07)}
+.light .dlist li:hover,.light .plist li{border-bottom-color:rgba(10,8,7,.08)}
+
+/* o hero claro: a moldura vira um cartão escuro sobre branco, que é o que
+   faz a foto de estúdio ainda funcionar */
+.light .hmedia__frame{background:var(--ink-3);box-shadow:0 30px 70px -34px rgba(10,8,7,.4)}
+.light .hmedia__card{
+  background:linear-gradient(170deg,#141110,#0A0807);
+  border-color:#2A2320;box-shadow:0 26px 54px -22px rgba(10,8,7,.45);
+}
+.light .hmedia__card .dock__lk,
+.light .hmedia__k{color:#A0958E}
+.light .hmedia__n{color:#F5F2EF}
+.light .hmedia__n em,.light .hmedia__s{color:#A0958E}
+.light .rail{background:var(--line)}
+.light .strip__n{color:var(--bone)}
+
+/* ============================================================================
+   DOCK, expandido
+   Sem o provador de fontes. Agora mostra ONDE você está (que é status, não
+   navegação: o menu já leva), quanto falta, a parcela recém-calculada, e o
+   contato com rosto em duas linhas.
+   ========================================================================== */
+.dock__now{
+  display:flex;flex-direction:column;justify-content:center;gap:.35rem;flex:none;
+  padding-inline:.95rem;min-width:170px;
+}
+.dock__nk{display:flex;align-items:baseline;gap:.5rem;white-space:nowrap}
+.dock__nk b{font-family:"Geist Mono",monospace;font-size:var(--mono);font-weight:400;color:var(--red-lift)}
+.dock__nk span{font-size:var(--xs);font-weight:600;letter-spacing:-.015em;color:var(--bone)}
+.dock__prog{display:block;height:3px;border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden}
+.dock__prog i{display:block;height:100%;width:0;background:var(--red);border-radius:3px;transition:width .2s linear}
+:root[data-theme="light"] .dock__prog{background:rgba(10,8,7,.12)}
+
+.dock__cta{height:52px;padding:0 .55rem 0 .3rem;gap:.7rem}
+.dock__ct{display:flex;flex-direction:column;gap:1px;white-space:nowrap}
+.dock__ct b{font-size:var(--xs);font-weight:600;letter-spacing:-.015em;line-height:1.2}
+.dock__ct{font-size:15px;line-height:1.3;color:rgba(255,255,255,.9)}
+.dock__ca{width:17px;height:17px;flex:none;margin-left:.2rem;transition:transform .34s var(--e)}
+.dock__cta:hover .dock__ca{transform:translateX(3px)}
+.dock__btn{width:52px;height:52px}
+.dock__live{padding-inline:1rem}
+
+@media(max-width:1120px){ .dock__live{display:none} }
+@media(max-width:860px){ .dock__now{display:none} }
+@media(max-width:520px){ .dock__ct,.dock__ca{display:none} .dock__cta{padding-right:.3rem} }
+
+
+/* ----------------------------------------------------------------------------
+   Consertos da troca de tokens.
+   Dentro de `.light`, --ink passou a ser SUPERFÍCIE (branco) e --bone passou a
+   ser TEXTO (escuro). As seções que já eram claras foram escritas com a
+   convenção oposta, então estas regras reinvertem só o que precisava.
+   Sintoma sem elas: link secundário branco sobre branco, invisível.
+   -------------------------------------------------------------------------- */
+.light .lnk{color:var(--bone)}
+.light .lnk:hover{color:var(--red-ink);border-color:var(--red-ink)}
+.light .btn--ghost{color:var(--bone);box-shadow:inset 0 0 0 1px var(--line-2)}
+.light .btn--ghost:hover{color:var(--ink);background:var(--bone);box-shadow:inset 0 0 0 1px var(--bone)}
+.light .itile{color:var(--bone);border-color:var(--line);background:rgba(10,8,7,.035)}
+.light .itile--red{color:var(--red-ink)}
+.light details.q[open] summary span{background:var(--bone);border-color:var(--bone);color:var(--ink)}
+.light .vs__b[aria-expanded="true"] .vs__c{background:var(--bone);border-color:var(--bone);color:var(--ink)}
+.light .vs__in > p b{color:var(--bone)}
+.light .vs__list li{background:var(--ink)}
+.light .vs__list li b{color:var(--bone)}
+.light .why{border-top-color:var(--bone)}
+.light .why h3{color:var(--bone)}
+.light .sol__tab{color:var(--ash);border-color:var(--line)}
+.light .sol__tab:hover{color:var(--bone);border-color:var(--line-2)}
+/* mesma especificidade da regra acima e vinha depois, então o estado ativo
+   perdia o texto branco: precisa de um seletor mais específico */
+.light .sol__tab[aria-selected="true"]{background:var(--bone);border-color:var(--bone);color:var(--ink)}
+.light .sbox__t,.light .scard__t{color:var(--bone)}
+
 /* ============================================================================
    REVEAL. Resting state is visible; JS opts in to animating.
    ========================================================================== */

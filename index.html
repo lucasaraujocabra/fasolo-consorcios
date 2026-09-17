@@ -10,7 +10,7 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -102,7 +102,7 @@
 <main id="top">
 
 <!-- ======================= HERO ======================= -->
-<section class="hero dark">
+<section class="hero light">
   <div class="wrap hero__grid">
     <div class="hero__copy">
       <span class="hero__badge" data-rev><i></i>CORRETORA AUTORIZADA · HS CONSÓRCIOS</span>
@@ -140,7 +140,7 @@
 </section>
 
 <!-- objective rail: the first action on the page is a decision -->
-<div class="rail" role="group" aria-label="Escolha o seu objetivo">
+<div class="rail light" role="group" aria-label="Escolha o seu objetivo">
   <button class="obj" type="button" data-obj="Imóvel" aria-pressed="false">
     <span class="obj__k">01</span>
     <span class="obj__t">Quero um imóvel</span>
@@ -161,7 +161,7 @@
   </button>
 </div>
 
-<section class="dark">
+<section class="light">
   <div class="wrap strip">
     <div data-rev><div class="strip__n">R$ 1,8 bi</div><div class="strip__l">em créditos sob gestão</div></div>
     <div data-rev><div class="strip__n">R$ 1,2 bi</div><div class="strip__l">em bens entregues</div></div>
@@ -529,7 +529,7 @@
 </section>
 
 <!-- ======================= (005) SOLUÇÕES ======================= -->
-<section class="dark sect" id="solucoes">
+<section class="light sect" id="solucoes">
   <div class="wrap">
     <p class="reg" data-rev><span class="reg__n">(005)</span><span class="reg__t">As soluções</span></p>
     <h2 data-rev style="max-width:20ch">Não importa o tamanho do seu objetivo. Existe um caminho para ele.</h2>
@@ -912,18 +912,11 @@
     <span class="dock__moon" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-crosshair"></use></svg></span>
   </button>
 
-  <div class="dock__font">
-    <button class="dock__fb" type="button" id="fontBtn" aria-expanded="false" aria-controls="fontMenu">
-      <span class="dock__aa">Aa</span>
-      <span class="dock__fn" id="fontName">Schibsted Grotesk</span>
-      <svg class="ic dock__cv" aria-hidden="true"><use href="#i-caret-up"></use></svg>
-    </button>
-    <div class="fmenu" id="fontMenu" hidden>
-      <p class="fmenu__h">Testar outra fonte</p>
-      <div class="fmenu__list" id="fontList"></div>
-      <p class="fmenu__n">Troca a família de toda a página. A mono dos dados não muda.</p>
-    </div>
-  </div>
+  <!-- onde você está, não para onde ir: o menu já leva, isto informa -->
+  <span class="dock__now">
+    <span class="dock__nk"><b id="dockNum">001</b><span id="dockSec">O problema</span></span>
+    <span class="dock__prog"><i id="dockBar"></i></span>
+  </span>
 
   <span class="dock__live" id="dockLive" hidden>
     <span class="dock__lk">parcela</span>
@@ -932,7 +925,8 @@
 
   <a class="dock__cta" href="#simulacao">
     <img src="assets/jair-avatar.webp" width="160" height="160" alt="" loading="lazy" decoding="async">
-    <span class="dock__ct">Falar com um especialista</span>
+    <span class="dock__ct"><b>Falar com um especialista</b>Conversa direta, sem compromisso</span>
+    <svg class="ic dock__ca" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
   </a>
 </div>
 
