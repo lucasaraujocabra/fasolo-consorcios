@@ -581,7 +581,7 @@ input[type=range]::-moz-range-thumb{
 .out__top{padding:clamp(1.35rem,2.6vw,2rem);border-bottom:1px solid var(--line)}
 .out__k{font-family:"Geist Mono",monospace;font-size:var(--mono);color:var(--ash);letter-spacing:.1em;text-transform:uppercase}
 .out__big{font-size:clamp(2.2rem,5vw,3.4rem);font-weight:500;letter-spacing:-.05em;line-height:1;margin-top:.6rem}
-.out__big small{font-size:.42em;color:var(--ash);font-weight:400;letter-spacing:-.02em}
+.out__big small{font-size:max(15px,.42em);color:var(--ash);font-weight:400;letter-spacing:-.02em}
 .out__sub{margin-top:.6rem;font-size:var(--xs);color:var(--ash)}
 
 .bars{padding:clamp(1.35rem,2.6vw,2rem);display:flex;flex-direction:column;gap:1.35rem}
