@@ -355,11 +355,6 @@
         if (i === cur) { a.setAttribute("aria-current", "true"); }
         else { a.removeAttribute("aria-current"); }
       });
-      var here = cur >= 0 ? navLinks[cur].getAttribute("href") : null;
-      $$(".dock__i").forEach(function (a) {
-        if (a.getAttribute("href") === here) { a.setAttribute("aria-current", "true"); }
-        else { a.removeAttribute("aria-current"); }
-      });
 
       // the dock appears once the hero is behind you and hides over the form
       var dock = $("#dock"), formTop = $("#simulacao").getBoundingClientRect().top;
@@ -404,26 +399,99 @@
   }
 
   /* =========================================================================
-     11. DOCK
-     Magnification: the pointer's distance to each item drives its scale, so
-     the one under the cursor grows most and its neighbours taper off. This is
-     pointer feedback, not decoration, which is why it runs on hover only.
+     11. FONT TESTER
+     This file is a design source, so trying the family on the real page is
+     real use, not a gimmick. Faces load only when picked, so the page stays
+     light for a visitor who never opens the menu.
      ====================================================================== */
-  var dockItems = $$(".dock__i");
-  var dockWrap = $("#dockItems");
-  if (dockWrap && !reduce) {
-    dockWrap.addEventListener("pointermove", function (e) {
-      dockItems.forEach(function (it) {
-        var r = it.getBoundingClientRect();
-        var d = Math.abs(e.clientX - (r.left + r.width / 2));
-        var k = Math.max(0, 1 - d / 190);            // falls off over ~190px
-        it.style.transform = "scale(" + (1 + k * 0.17) + ") translateY(" + (-k * 4) + "px)";
-      });
-    });
-    dockWrap.addEventListener("pointerleave", function () {
-      dockItems.forEach(function (it) { it.style.transform = ""; });
+  var FONTES = [
+    { id:"schibsted", nome:"Schibsted Grotesk", nota:"atual",
+      google:"Schibsted+Grotesk:wght@400;500;600;700",
+      stack:'"Schibsted Grotesk",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif' },
+    { id:"inter", nome:"Inter", nota:"padrão de UI",
+      google:"Inter:wght@400;500;600;700",
+      stack:'"Inter",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif' },
+    { id:"helvetica", nome:"Helvetica Neue", nota:"do sistema",
+      google:null,
+      stack:'"Helvetica Neue",Helvetica,-apple-system,Arial,sans-serif' },
+    { id:"geist", nome:"Geist", nota:"produto",
+      google:"Geist:wght@400;500;600;700",
+      stack:'"Geist",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif' },
+    { id:"instrument", nome:"Instrument Sans", nota:"neo-grotesco",
+      google:"Instrument+Sans:wght@400;500;600;700",
+      stack:'"Instrument Sans",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif' },
+    { id:"jakarta", nome:"Plus Jakarta Sans", nota:"geométrica",
+      google:"Plus+Jakarta+Sans:wght@400;500;600;700",
+      stack:'"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif' },
+    { id:"manrope", nome:"Manrope", nota:"compacta",
+      google:"Manrope:wght@400;500;600;700",
+      stack:'"Manrope",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif' },
+    { id:"bricolage", nome:"Bricolage Grotesque", nota:"display",
+      google:"Bricolage+Grotesque:opsz,wght@12..96,400..700",
+      stack:'"Bricolage Grotesque",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif' }
+  ];
+
+  var carregadas = {};
+  function carregarFonte(f) {
+    if (!f.google || carregadas[f.id]) return;
+    carregadas[f.id] = true;
+    var l = document.createElement("link");
+    l.rel = "stylesheet";
+    l.href = "https://fonts.googleapis.com/css2?family=" + f.google + "&display=swap";
+    document.head.appendChild(l);
+  }
+
+  var fontBtn = $("#fontBtn"), fontMenu = $("#fontMenu"),
+      fontList = $("#fontList"), fontName = $("#fontName");
+
+  function aplicarFonte(id, guardar) {
+    var f = FONTES.filter(function (x) { return x.id === id; })[0] || FONTES[0];
+    carregarFonte(f);
+    document.documentElement.style.setProperty("--font-sans", f.stack);
+    if (fontName) fontName.textContent = f.nome;
+    $$(".fopt").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.f === f.id)); });
+    if (guardar) { try { localStorage.setItem("fasolo-font", f.id); } catch (e) {} }
+    if (hasGSAP && !reduce) refreshIfResized();
+  }
+
+  if (fontList) {
+    FONTES.forEach(function (f) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "fopt"; b.dataset.f = f.id;
+      b.setAttribute("aria-pressed", String(f.id === "schibsted"));
+      b.innerHTML = '<span class="fopt__s" style="font-family:' + f.stack.replace(/"/g, "&quot;") + '">Aa</span>' +
+        '<span class="fopt__n">' + f.nome + '<em>' + f.nota + '</em></span>' +
+        '<svg class="ic fopt__c" aria-hidden="true"><use href="#i-seal-check"></use></svg>';
+      b.addEventListener("mouseenter", function () { carregarFonte(f); });
+      b.addEventListener("click", function () { aplicarFonte(f.id, true); });
+      fontList.appendChild(b);
     });
   }
+
+  function abrirMenu(v) {
+    if (!fontMenu || !fontBtn) return;
+    fontMenu.hidden = !v;
+    fontBtn.setAttribute("aria-expanded", String(v));
+    if (v && hasGSAP && !reduce) {
+      gsap.fromTo(fontMenu, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .3, ease: "power2.out" });
+    }
+  }
+  if (fontBtn) {
+    fontBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      abrirMenu(fontMenu.hidden);
+    });
+    document.addEventListener("click", function (e) {
+      if (!fontMenu.hidden && !fontMenu.contains(e.target)) abrirMenu(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !fontMenu.hidden) { abrirMenu(false); fontBtn.focus(); }
+    });
+  }
+  try {
+    var fSalva = localStorage.getItem("fasolo-font");
+    if (fSalva) aplicarFonte(fSalva, false);
+  } catch (e) {}
 
   /* =========================================================================
      12. CAROUSEL  (008)

@@ -52,7 +52,14 @@ rótulos das portas viraram texto só para leitor de tela (a legenda abaixo já
 dizia o mesmo), a parcela do dock virou uma linha, e o tracking das etiquetas
 mono caiu para compensar a largura.
 
-- **Schibsted Grotesk** (400/500/600/700) em tudo. Grotesco editorial de jornal,
+**Provador de fontes no dock.** `--font-sans` é um token, e o botão `Aa` troca a
+família de toda a página. Oito opções: Schibsted Grotesk (atual), Inter,
+Helvetica Neue (stack do sistema, sem webfont), Geist, Instrument Sans, Plus
+Jakarta Sans, Manrope e Bricolage Grotesque. Cada face só é baixada quando
+escolhida (ou no hover da opção), então quem nunca abre o menu não paga nada.
+A escolha fica no `localStorage`. **A mono dos dados não muda**, de propósito.
+
+- **Schibsted Grotesk** (400/500/600/700) é o padrão. Grotesco editorial de jornal,
   escolhido por soar analítico e não bancário. Títulos em peso 500 com
   `letter-spacing: -.042em`.
 - **Geist Mono** (400/500) só onde o conteúdo é dado: o registro `(001)`, os
@@ -87,6 +94,11 @@ block, tema não aplica. **A regra agora é: só substituição de string exata 
 única, ou acrescentar no fim do arquivo.** Regra repetida mais abaixo vence, que
 é o comportamento desejado. Conferir sempre `{` == `}` depois de editar.
 
+⚠️ **`display` numa classe vence o atributo `hidden`.** `.dock__live{display:flex}`
+fazia o bloco da parcela ocupar espaço mesmo com `hidden`, esticando o dock em
+20px sem aparecer nada. A regra `[hidden]{display:none!important}` está no topo
+do bloco de revisão; vale para qualquer componente novo.
+
 ⚠️ Ícone vive dentro de `.itile`, que é um `<span>`. Cuidado com regra de
 elemento genérica tipo `.componente span{...}`: ela vence `.itile` na cascata e
 apaga o ícone sem erro nenhum. Foi o que aconteceu com os prêmios uma vez.
@@ -114,6 +126,11 @@ passando. Sem biblioteca: uma posição, uma velocidade e um wrap. Só roda quan
 a seção está na tela (IntersectionObserver).
 
 ### Dock
+
+⛔ **O dock não repete a navbar.** Ele carrega só o que não existe em outro
+lugar: o **provador de fontes**, a **parcela que o simulador acabou de
+calcular**, o tema, e o contato com rosto. Links de seção já estão no menu e no
+footer; repetir era a crítica de 17/09.
 
 Faixa flutuante, não banner. Botão redondo de tema, atalhos que **magnificam na
 direção do ponteiro** como o dock do macOS (a distância do cursor a cada item
@@ -161,7 +178,7 @@ O hero mais dez seções numeradas. O número `(001)` não é enfeite: é o mesm
 | 002 | A grade de contemplação | **peça de assinatura**: cabeçalho por coluna e 6 portas acendendo no scroll |
 | 003 | O método | quatro blocos verticais, um aberto por vez, seta navega |
 | 004 | Simulador | cálculo ao vivo, comparação com financiamento |
-| 005 | As soluções | abas, copy e CTA no topo, destinos como cards com mídia |
+| 005 | As soluções | abas, copy e CTA no topo, destinos em boxes com ícone |
 | 006 | Os resultados | uma caixa única: player, citação, navegação e deck |
 | 007 | O fundador | Jair como autoridade, dentro da estrutura |
 | 008 | A casa | carrossel fluido da sede, operação, time e estande |
