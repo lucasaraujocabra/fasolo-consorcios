@@ -428,16 +428,19 @@ button,input,select,textarea{font:inherit;color:inherit}
 .tl__i.is-dead{opacity:.4}
 
 /* diagram: promise vs contract */
-.vs{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
-.vs__c{border:1px solid var(--line);border-radius:var(--r-md);padding:1rem}
-.vs__c h4{font-size:var(--xs);font-weight:600;letter-spacing:.02em;margin-bottom:.75rem}
-.vs__c ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.5rem}
-.vs__c li{font-size:15px;color:var(--ash);line-height:1.4;padding-left:1rem;position:relative}
-.vs__c li::before{content:"";position:absolute;left:0;top:.45em;width:5px;height:5px;border-radius:50%;background:var(--line-2)}
-.vs__c--bad{border-color:rgba(226,5,15,.28)}
-.vs__c--bad li::before{background:var(--red)}
-.vs__c--good{border-color:rgba(63,164,106,.28)}
-.vs__c--good li::before{background:var(--green)}
+/* ⚠️ Chamava-se .vs__c e colidia com o círculo de +/- do stepper (.vs__b .vs__c),
+   que impunha width:32px e desenhava um "+" com ::before/::after. Os cards
+   colapsavam para 34px e apareciam dois sinais de mais na tela. */
+.cmp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem}
+.cmp__c{border:1px solid var(--line);border-radius:var(--r-md);padding:1rem;min-width:0}
+.cmp__c h4{font-size:var(--xs);font-weight:600;letter-spacing:.02em;margin-bottom:.75rem}
+.cmp__c ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.cmp__c li{font-size:15px;color:var(--ash);line-height:1.4;padding-left:1rem;position:relative}
+.cmp__c li::before{content:"";position:absolute;left:0;top:.45em;width:5px;height:5px;border-radius:50%;background:var(--line-2)}
+.cmp__c--bad{border-color:rgba(226,5,15,.28)}
+.cmp__c--bad li::before{background:var(--red)}
+.cmp__c--good{border-color:rgba(63,164,106,.28)}
+.cmp__c--good li::before{background:var(--green)}
 
 @media(max-width:900px){
   .prob__grid{grid-template-columns:minmax(0,1fr)}
@@ -1848,6 +1851,10 @@ h1,h2,h3,h4,.hmedia__n,.strip__n,.out__big,.gcol__ratio{font-family:var(--font-s
 @media(max-width:520px){ .dock__ct,.dock__ca{display:none} .dock__cta{padding-right:.28rem} }
 
 /* --- copy restaurada: peças novas --- */
+/* .solp__proof é um <p> e casava com `.solp__l p{grid-column:2;grid-row:2}`,
+   caindo na mesma célula da descrição e sobrepondo o texto */
+.solp__l .solp__proof{grid-column:2;grid-row:3;margin-top:1.35rem}
+@media(max-width:900px){ .solp__l .solp__proof{grid-column:1;grid-row:auto} }
 .strip__note{
   grid-column:1/-1;border-top:1px solid var(--line);margin-top:.75rem;padding-top:1.25rem;
   font-size:var(--sm);color:var(--ash);max-width:72ch;
@@ -1880,6 +1887,149 @@ h1,h2,h3,h4,.hmedia__n,.strip__n,.out__big,.gcol__ratio{font-family:var(--font-s
   text-transform:uppercase;color:var(--ash);margin-bottom:1rem;
 }
 .depo__intro b{display:block;color:var(--bone);font-weight:600;margin-bottom:.4rem}
+
+
+/* ============================================================================
+   REVISÃO 17/09 (6)
+   ========================================================================== */
+
+/* ----------------------------------------------------------------------------
+   (002) A GRADE, repaginada
+   Duas caixas de verdade, lado a lado, com cabeçalho, rótulos de coluna e as
+   seis linhas. Uma fonte só: a mono saiu daqui, era ruído.
+   -------------------------------------------------------------------------- */
+.gcols{
+  display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+  gap:clamp(.75rem,2vw,1.5rem);margin-top:1.35rem;align-items:stretch;
+}
+.gcard{
+  display:flex;flex-direction:column;min-width:0;
+  border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;
+  background:linear-gradient(180deg,var(--ink-2),var(--ink));
+  box-shadow:var(--lift);
+}
+.gcard--us{border-color:rgba(226,5,15,.32)}
+.gcard__h{
+  display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:.9rem;align-items:center;
+  padding:1.1rem 1.25rem;border-bottom:1px solid var(--line);
+}
+.gcard__ico{
+  width:42px;height:42px;border-radius:13px;display:grid;place-items:center;flex:none;
+  border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--ash);
+  box-shadow:var(--lift-sm);
+}
+.gcard--us .gcard__ico{color:var(--red);border-color:rgba(226,5,15,.34);background:rgba(226,5,15,.09)}
+.gcard__ico .ic{width:21px;height:21px}
+.gcard__t{min-width:0;font-size:var(--xs);color:var(--ash);line-height:1.35}
+.gcard__t b{display:block;font-size:var(--sm);font-weight:600;letter-spacing:-.022em;color:var(--bone);line-height:1.2}
+.gcard__r{
+  font-size:var(--xs);color:var(--ash);text-align:right;line-height:1.1;flex:none;
+}
+.gcard__r b{display:block;font-size:1.65rem;font-weight:600;letter-spacing:-.05em;color:#5C534E}
+.gcard--us .gcard__r b{color:var(--bone)}
+.gcard__cols{
+  display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:1rem;
+  padding:.7rem 1.25rem;border-bottom:1px solid var(--line);
+  font-size:var(--xs);font-weight:600;color:var(--ash);
+}
+.gcard__cols span:nth-child(2){width:11ch;text-align:right}
+.gcard__cols span:nth-child(3){width:8ch;text-align:right}
+
+.grows{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;flex:1}
+.grow{
+  position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;
+  gap:.85rem;align-items:center;padding:.85rem 1.25rem;
+  border-bottom:1px solid rgba(255,255,255,.045);overflow:hidden;
+}
+.grow:last-child{border-bottom:0}
+.grow > *{position:relative;z-index:1}
+.grow__i{width:20px;height:20px;flex:none;color:var(--red)}
+.grow__n{font-size:var(--sm);font-weight:500;letter-spacing:-.018em;min-width:0}
+.grow__c{width:11ch;text-align:right;font-size:var(--xs);color:var(--ash);white-space:nowrap}
+.grow__w{width:8ch;text-align:right;font-size:var(--xs);font-weight:600;color:var(--bone);white-space:nowrap}
+.grow__bar{
+  position:absolute;inset:0;z-index:0;transform-origin:left;
+  background:linear-gradient(90deg,rgba(226,5,15,.16),rgba(226,5,15,.02));
+  border-left:2px solid var(--red);
+}
+.gcard--them .grow__i{color:#5C534E}
+.gcard--them .grow__n{color:var(--ash)}
+.gcard--them .grow__w{color:var(--ash)}
+.grow--off{opacity:.42}
+.grow--off .grow__i{color:#3A322E}
+.grow--off .grow__n{color:#5C534E}
+.gcard__f{
+  display:flex;align-items:center;gap:.6rem;
+  padding:.9rem 1.25rem;border-top:1px solid var(--line);
+  font-size:var(--xs);color:var(--ash);
+}
+.gcard__f .ic{width:18px;height:18px;color:var(--red);flex:none}
+.gcard__vs{
+  align-self:center;display:flex;flex-direction:column;align-items:center;gap:.7rem;
+}
+.gcard__vs::before,.gcard__vs::after{content:"";width:1px;flex:1;min-height:40px;background:var(--line)}
+.gcard__vs span{
+  font-size:var(--xs);font-weight:600;color:var(--ash);
+  writing-mode:vertical-rl;letter-spacing:.06em;
+}
+@media(max-width:1000px){
+  .gcols{grid-template-columns:minmax(0,1fr)}
+  .gcard__vs{flex-direction:row;padding-block:.35rem}
+  .gcard__vs::before,.gcard__vs::after{width:auto;height:1px;flex:1;min-height:0}
+  .gcard__vs span{writing-mode:horizontal-tb}
+}
+@media(max-width:460px){
+  .gcard__cols{display:none}
+  .grow{grid-template-columns:auto minmax(0,1fr) auto}
+  .grow__c{display:none}
+}
+
+/* ============================================================================
+   DOCK estilo macOS
+   Tiles de ícone, como app. A escala vem de --k, que o JS define pela
+   distância do ponteiro. Tudo centralizado na vertical.
+   ========================================================================== */
+.dock{align-items:center;gap:.4rem;padding:.45rem}
+.dock__apps{display:flex;align-items:center;gap:.25rem}
+.dock__sep{width:1px;height:30px;background:var(--line-2);flex:none;margin-inline:.25rem}
+.dtile{
+  --k:0;
+  position:relative;flex:none;border:0;padding:0;cursor:pointer;background:none;
+  width:46px;height:46px;display:grid;place-items:center;
+  transform:translateY(calc(var(--k) * -5px)) scale(calc(1 + var(--k) * .22));
+  transform-origin:center bottom;
+  transition:transform .26s var(--e);
+}
+.dtile__g{
+  width:100%;height:100%;border-radius:14px;display:grid;place-items:center;
+  background:rgba(255,255,255,.07);color:var(--bone-2);
+  box-shadow:var(--lift-sm);
+  transition:background .24s var(--e),color .24s var(--e);
+}
+.dtile__g .ic{width:21px;height:21px}
+.dtile:hover .dtile__g,.dtile:focus-visible .dtile__g{background:rgba(255,255,255,.15);color:var(--bone)}
+.dtile[aria-current="true"] .dtile__g{background:rgba(226,5,15,.18);color:var(--red)}
+.dtile[aria-current="true"]::after{
+  content:"";position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);
+  width:4px;height:4px;border-radius:50%;background:var(--red);
+}
+.dtile__t{
+  position:absolute;bottom:calc(100% + .75rem);left:50%;transform:translate(-50%,6px);
+  padding:.42rem .75rem;border-radius:11px;white-space:nowrap;pointer-events:none;
+  background:var(--ink-3);border:1px solid var(--line-2);box-shadow:var(--lift-sm);
+  font-size:var(--xs);font-weight:600;letter-spacing:-.015em;color:var(--bone);
+  opacity:0;transition:opacity .2s var(--e),transform .26s var(--e);
+}
+.dtile:hover .dtile__t,.dtile:focus-visible .dtile__t{opacity:1;transform:translate(-50%,0)}
+@media(hover:none){ .dtile__t{display:none} }
+:root[data-theme="light"] .dtile__g{background:rgba(10,8,7,.06)}
+:root[data-theme="light"] .dtile:hover .dtile__g{background:rgba(10,8,7,.12)}
+
+.dock__live{align-self:center;padding-inline:.6rem;border:0;margin-inline:0}
+.dock__cta{align-self:center}
+@media(max-width:1240px){ .dock__live,.dock__live + .dock__sep{display:none} }
+@media(max-width:1080px){ .dtile--tool,.dock__sep{display:none} }
+@media(max-width:860px){ .dock__apps{display:none} .dock__sep{display:none} }
 
 /* ============================================================================
    REVEAL. Resting state is visible; JS opts in to animating.

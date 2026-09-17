@@ -357,12 +357,12 @@
       });
 
       // the dock appears once the hero is behind you and hides over the form
-      if (marks.length) {
+      if (tiles.length) {
         var atual = null;
         SECOES.forEach(function (s) { if (s.el.getBoundingClientRect().top <= mid) atual = s; });
-        marks.forEach(function (m) {
-          if (atual && m.dataset.id === atual.id) { m.setAttribute("aria-current", "true"); }
-          else { m.removeAttribute("aria-current"); }
+        tiles.forEach(function (t) {
+          if (atual && t.dataset.id === atual.id) { t.setAttribute("aria-current", "true"); }
+          else { t.removeAttribute("aria-current"); }
         });
       }
 
@@ -408,44 +408,52 @@
   }
 
   /* =========================================================================
-     11. DOCK: a linha do tempo é a navegação
-     Uma marca por seção. A que está sob o ponteiro cresce, e as vizinhas
-     crescem menos, como no dock do macOS. Clicar leva até lá. É navegação,
-     mas apresentada como progresso, e não como uma segunda cópia do menu.
+     11. DOCK, estilo macOS
+     Um tile por seção, como ícone de app. O que está sob o ponteiro cresce e
+     os vizinhos crescem menos, com a escala caindo pela distância. Clicar leva
+     até a seção; a atual ganha o ponto embaixo.
      ====================================================================== */
-  var dockLine = $("#dockLine");
+  var ICONES = {
+    posicionamento:"sparkle", problema:"users-three", grade:"lock-key-open",
+    metodo:"target", simulador:"chart-line-up", solucoes:"map-trifold",
+    resultados:"quotes", fundador:"seal-check", casa:"buildings",
+    reconhecimento:"trophy", duvidas:"scroll", simulacao:"handshake"
+  };
+  var dockApps = $("#dockApps");
   var SECOES = $$("section[id]").map(function (s) {
     var reg = s.querySelector(".reg__n"), tit = s.querySelector(".reg__t");
-    return { el: s, id: s.id, n: reg ? reg.textContent.replace(/[()]/g, "") : "", t: tit ? tit.textContent.trim() : "" };
-  }).filter(function (x) { return x.n; });
+    return { el:s, id:s.id, n: reg ? reg.textContent.replace(/[()]/g,"") : "",
+             t: tit ? tit.textContent.trim() : "" };
+  }).filter(function (x) { return x.n && ICONES[x.id]; });
 
-  var marks = [];
-  if (dockLine) {
+  var tiles = [];
+  if (dockApps) {
     SECOES.forEach(function (s) {
       var b = document.createElement("button");
-      b.type = "button"; b.className = "dmark"; b.dataset.id = s.id;
-      b.setAttribute("aria-label", s.n + ", " + s.t);
-      b.innerHTML = '<span class="dmark__t"><b>' + s.n + "</b>" + s.t + "</span>";
+      b.type = "button"; b.className = "dtile"; b.dataset.id = s.id;
+      b.setAttribute("aria-label", s.t);
+      b.innerHTML = '<span class="dtile__g"><svg class="ic" aria-hidden="true">' +
+        '<use href="#i-' + ICONES[s.id] + '"></use></svg></span>' +
+        '<span class="dtile__t">' + s.t + "</span>";
       b.addEventListener("click", function () {
         var top = s.el.getBoundingClientRect().top + window.scrollY - 78;
         window.scrollTo({ top: Math.max(0, top), behavior: reduce ? "auto" : "smooth" });
       });
-      dockLine.appendChild(b);
-      marks.push(b);
+      dockApps.appendChild(b);
+      tiles.push(b);
     });
 
-    // magnificação: a distância do ponteiro a cada marca define a altura
     if (!reduce) {
-      dockLine.addEventListener("pointermove", function (e) {
-        marks.forEach(function (m) {
-          var r = m.getBoundingClientRect();
+      dockApps.addEventListener("pointermove", function (e) {
+        tiles.forEach(function (t) {
+          var r = t.getBoundingClientRect();
           var d = Math.abs(e.clientX - (r.left + r.width / 2));
-          var k = Math.max(0, 1 - d / 96);
-          m.style.height = (16 + k * 18) + "px";
+          var k = Math.max(0, 1 - d / 120);
+          t.style.setProperty("--k", k.toFixed(3));
         });
       });
-      dockLine.addEventListener("pointerleave", function () {
-        marks.forEach(function (m) { m.style.height = ""; });
+      dockApps.addEventListener("pointerleave", function () {
+        tiles.forEach(function (t) { t.style.removeProperty("--k"); });
       });
     }
   }
@@ -563,7 +571,9 @@
   var rows = gsap.utils.toArray("#grows .grow");
   var bars = rows.map(function (r) { return r.querySelector(".grow__bar"); });
   var glyphs = rows.map(function (r) { return r.querySelector(".grow__i"); });
-  var metas = rows.map(function (r) { return r.querySelector(".grow__m"); });
+  var metas = rows.reduce(function (acc, r) {
+    return acc.concat($$(".grow__c, .grow__w", r));
+  }, []);
   var counter = $("#doorCount");
 
   var mm = gsap.matchMedia();
@@ -572,7 +582,7 @@
     gsap.set(bars, { scaleX: 0 });
     gsap.set(glyphs, { color: "#3A322E" });
     gsap.set(metas, { opacity: .4 });
-    counter.innerHTML = '0<em>/6</em>';
+    counter.innerHTML = "<b>0</b>de 6";
 
     var tl = gsap.timeline({
       scrollTrigger: {
@@ -580,7 +590,7 @@
         pin: true, scrub: .6, invalidateOnRefresh: true,
         onUpdate: function (self) {
           var open = Math.min(6, Math.floor(self.progress * 7.2));
-          counter.innerHTML = open + '<em>/6</em>';
+          counter.innerHTML = "<b>" + open + "</b>de 6";
         }
       }
     });
@@ -588,7 +598,7 @@
       var at = i * 0.9;
       tl.to(bars[i], { scaleX: 1, duration: 1, ease: "power2.out" }, at)
         .to(glyphs[i], { color: "#E2050F", duration: .5 }, at)
-        .to(metas[i], { opacity: 1, duration: .5 }, at);
+        .to($$(".grow__c, .grow__w", r), { opacity: 1, duration: .5 }, at);
     });
     tl.to({}, { duration: 1.2 });
   });

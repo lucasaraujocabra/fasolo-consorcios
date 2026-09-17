@@ -296,8 +296,8 @@
         <!-- 04 -->
         <div class="pv" data-pv="4">
           <p class="pv__t">O que se promete, e o que o contrato diz</p>
-          <div class="vs">
-            <div class="vs__c vs__c--bad">
+          <div class="cmp">
+            <div class="cmp__c cmp__c--bad">
               <h4>Prometido</h4>
               <ul>
                 <li>Contemplação garantida no 3º mês</li>
@@ -306,7 +306,7 @@
                 <li>Crédito liberado na hora</li>
               </ul>
             </div>
-            <div class="vs__c vs__c--good">
+            <div class="cmp__c cmp__c--good">
               <h4>O que a Fasolo diz</h4>
               <ul>
                 <li>Contemplação por sorteio ou lance, desde o 1º mês</li>
@@ -333,40 +333,44 @@
     </p>
 
     <p class="gcols__h" data-rev>Seis modalidades. Quatro aceleradores.</p>
+
     <div class="gcols">
-      <div class="gcol gcol--them">
-        <div class="gcol__head">
-          <span class="itile itile--sm"><svg class="ic" aria-hidden="true"><use href="#i-lock-simple"></use></svg></span>
-          <span class="gcol__ht"><b>No consórcio comum</b>uma porta aberta, cinco fechadas</span>
-          <span class="gcol__ratio">1<em>/6</em></span>
-        </div>
-        <div class="grows">
-          <div class="grow"><svg class="ic grow__i" aria-hidden="true"><use href="#i-dice-five"></use></svg><span class="grow__n">Sorteio</span><span class="grow__m">1º mês</span></div>
-          <div class="grow"><svg class="ic grow__i" aria-hidden="true"><use href="#i-gavel"></use></svg><span class="grow__n">Lance alto</span><span class="grow__m">se sobrar capital</span></div>
-          <div class="grow"><svg class="ic grow__i" aria-hidden="true"><use href="#i-lock-simple"></use></svg><span class="grow__n">porta fechada</span><span class="grow__m">&nbsp;</span></div>
-          <div class="grow"><svg class="ic grow__i" aria-hidden="true"><use href="#i-lock-simple"></use></svg><span class="grow__n">porta fechada</span><span class="grow__m">&nbsp;</span></div>
-          <div class="grow"><svg class="ic grow__i" aria-hidden="true"><use href="#i-lock-simple"></use></svg><span class="grow__n">porta fechada</span><span class="grow__m">&nbsp;</span></div>
-          <div class="grow"><svg class="ic grow__i" aria-hidden="true"><use href="#i-lock-simple"></use></svg><span class="grow__n">porta fechada</span><span class="grow__m">&nbsp;</span></div>
-        </div>
-      </div>
+      <article class="gcard gcard--them">
+        <header class="gcard__h">
+          <span class="gcard__ico"><svg class="ic" aria-hidden="true"><use href="#i-lock-simple"></use></svg></span>
+          <span class="gcard__t"><b>No consórcio comum</b>uma porta aberta, cinco fechadas</span>
+          <span class="gcard__r"><b>1</b>de 6</span>
+        </header>
+        <p class="gcard__cols"><span>Modalidade</span><span>Custo</span><span>A partir de</span></p>
+        <ul class="grows">
+          <li class="grow"><svg class="ic grow__i" aria-hidden="true"><use href="#i-dice-five"></use></svg><span class="grow__n">Sorteio</span><span class="grow__c">sem custo</span><span class="grow__w">1º mês</span></li>
+          <li class="grow"><svg class="ic grow__i" aria-hidden="true"><use href="#i-gavel"></use></svg><span class="grow__n">Lance alto</span><span class="grow__c">valor alto</span><span class="grow__w">com capital</span></li>
+          <li class="grow grow--off"><svg class="ic grow__i" aria-hidden="true"><use href="#i-lock-simple"></use></svg><span class="grow__n">Fechada</span><span class="grow__c">&nbsp;</span><span class="grow__w">&nbsp;</span></li>
+          <li class="grow grow--off"><svg class="ic grow__i" aria-hidden="true"><use href="#i-lock-simple"></use></svg><span class="grow__n">Fechada</span><span class="grow__c">&nbsp;</span><span class="grow__w">&nbsp;</span></li>
+          <li class="grow grow--off"><svg class="ic grow__i" aria-hidden="true"><use href="#i-lock-simple"></use></svg><span class="grow__n">Fechada</span><span class="grow__c">&nbsp;</span><span class="grow__w">&nbsp;</span></li>
+          <li class="grow grow--off"><svg class="ic grow__i" aria-hidden="true"><use href="#i-lock-simple"></use></svg><span class="grow__n">Fechada</span><span class="grow__c">&nbsp;</span><span class="grow__w">&nbsp;</span></li>
+        </ul>
+      </article>
 
-      <div class="gcol__vs" aria-hidden="true"><span>contra</span></div>
+      <div class="gcard__vs" aria-hidden="true"><span>contra</span></div>
 
-      <div class="gcol gcol--us">
-        <div class="gcol__head">
-          <span class="itile itile--sm itile--red"><svg class="ic" aria-hidden="true"><use href="#i-lock-key-open"></use></svg></span>
-          <span class="gcol__ht"><b>Nos grupos onde alocamos você</b>as seis abertas ao mesmo tempo</span>
-          <span class="gcol__ratio" id="doorCount">6<em>/6</em></span>
-        </div>
-        <div class="grows" id="grows">
-          <div class="grow"><span class="grow__bar"></span><svg class="ic grow__i" aria-hidden="true"><use href="#i-dice-five"></use></svg><span class="grow__n">Sorteio</span><span class="grow__m"><span>sem custo</span><b>1º mês</b></span></div>
-          <div class="grow"><span class="grow__bar"></span><svg class="ic grow__i" aria-hidden="true"><use href="#i-gavel"></use></svg><span class="grow__n">Lance Livre</span><span class="grow__m"><span>valor ofertado</span><b>1º mês</b></span></div>
-          <div class="grow"><span class="grow__bar"></span><svg class="ic grow__i" aria-hidden="true"><use href="#i-hand-coins"></use></svg><span class="grow__n">Lance Limitado</span><span class="grow__m"><span>custo zero</span><b>1º mês</b></span></div>
-          <div class="grow"><span class="grow__bar"></span><svg class="ic grow__i" aria-hidden="true"><use href="#i-calendar-check"></use></svg><span class="grow__n">Lance Fidelidade 6</span><span class="grow__m"><span>custo zero</span><b>6º mês</b></span></div>
-          <div class="grow"><span class="grow__bar"></span><svg class="ic grow__i" aria-hidden="true"><use href="#i-calendar-check"></use></svg><span class="grow__n">Lance Fidelidade 12</span><span class="grow__m"><span>custo zero</span><b>12º mês</b></span></div>
-          <div class="grow"><span class="grow__bar"></span><svg class="ic grow__i" aria-hidden="true"><use href="#i-calendar-check"></use></svg><span class="grow__n">Lance Fidelidade 18</span><span class="grow__m"><span>custo zero</span><b>18º mês</b></span></div>
-        </div>
-      </div>
+      <article class="gcard gcard--us">
+        <header class="gcard__h">
+          <span class="gcard__ico"><svg class="ic" aria-hidden="true"><use href="#i-lock-key-open"></use></svg></span>
+          <span class="gcard__t"><b>Nos grupos onde alocamos você</b>as seis abertas ao mesmo tempo</span>
+          <span class="gcard__r" id="doorCount"><b>6</b>de 6</span>
+        </header>
+        <p class="gcard__cols"><span>Modalidade</span><span>Custo</span><span>A partir de</span></p>
+        <ul class="grows" id="grows">
+          <li class="grow"><svg class="ic grow__i" aria-hidden="true"><use href="#i-dice-five"></use></svg><span class="grow__n">Sorteio</span><span class="grow__c">sem custo</span><span class="grow__w">1º mês</span><span class="grow__bar"></span></li>
+          <li class="grow"><svg class="ic grow__i" aria-hidden="true"><use href="#i-gavel"></use></svg><span class="grow__n">Lance Livre</span><span class="grow__c">valor ofertado</span><span class="grow__w">1º mês</span><span class="grow__bar"></span></li>
+          <li class="grow"><svg class="ic grow__i" aria-hidden="true"><use href="#i-hand-coins"></use></svg><span class="grow__n">Lance Limitado</span><span class="grow__c">custo zero</span><span class="grow__w">1º mês</span><span class="grow__bar"></span></li>
+          <li class="grow"><svg class="ic grow__i" aria-hidden="true"><use href="#i-calendar-check"></use></svg><span class="grow__n">Lance Fidelidade 6</span><span class="grow__c">custo zero</span><span class="grow__w">6º mês</span><span class="grow__bar"></span></li>
+          <li class="grow"><svg class="ic grow__i" aria-hidden="true"><use href="#i-calendar-check"></use></svg><span class="grow__n">Lance Fidelidade 12</span><span class="grow__c">custo zero</span><span class="grow__w">12º mês</span><span class="grow__bar"></span></li>
+          <li class="grow"><svg class="ic grow__i" aria-hidden="true"><use href="#i-calendar-check"></use></svg><span class="grow__n">Lance Fidelidade 18</span><span class="grow__c">custo zero</span><span class="grow__w">18º mês</span><span class="grow__bar"></span></li>
+        </ul>
+        <p class="gcard__f"><svg class="ic" aria-hidden="true"><use href="#i-sparkle"></use></svg>Aceleradores a partir do 1º, 6º, 12º e 18º mês.</p>
+      </article>
     </div>
 
     <div class="grade__foot">
@@ -936,14 +940,21 @@
 </main>
 
 <div class="dock" id="dock" aria-label="Navegação da página">
-  <button class="dock__btn" type="button" id="themeBtn" aria-pressed="false" aria-label="Alternar entre tema escuro e claro">
-    <span class="dock__sun" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-sparkle"></use></svg></span>
-    <span class="dock__moon" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-crosshair"></use></svg></span>
+  <button class="dtile dtile--tool" type="button" id="themeBtn" aria-pressed="false" aria-label="Alternar entre tema escuro e claro">
+    <span class="dtile__g">
+      <span class="dock__sun" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-sparkle"></use></svg></span>
+      <span class="dock__moon" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-crosshair"></use></svg></span>
+    </span>
+    <span class="dtile__t">Tema</span>
   </button>
 
-  <!-- a linha do tempo É a navegação: cada marca é uma seção, e a que está
-       sob o ponteiro cresce como no dock do macOS -->
-  <nav class="dock__line" id="dockLine" aria-label="Seções"></nav>
+  <span class="dock__sep" aria-hidden="true"></span>
+
+  <!-- um tile por seção, como um ícone de app. Cresce sob o ponteiro e as
+       vizinhas crescem menos, que é o gesto do dock do macOS -->
+  <nav class="dock__apps" id="dockApps" aria-label="Seções"></nav>
+
+  <span class="dock__sep" aria-hidden="true"></span>
 
   <span class="dock__live" id="dockLive" hidden>
     <span class="dock__lk">parcela</span>

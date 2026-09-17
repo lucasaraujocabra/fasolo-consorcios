@@ -101,6 +101,17 @@ usava `--ash` sobre uma placa translúcida e dava 3.3:1 em cima da parte clara
 do retrato. A placa foi para `rgba(8,6,5,.88)` e o apoio para um cinza fixo.
 Medir isso só funciona lendo os pixels embaixo do glifo.
 
+⛔⛔ **Nome de classe repetido para peças diferentes quebra em silêncio.**
+`.vs__c` era ao mesmo tempo o card de comparação do painel (001) e o círculo de
+`+/−` do stepper (003). O círculo impunha `width:32px` e desenhava um sinal de
+mais com `::before/::after`. Resultado: os cards colapsavam para 34px, o texto
+virava uma palavra por linha e apareciam dois `+` na tela. O de comparação
+virou `.cmp__c`. Antes de criar um bloco novo, `grep` pelo prefixo.
+
+⚠️ **Elemento novo dentro de um grid herda a regra de posição do seletor de
+elemento.** `.solp__proof` é um `<p>` e casou com `.solp__l p{grid-row:2}`,
+caindo na mesma célula da descrição e sobrepondo o texto.
+
 ⚠️ Ícone vive dentro de `.itile`, que é um `<span>`. Cuidado com regra de
 elemento genérica tipo `.componente span{...}`: ela vence `.itile` na cascata e
 apaga o ícone sem erro nenhum. Foi o que aconteceu com os prêmios uma vez.
@@ -129,10 +140,11 @@ a seção está na tela (IntersectionObserver).
 
 ### Dock
 
-⭐ **A linha do tempo É a navegação.** Uma marca por seção numerada; a que está
-sob o ponteiro cresce e as vizinhas crescem menos, como no dock do macOS.
-Clicar leva até a seção, e a marca da seção atual fica vermelha. É navegação
-apresentada como progresso, e não uma segunda cópia do menu.
+⭐ **Tiles de ícone, como o dock do macOS.** Um tile por seção, com o ícone
+dela. A escala vem de `--k`, que o JS calcula pela distância do ponteiro: o tile
+sob o cursor cresce 22% e sobe 5px, e os vizinhos crescem menos. Tooltip com o
+nome, ponto vermelho embaixo do atual, e clique leva até a seção. Tudo dentro do
+dock é centralizado na vertical (`align-items:center`, nunca `stretch`).
 
 ⛔ **O dock não repete a navbar.** Ele carrega só o que não existe em outro
 lugar: o **provador de fontes**, a **parcela que o simulador acabou de
@@ -218,7 +230,7 @@ O hero mais dez seções numeradas. O número `(001)` não é enfeite: é o mesm
 |---|---|---|
 | — | Hero | manchete + componente de mídia + trilho de 3 objetivos |
 | 001 | O problema | lista numerada que troca o diagrama ao lado |
-| 002 | A grade de contemplação | **peça de assinatura**: cabeçalho por coluna e 6 portas acendendo no scroll |
+| 002 | A grade de contemplação | **peça de assinatura**: duas caixas com cabeçalho e rótulo de coluna, 6 portas acendendo no scroll |
 | 003 | O método | quatro blocos verticais, um aberto por vez, seta navega |
 | 004 | Simulador | cálculo ao vivo, comparação com financiamento |
 | 005 | As soluções | abas, copy e CTA no topo, destinos em boxes com ícone |
