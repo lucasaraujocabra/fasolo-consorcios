@@ -129,6 +129,11 @@ a seção está na tela (IntersectionObserver).
 
 ### Dock
 
+⭐ **A linha do tempo É a navegação.** Uma marca por seção numerada; a que está
+sob o ponteiro cresce e as vizinhas crescem menos, como no dock do macOS.
+Clicar leva até a seção, e a marca da seção atual fica vermelha. É navegação
+apresentada como progresso, e não uma segunda cópia do menu.
+
 ⛔ **O dock não repete a navbar.** Ele carrega só o que não existe em outro
 lugar: o **provador de fontes**, a **parcela que o simulador acabou de
 calcular**, o tema, e o contato com rosto. Links de seção já estão no menu e no
@@ -247,6 +252,20 @@ sem abrir mão da ferramenta. Defaults de referência: 18%, 2% e 1,09% ao mês.
 O bloco termina com a ressalva de que é estimativa para comparação, não proposta.
 
 ---
+
+## Auditoria de copy
+
+⚠️⚠️ **Rodar isto antes de cada entrega.** Em 17/09 uma auditoria bloco a bloco
+contra o PDF aprovado achou **18 trechos faltando**, incluindo uma seção
+inteira ("Não é um vendedor de cotas falando...", com a linha "Aqui você não
+compra uma cota. Compra estratégia.") e uma pergunta do FAQ. A maior parte se
+perdeu em reescritas minhas de seções que já existiam, não por esquecimento
+na primeira montagem.
+
+Como auditar: abrir todos os `details`, `[hidden]`, `.solp`, `.pv` e `.vs__p`
+por script, ler `body.innerText`, normalizar (minúsculas, sem acento, sem
+pontuação) e procurar cada fragmento da copy. Sem abrir os acordeões, metade
+do texto não está no `innerText` e a auditoria mente dizendo que falta.
 
 ## O que falta, e de quem depende
 

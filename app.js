@@ -357,11 +357,13 @@
       });
 
       // the dock appears once the hero is behind you and hides over the form
-      if (dockBar) {
-        dockBar.style.width = (h > 0 ? Math.min(1, window.scrollY / h) * 100 : 0) + "%";
+      if (marks.length) {
         var atual = null;
         SECOES.forEach(function (s) { if (s.el.getBoundingClientRect().top <= mid) atual = s; });
-        if (atual) { dockNum.textContent = atual.n; dockSec.textContent = atual.t; }
+        marks.forEach(function (m) {
+          if (atual && m.dataset.id === atual.id) { m.setAttribute("aria-current", "true"); }
+          else { m.removeAttribute("aria-current"); }
+        });
       }
 
       var dock = $("#dock"), formTop = $("#simulacao").getBoundingClientRect().top;
@@ -406,15 +408,47 @@
   }
 
   /* =========================================================================
-     11. DOCK: onde você está
-     Status, não navegação. O menu já leva às seções; isto diz em qual delas o
-     visitante está e quanto falta da página.
+     11. DOCK: a linha do tempo é a navegação
+     Uma marca por seção. A que está sob o ponteiro cresce, e as vizinhas
+     crescem menos, como no dock do macOS. Clicar leva até lá. É navegação,
+     mas apresentada como progresso, e não como uma segunda cópia do menu.
      ====================================================================== */
-  var dockNum = $("#dockNum"), dockSec = $("#dockSec"), dockBar = $("#dockBar");
+  var dockLine = $("#dockLine");
   var SECOES = $$("section[id]").map(function (s) {
     var reg = s.querySelector(".reg__n"), tit = s.querySelector(".reg__t");
-    return { el: s, n: reg ? reg.textContent.replace(/[()]/g, "") : "", t: tit ? tit.textContent.trim() : "" };
+    return { el: s, id: s.id, n: reg ? reg.textContent.replace(/[()]/g, "") : "", t: tit ? tit.textContent.trim() : "" };
   }).filter(function (x) { return x.n; });
+
+  var marks = [];
+  if (dockLine) {
+    SECOES.forEach(function (s) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "dmark"; b.dataset.id = s.id;
+      b.setAttribute("aria-label", s.n + ", " + s.t);
+      b.innerHTML = '<span class="dmark__t"><b>' + s.n + "</b>" + s.t + "</span>";
+      b.addEventListener("click", function () {
+        var top = s.el.getBoundingClientRect().top + window.scrollY - 78;
+        window.scrollTo({ top: Math.max(0, top), behavior: reduce ? "auto" : "smooth" });
+      });
+      dockLine.appendChild(b);
+      marks.push(b);
+    });
+
+    // magnificação: a distância do ponteiro a cada marca define a altura
+    if (!reduce) {
+      dockLine.addEventListener("pointermove", function (e) {
+        marks.forEach(function (m) {
+          var r = m.getBoundingClientRect();
+          var d = Math.abs(e.clientX - (r.left + r.width / 2));
+          var k = Math.max(0, 1 - d / 96);
+          m.style.height = (16 + k * 18) + "px";
+        });
+      });
+      dockLine.addEventListener("pointerleave", function () {
+        marks.forEach(function (m) { m.style.height = ""; });
+      });
+    }
+  }
 
   /* =========================================================================
      12. CAROUSEL  (008)
