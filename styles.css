@@ -1689,6 +1689,96 @@ h1,h2,h3,h4,.hmedia__n,.strip__n,.out__big,.gcol__ratio{font-family:var(--font-s
 .light .sol__tab[aria-selected="true"]{background:var(--bone);border-color:var(--bone);color:var(--ink)}
 .light .sbox__t,.light .scard__t{color:var(--bone)}
 
+
+/* ============================================================================
+   REVISÃO 17/09 (4)
+   ========================================================================== */
+
+/* ----------------------------------------------------------------------------
+   PROFUNDIDADE
+   Uma borda de luz em cima, uma sombra em baixo, e um sopro macio para dentro
+   nas duas pontas. É o que tira a cara chapada sem virar o card genérico com
+   sombra solta embaixo. Dois níveis: caixa grande e peça pequena.
+   -------------------------------------------------------------------------- */
+:root{
+  --lift:
+    inset 0 1px 0 rgba(255,255,255,.075),
+    inset 0 16px 24px -20px rgba(255,255,255,.12),
+    inset 0 -1px 0 rgba(0,0,0,.42),
+    inset 0 -18px 28px -22px rgba(0,0,0,.55),
+    0 14px 30px -20px rgba(0,0,0,.65);
+  --lift-sm:
+    inset 0 1px 0 rgba(255,255,255,.065),
+    inset 0 -1px 0 rgba(0,0,0,.38),
+    0 4px 12px -8px rgba(0,0,0,.5);
+}
+.light{
+  --lift:
+    inset 0 1px 0 #fff,
+    inset 0 16px 24px -20px rgba(255,255,255,.95),
+    inset 0 -1px 0 rgba(10,8,7,.075),
+    inset 0 -18px 28px -22px rgba(10,8,7,.07),
+    0 14px 28px -18px rgba(10,8,7,.13);
+  --lift-sm:
+    inset 0 1px 0 #fff,
+    inset 0 -1px 0 rgba(10,8,7,.07),
+    0 4px 12px -8px rgba(10,8,7,.11);
+}
+
+/* caixas grandes */
+.sbox,.pbox,.dbox,.vstep,.prob__panel,.sim__out,.form__box,.hmedia__card,
+.dbx,.hs,.shot,.player,.cslide,.fmenu,.mhead__ph,.jair__ph,.guard,.form__ok,
+.save,.rbox,.blk,.scard{box-shadow:var(--lift)}
+
+/* peças pequenas */
+.grow,.gcol__head,.itile,.tcard,.chip,.foot__soc a,.sbox__i,.hero__badge,
+.sol__tab,.arw,.dg__r,.vs__c,.dock__btn,.pitem__c,.foot__up,
+.f input,.f select,.adv__f input{box-shadow:var(--lift-sm)}
+
+/* o hero e o dock já tinham sombra própria; somam a luz de cima sem perdê-la */
+.hmedia__frame{box-shadow:var(--lift),0 40px 80px -40px rgba(0,0,0,.9)}
+.light .hmedia__frame{box-shadow:var(--lift),0 30px 70px -34px rgba(10,8,7,.4)}
+
+/* o CTA do dock usava uma sombra mais fraca que o botão do menu, e por isso
+   parecia de outra cor. O gradiente sempre foi o mesmo. */
+.dock__cta{
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.34),
+    inset 0 -1px 0 rgba(0,0,0,.22),
+    0 1px 2px rgba(0,0,0,.4),
+    0 10px 24px -12px rgba(226,5,15,.55);
+}
+.dock__cta:hover{
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.34),
+    inset 0 -1px 0 rgba(0,0,0,.22),
+    0 2px 4px rgba(0,0,0,.4),
+    0 18px 38px -14px rgba(226,5,15,.72);
+}
+
+/* o botão de tema é o único quadrado no dock, que é uma pílula: vira círculo */
+.dock__btn{border-radius:50%}
+
+/* a placa da credencial fica sobre a parte clara da foto e reprovava em 3.3:1.
+   Mais opaca, e o apoio sobe de --ash para um cinza claro fixo (é texto sobre
+   FOTO, então o valor não pode seguir o token do ato). */
+.hmedia__id{background:rgba(8,6,5,.88)}
+.hmedia__id > span{color:#CFC7C1}
+.light .hmedia__id{background:rgba(8,6,5,.88)}
+.light .hmedia__id b{color:#F5F2EF}
+.light .hmedia__id > span{color:#CFC7C1}
+
+/* ----------------------------------------------------------------------------
+   O card das portas acompanha o ato claro, em vez de ficar preto sobre branco
+   -------------------------------------------------------------------------- */
+.light .hmedia__card{
+  background:linear-gradient(170deg,var(--ink),var(--ink-2));
+  border-color:var(--line-2);
+  box-shadow:var(--lift);   /* a regra antiga trazia sombra sem inset e vencia */
+}
+.light .hmedia__k,.light .hmedia__n em,.light .hmedia__s{color:var(--ash)}
+.light .hmedia__n{color:var(--bone)}
+
 /* ============================================================================
    REVEAL. Resting state is visible; JS opts in to animating.
    ========================================================================== */

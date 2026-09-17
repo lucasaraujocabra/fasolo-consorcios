@@ -96,6 +96,11 @@ fazia o bloco da parcela ocupar espaço mesmo com `hidden`, esticando o dock em
 20px sem aparecer nada. A regra `[hidden]{display:none!important}` está no topo
 do bloco de revisão; vale para qualquer componente novo.
 
+⚠️ **Texto sobre FOTO não pode seguir o token do ato.** A credencial do hero
+usava `--ash` sobre uma placa translúcida e dava 3.3:1 em cima da parte clara
+do retrato. A placa foi para `rgba(8,6,5,.88)` e o apoio para um cinza fixo.
+Medir isso só funciona lendo os pixels embaixo do glifo.
+
 ⚠️ Ícone vive dentro de `.itile`, que é um `<span>`. Cuidado com regra de
 elemento genérica tipo `.componente span{...}`: ela vence `.itile` na cascata e
 apaga o ícone sem erro nenhum. Foi o que aconteceu com os prêmios uma vez.
@@ -176,6 +181,20 @@ que use `--ink` como cor de texto precisa entrar nele.
 ⚠️ E cuidado com ordem: `.light .sol__tab` tem a mesma especificidade de
 `.sol__tab[aria-selected="true"]` e, vindo depois, apagou o estado ativo. Estado
 precisa de seletor mais específico que a variante de ato.
+
+### Profundidade
+
+`--lift` e `--lift-sm` são tokens de sombra e valem a página inteira. Cada um
+junta: uma borda de luz em cima, uma sombra na borda de baixo, um sopro macio
+para dentro nas duas pontas, e uma sombra projetada curta. É isso que tira a
+cara chapada das caixas sem virar o card genérico com sombra solta embaixo.
+
+Os dois níveis existem porque peça pequena com sombra de caixa grande fica
+borrada: `--lift` nas caixas (`.sbox`, `.pbox`, `.vstep`, `.sim__out`,
+`.form__box`, `.dbx`, `.guard`, `.player`, `.cslide`, o card do hero) e
+`--lift-sm` nas peças (`.grow`, `.itile`, `.tcard`, `.chip`, `.sol__tab`,
+`.arw`, inputs). **`.light` redefine os dois**, porque no branco a luz vem de
+cima em branco puro e a sombra precisa ser muito mais fraca.
 
 ### Grão
 
