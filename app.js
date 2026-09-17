@@ -611,3 +611,40 @@
   });
   lastDocH = document.documentElement.scrollHeight;
 })();
+
+/* ---------------------------------------------------------------------------
+   Imagem do painel do problema.
+   As quatro artes ainda vão ser geradas. Enquanto o arquivo não existir a
+   figura sai do DOM, e o painel volta a ser só o diagrama, inteiro. Assim a
+   página nunca mostra ícone de imagem quebrada nem um buraco no layout.
+   ------------------------------------------------------------------------- */
+(function () {
+  var sec = document.getElementById("problema");
+  var figs = [].slice.call(document.querySelectorAll(".pvfig"));
+  if (!sec || !figs.length) return;
+
+  figs.forEach(function (fig) {
+    var img = fig.querySelector("img");
+    if (!img) return;
+    function some() { if (fig.parentNode) fig.parentNode.removeChild(fig); }
+    if (img.complete && img.naturalWidth === 0) return some();
+    img.addEventListener("error", some);
+  });
+
+  // Três dos quatro painéis nascem em display:none, e imagem escondida com
+  // loading="lazy" NUNCA começa a carregar: o erro não dispara, a figura não
+  // sai, e quem clicar vê uma caixa escura esperando. Quando a seção chega
+  // perto da tela, todas passam para eager e resolvem de uma vez.
+  function acorda() {
+    figs.forEach(function (fig) {
+      var img = fig.querySelector("img");
+      if (img) img.loading = "eager";
+    });
+  }
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) {
+      if (es.some(function (e) { return e.isIntersecting; })) { acorda(); io.disconnect(); }
+    }, { rootMargin: "600px 0px" });
+    io.observe(sec);
+  } else { acorda(); }
+})();

@@ -313,9 +313,15 @@ do texto não está no `innerText` e a auditoria mente dizendo que falta.
 4. **Vídeos dos depoimentos.**
 5. **Fotos de entregas reais** (Bento Gonçalves, Porto Alegre, Santa Maria,
    Capão da Canoa), se a galeria de entregas da copy for construída.
+6. **As quatro artes do painel de (001) O problema.** O Lucas pediu imagem no
+   box da direita, não só diagrama, e vai gerá-las com IA. O slot já está
+   montado: `assets/problema/LEIA-ME.md` tem os nomes exatos dos arquivos, o
+   formato e os quatro prompts. Enquanto o arquivo não existir, o JS remove a
+   figura e o painel volta a ser só o diagrama.
 
-Nada de banco de imagens genérico: o briefing veta explicitamente, e é por isso
-que as seções sem foto real usam diagrama em CSS, não stock.
+Nada de banco de imagens genérico: o briefing veta explicitamente. As artes do
+painel do problema são geradas sob medida na linguagem da página (preto quente,
+luz quente lateral, sem azul e sem neon), justamente para não cair em stock.
 
 ---
 

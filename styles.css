@@ -2166,3 +2166,42 @@ h1,h2,h3,h4,.hmedia__n,.strip__n,.out__big,.gcol__ratio{font-family:var(--font-s
     radial-gradient(80vw 60vh at 92% 22%,rgba(255,138,92,.05),transparent 64%),
     #FBF9F7;
 }
+
+/* ============================================================================
+   REVISÃO 17/09 (4) — IMAGEM NO PAINEL DO PROBLEMA
+   O Lucas pediu imagem no box da direita, não só vetor. O diagrama continua,
+   porque é ele que carrega o argumento e é o dispositivo da seção; a imagem
+   entra ANTES dele, como componente: banda recortada, luz quente por cima,
+   queda para o preto da página embaixo e o número da dor gravado no canto.
+   Se o arquivo ainda não existe, o JS remove a figura e a seção segue inteira.
+   ========================================================================== */
+.prob__panel{ min-height:clamp(430px,50vw,560px) }
+
+.pvfig{
+  position:relative;margin:0 0 1.25rem;border-radius:var(--r-md);
+  overflow:hidden;isolation:isolate;background:var(--ink-2);
+  box-shadow:var(--lift-sm);
+}
+.pvfig img{
+  display:block;width:100%;height:clamp(132px,13vw,178px);
+  object-fit:cover;object-position:50% 45%;
+}
+/* a banda termina na página em vez de terminar num retângulo colado */
+.pvfig::after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(180deg,rgba(10,8,7,.22) 0%,rgba(10,8,7,0) 40%,rgba(10,8,7,.78) 100%),
+    radial-gradient(120% 110% at 6% 0%,rgba(226,5,15,.12),transparent 60%);
+}
+/* placa opaca: número legível sobre qualquer foto, sem depender do degradê */
+.pvfig__n{
+  position:absolute;z-index:2;left:.7rem;top:.7rem;
+  font-family:"Geist Mono",monospace;font-size:var(--mono);line-height:1;
+  padding:.4rem .55rem;border-radius:9px;
+  color:var(--bone);background:rgba(10,8,7,.82);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);
+}
+@media(max-width:860px){
+  .prob__panel{ min-height:0 }
+  .pvfig img{ height:clamp(124px,34vw,170px) }
+}
