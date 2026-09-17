@@ -384,27 +384,15 @@
   });
 
   /* =========================================================================
-     10. THEME
-     The dock's round button. Only tokens move; see the LIGHT THEME block in
-     styles.css. The choice is a per-viewer convenience, so localStorage is
-     wrapped and the page renders correctly when it comes back empty.
+     10. TEMA
+     O botão saiu do dock em 17/09. Os tokens do tema claro continuam no CSS,
+     então religar é devolver um botão que chame applyTheme("light"). A leitura
+     do localStorage saiu junto: sem botão, quem tivesse "light" salvo ficaria
+     preso no tema claro sem como voltar.
      ====================================================================== */
-  var themeBtn = $("#themeBtn");
   function applyTheme(t) {
     if (t === "light") { document.documentElement.setAttribute("data-theme", "light"); }
     else { document.documentElement.removeAttribute("data-theme"); }
-    if (themeBtn) themeBtn.setAttribute("aria-pressed", String(t === "light"));
-    try { localStorage.setItem("fasolo-theme", t); } catch (e) {}
-  }
-  try {
-    var saved = localStorage.getItem("fasolo-theme");
-    if (saved === "light") applyTheme("light");
-  } catch (e) {}
-  if (themeBtn) {
-    themeBtn.addEventListener("click", function () {
-      applyTheme(document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light");
-      if (hasGSAP && !reduce) ScrollTrigger.refresh();
-    });
   }
 
   /* =========================================================================
@@ -413,11 +401,10 @@
      os vizinhos crescem menos, com a escala caindo pela distância. Clicar leva
      até a seção; a atual ganha o ponto embaixo.
      ====================================================================== */
+  /* Três, não doze: o diferencial, a ferramenta e a prova. A lista completa
+     já está no menu e no rodapé; o dock é atalho, não índice. */
   var ICONES = {
-    posicionamento:"sparkle", problema:"users-three", grade:"lock-key-open",
-    metodo:"target", simulador:"chart-line-up", solucoes:"map-trifold",
-    resultados:"quotes", fundador:"seal-check", casa:"buildings",
-    reconhecimento:"trophy", duvidas:"scroll", simulacao:"handshake"
+    grade:"lock-key-open", simulador:"chart-line-up", resultados:"quotes"
   };
   var dockApps = $("#dockApps");
   var SECOES = $$("section[id]").map(function (s) {

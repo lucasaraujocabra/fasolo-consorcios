@@ -79,6 +79,14 @@ Cor por contexto, e isso é hierarquia, não decoração:
 `--red` nos destinos e no item aberto (conteúdo principal),
 `--bone-2` nos blocos em repouso, `--gold` só nos prêmios.
 
+⚠️ **O CSS tem camadas de revisões.** Como a regra é acrescentar no fim,
+componentes que mudaram de forma deixaram regras mortas para trás. O dock tem
+cinco gerações, e uma delas (`.dock__cta span{display:none}`, 0-0-1-1) vencia
+`.dock__ct` e `.dock__av` (0-0-1-0) por especificidade, sumindo com o rótulo e
+com o avatar em telas médias. O bloco **"DOCK: regra final e autoritativa"**, no
+fim do arquivo, usa `.dock .dock__ct` (0-0-2-0) e ganha de todas. Mexeu no dock,
+mexe lá. Na tradução para o Framer isso não vai junto, mas atrapalha a leitura.
+
 ⛔⛔ **Não editar este CSS fatiando por índice de string.** Já custou caro duas
 vezes:
 1. trocar o bloco do botão procurando `.btn{` casou com `.nav .btn{` dentro de
@@ -140,6 +148,11 @@ a seção está na tela (IntersectionObserver).
 
 ### Dock
 
+**Casa à esquerda, três seções, CTA à direita.** O tile de início volta ao topo;
+os três do meio são o diferencial (a grade), a ferramenta (o simulador) e a
+prova (os resultados). A lista completa já está no menu e no rodapé: o dock é
+atalho, não índice.
+
 ⭐ **Tiles de ícone, como o dock do macOS.** Um tile por seção, com o ícone
 dela. A escala vem de `--k`, que o JS calcula pela distância do ponteiro: o tile
 sob o cursor cresce 22% e sobe 5px, e os vizinhos crescem menos. Tooltip com o
@@ -160,7 +173,12 @@ jords.co.uk. A magnificação é feedback de ponteiro, então não roda em
 
 ### Tema claro
 
-O botão redondo do dock troca os tokens do ato escuro para um quase-branco
+⚠️ **O botão saiu do dock em 17/09.** Os tokens continuam no CSS e a função
+`applyTheme("light")` continua no `app.js`, então religar é devolver um botão
+que a chame. A leitura do `localStorage` saiu junto de propósito: sem botão,
+quem tivesse "light" salvo ficaria preso no tema claro sem como voltar.
+
+Quando existia, o botão trocava os tokens do ato escuro para um quase-branco
 quente e desloca o ato claro junto, para os dois atos continuarem se
 distinguindo. **Só tokens mudam**, nenhum componente redefine cor própria. A
 escolha fica no `localStorage`, dentro de try/catch.

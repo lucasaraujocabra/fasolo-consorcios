@@ -940,19 +940,16 @@
 </main>
 
 <div class="dock" id="dock" aria-label="Navegação da página">
-  <button class="dtile dtile--tool" type="button" id="themeBtn" aria-pressed="false" aria-label="Alternar entre tema escuro e claro">
-    <span class="dtile__g">
-      <span class="dock__sun" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-sparkle"></use></svg></span>
-      <span class="dock__moon" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-crosshair"></use></svg></span>
-    </span>
-    <span class="dtile__t">Tema</span>
-  </button>
+  <a class="dtile dtile--home" href="#top" id="dockHome" aria-label="Voltar ao topo">
+    <span class="dtile__g"><svg class="ic" aria-hidden="true"><use href="#i-house-line"></use></svg></span>
+    <span class="dtile__t">Início</span>
+  </a>
 
   <span class="dock__sep" aria-hidden="true"></span>
 
-  <!-- um tile por seção, como um ícone de app. Cresce sob o ponteiro e as
-       vizinhas crescem menos, que é o gesto do dock do macOS -->
-  <nav class="dock__apps" id="dockApps" aria-label="Seções"></nav>
+  <!-- só as três partes que carregam o argumento: o diferencial, a ferramenta
+       e a prova. O menu tem a lista completa. -->
+  <nav class="dock__apps" id="dockApps" aria-label="Seções principais"></nav>
 
   <span class="dock__sep" aria-hidden="true"></span>
 

@@ -2027,9 +2027,17 @@ h1,h2,h3,h4,.hmedia__n,.strip__n,.out__big,.gcol__ratio{font-family:var(--font-s
 
 .dock__live{align-self:center;padding-inline:.6rem;border:0;margin-inline:0}
 .dock__cta{align-self:center}
-@media(max-width:1240px){ .dock__live,.dock__live + .dock__sep{display:none} }
-@media(max-width:1080px){ .dtile--tool,.dock__sep{display:none} }
-@media(max-width:860px){ .dock__apps{display:none} .dock__sep{display:none} }
+/* o tile de início é um link, então precisa perder a decoração de link */
+.dtile--home{text-decoration:none;color:inherit}
+.dtile--home .dtile__g{color:var(--bone)}
+
+@media(max-width:1180px){ .dock__live,.dock__live + .dock__sep{display:none} }
+@media(max-width:620px){
+  .dock__apps,.dock__sep{display:none}
+  /* o rótulo do CTA fica: sem ele o dock vira dois ícones sem sentido */
+  .dock__ct{display:block}
+  .dock__ca{display:none}
+}
 
 /* ============================================================================
    REVEAL. Resting state is visible; JS opts in to animating.
@@ -2039,4 +2047,27 @@ h1,h2,h3,h4,.hmedia__n,.strip__n,.out__big,.gcol__ratio{font-family:var(--font-s
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
   .js-anim [data-rev]{opacity:1;transform:none}
   body::after{display:none}
+}
+
+/* ============================================================================
+   DOCK: regra final e autoritativa
+   Cinco revisões deixaram cinco regras escondendo o rótulo do CTA, e uma delas
+   (`.dock__cta span`, 0-0-1-1) vence `.dock__ct` (0-0-1-0) por especificidade.
+   `.dock .dock__ct` (0-0-2-0) ganha de todas. Se mexer no dock de novo, mexa
+   AQUI: o que está acima é histórico de peças que mudaram de forma.
+   ========================================================================== */
+.dock .dock__ct{
+  display:block;font-size:var(--xs);font-weight:600;letter-spacing:-.015em;
+  line-height:1;white-space:nowrap;color:#fff;
+}
+.dock .dock__cta{height:46px;padding:0 .5rem 0 .28rem;gap:.6rem;align-items:center}
+/* .dock__av também é um <span> e caía na mesma regra antiga, sumindo o avatar */
+.dock .dock__av{
+  display:block;width:38px;height:38px;flex:none;border-radius:12px;overflow:hidden;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.32);
+}
+.dock .dock__av img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;display:block}
+@media(max-width:620px){
+  .dock .dock__ca{display:none}
+  .dock .dock__cta{padding-right:.9rem}
 }
