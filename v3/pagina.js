@@ -6,6 +6,12 @@
    ========================================================================== */
 (function () {
   "use strict";
+  /* Se QUALQUER coisa aqui dentro estourar, o conteúdo tem que aparecer do
+     mesmo jeito. Antes, um null no meio do arquivo deixava a página inteira
+     em opacity 0 e sem erro visível para o usuário. */
+  window.FASOLO_VIVO = true;
+  var mostraTudo = window.FASOLO_SOLTA || function () {};
+  try {
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
   var reduz = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -122,4 +128,9 @@
       scrollTrigger: { trigger: img.closest("section"), start: "top bottom", end: "bottom top", scrub: true }
     });
   });
+  } catch (e) {
+    /* o conteúdo vem antes da animação, sempre */
+    mostraTudo();
+    if (window.console) console.error("[Fasolo] movimento desligado:", e);
+  }
 })();

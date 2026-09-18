@@ -672,3 +672,22 @@ body{position:relative}
 .depo .plate{aspect-ratio:auto;height:clamp(340px,58vh,620px)}
 .jair .plate{aspect-ratio:auto;height:clamp(360px,62vh,680px)}
 .plate--sm{aspect-ratio:auto;height:clamp(200px,30vh,340px)}
+
+/* ===========================================================================
+   ⛔ CORREÇÃO CRÍTICA 18/09
+   `.tela,.topo,.telas{position:relative}` foi escrito para resolver o
+   empilhamento da iluminação e ARRANCOU o position:fixed do menu de telas e
+   da navbar. O menu virou um bloco relativo de ~690px no topo, invisível por
+   causa do clip-path mas ocupando espaço, e empurrou a hero para fora da
+   dobra: a pessoa abria o site e via só as linhas de fundo.
+   Quem precisa de position:relative é a TELA, nunca o que é fixo.
+   =========================================================================== */
+.topo{position:fixed;top:0;left:0;right:0;z-index:60}
+.telas{position:fixed;inset:0;z-index:55}
+.tela{position:relative;z-index:1}
+
+/* trava de segurança: se o JS morrer por qualquer motivo, o conteúdo APARECE.
+   O padrão certo é o inverso do que eu tinha: visível por padrão, escondido
+   só quando o JS confirma que está vivo e vai animar. */
+[data-sobe]{opacity:1;transform:none}
+html.js [data-sobe]{opacity:0;transform:translateY(22px)}

@@ -11,6 +11,25 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap">
+<script>
+/* A trava vive AQUI, e não no pagina.js, porque ela precisa sobreviver ao
+   pagina.js não carregar, ser bloqueado ou estourar na primeira linha.
+   Regra: o conteúdo aparece por padrão; só escondo para animar depois de
+   confirmar que o script de animação está vivo, e desisto em 2.5s. */
+document.documentElement.className += " js";
+(function () {
+  function solta() {
+    document.documentElement.classList.remove("js");
+    var n = document.querySelectorAll("[data-sobe]");
+    for (var i = 0; i < n.length; i++) { n[i].style.opacity = 1; n[i].style.transform = "none"; }
+  }
+  window.addEventListener("error", solta);
+  window.FASOLO_SOLTA = solta;
+  setTimeout(function () {
+    if (!window.FASOLO_VIVO) solta();
+  }, 2500);
+})();
+</script>
 <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
