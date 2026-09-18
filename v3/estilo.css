@@ -1,0 +1,350 @@
+/* =============================================================================
+   FASOLO CONSÓRCIOS · HOME v3
+   Reconstrução depois da reprovação do Gabriel em 18/09/2026:
+   "tá com muita cara de IA · ficou sobrecarregado de texto · fotos totalmente
+   desvalorizadas · nav bar é padrão de IA · era pra dividir em várias telas".
+
+   As três decisões que vêm das 10 referências, medidas uma a uma:
+   1. A FOTO É A ESTRUTURA, não conteúdo de card. Interstellar, Esplora e
+      Propellus abrem com mídia ocupando a tela inteira e o tipo por cima.
+      A nossa área de imagem era 5.237k px² contra 19.401k da cirqle.
+   2. NENHUMA SEÇÃO ABRE IGUAL À OUTRA. O registro numerado em toda seção era
+      o tell nº 1 de template. Some.
+   3. ZERO MONO DECORATIVO. O `01 / 04` foi o print que ele mandou.
+
+   O que continua sendo da Fasolo: preto quente, vermelho da marca, a copy
+   aprovada palavra por palavra, as fotos reais da operação e a Geist, que é
+   escolha do Lucas.
+   ========================================================================== */
+
+:root{
+  --ink:#0A0807;
+  --ink-2:#12100E;
+  --ink-3:#1A1613;
+  --bone:#F5F2EF;
+  --bone-2:#E4DDD6;
+  --ash:#9E938C;
+  --red:#E2050F;
+  --red-2:#FF3B45;
+  --line:rgba(245,242,239,.13);
+  --line-2:rgba(245,242,239,.26);
+
+  /* escala editorial: a distância entre o rótulo e a manchete é o que faz
+     parecer desenhado à mão em vez de gerado */
+  --d0:clamp(3.4rem,7.4vw,7.5rem);
+  --d1:clamp(2.6rem,4.9vw,4.9rem);
+  --d2:clamp(1.7rem,2.4vw,2.5rem);
+  --lead:clamp(1.05rem,1.16vw,1.32rem);
+  --body:1.0625rem;
+  --sm:.9375rem;
+
+  --gut:clamp(1.5rem,5.2vw,6rem);
+  --maxw:1680px;
+  --e:cubic-bezier(.16,1,.3,1);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--ink);color:var(--bone);
+  font-family:"Geist",system-ui,sans-serif;
+  font-size:var(--body);line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+h1,h2,h3{font-weight:500;letter-spacing:-.042em;line-height:.98;text-wrap:balance}
+::selection{background:var(--red);color:#fff}
+
+/* o grão é o que impede o vermelho de ler como neon */
+body::after{
+  content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.42'/%3E%3C/svg%3E");
+}
+
+.wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gut)}
+
+/* ---------------------------------------------------------------------------
+   TELA — a unidade do site agora é a tela de 1920x1080, não a seção empilhada
+   ------------------------------------------------------------------------- */
+.tela{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.tela--meio{justify-content:center}
+
+/* mídia de fundo: a foto ocupa a tela e recebe um véu fixo, para o contraste
+   do tipo não depender de quão clara é aquela foto */
+.midia{position:absolute;inset:0;z-index:0}
+.midia img{width:100%;height:100%;object-fit:cover}
+.midia::after{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,rgba(10,8,7,.72) 0%,rgba(10,8,7,.18) 34%,rgba(10,8,7,.46) 66%,rgba(10,8,7,.95) 100%),
+    linear-gradient(90deg,rgba(10,8,7,.8) 0%,rgba(10,8,7,.1) 58%);
+}
+.tela > .wrap{position:relative;z-index:2}
+
+/* ---------------------------------------------------------------------------
+   NAVBAR — o print que ele mandou era uma fileira de seis links centralizados.
+   Some. Fica a marca, um status vivo e uma cápsula que abre as telas.
+   ------------------------------------------------------------------------- */
+.topo{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:clamp(1rem,1.8vw,1.75rem) var(--gut);
+  transition:background .4s var(--e),backdrop-filter .4s var(--e);
+}
+.topo.is-fundo{background:rgba(10,8,7,.72);backdrop-filter:blur(18px)}
+.topo__marca img{height:clamp(22px,1.7vw,30px);width:auto}
+.topo__dir{display:flex;align-items:center;gap:clamp(.75rem,1.4vw,1.4rem)}
+
+/* o status é o detalhe vivo que as referências usam para a página respirar */
+.vivo{display:none;align-items:center;gap:.5rem;font-size:var(--sm);color:var(--ash);letter-spacing:-.01em}
+@media(min-width:1100px){ .vivo{display:flex} }
+.vivo i{width:6px;height:6px;border-radius:50%;background:#3FA46A;flex:none;animation:pulso 2.4s infinite}
+@keyframes pulso{0%,100%{opacity:1}50%{opacity:.35}}
+
+.menu-btn{
+  display:flex;align-items:center;gap:.65rem;
+  padding:.62rem 1.1rem;border-radius:999px;
+  background:rgba(245,242,239,.09);backdrop-filter:blur(14px);
+  box-shadow:inset 0 0 0 1px var(--line);
+  font-size:var(--sm);font-weight:500;letter-spacing:-.012em;
+  transition:background .26s var(--e);
+}
+.menu-btn:hover{background:rgba(245,242,239,.16)}
+.menu-btn span{display:flex;flex-direction:column;gap:3px}
+.menu-btn span i{display:block;width:14px;height:1.5px;background:currentColor;transition:transform .3s var(--e)}
+.menu-btn[aria-expanded="true"] span i:first-child{transform:translateY(4.5px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span i:last-child{transform:translateY(-4.5px) rotate(-45deg)}
+
+.cta{
+  display:inline-flex;align-items:center;gap:.7rem;white-space:nowrap;
+  padding:.7rem 1.35rem;border-radius:999px;
+  background:var(--bone);color:var(--ink);
+  font-size:var(--sm);font-weight:600;letter-spacing:-.015em;
+  transition:transform .2s var(--e),background .26s var(--e);
+}
+.cta:hover{transform:translateY(-1px);background:#fff}
+.cta--red{background:var(--red);color:#fff}
+.cta--red:hover{background:#F31420}
+.cta--lg{padding:1rem 1.9rem;font-size:1.0625rem}
+.cta svg{width:15px;height:15px;flex:none}
+
+/* menu de telas em cortina */
+.telas{
+  position:fixed;inset:0;z-index:55;background:var(--ink);
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  align-content:center;gap:1px;padding:clamp(5rem,10vh,9rem) var(--gut) var(--gut);
+  clip-path:inset(0 0 100% 0);transition:clip-path .68s var(--e);
+}
+.telas[data-aberto="1"]{clip-path:inset(0 0 0 0)}
+.telas a{
+  padding:clamp(1.4rem,2.4vw,2.2rem) 0;border-top:1px solid var(--line);
+  display:flex;align-items:baseline;gap:1rem;transition:color .24s var(--e);
+}
+.telas a:hover{color:var(--red-2)}
+.telas a b{font-size:var(--d2);font-weight:500;letter-spacing:-.035em}
+.telas a em{font-style:normal;font-size:var(--sm);color:var(--ash)}
+
+/* ---------------------------------------------------------------------------
+   TELA 1 · HERO
+   ------------------------------------------------------------------------- */
+.hero{padding-bottom:clamp(2rem,4vh,3.5rem)}
+.hero__cred{
+  display:inline-flex;align-items:center;gap:.6rem;margin-bottom:clamp(1.5rem,3vh,2.5rem);
+  font-size:var(--sm);letter-spacing:.08em;text-transform:uppercase;color:var(--bone-2);
+}
+.hero__cred i{width:22px;height:1px;background:var(--red);flex:none}
+.hero h1{font-size:var(--d0);max-width:16ch}
+.hero__l{margin-top:clamp(1.25rem,2.4vh,2rem);font-size:var(--lead);color:var(--bone-2);max-width:46ch;line-height:1.42}
+.hero__go{display:flex;flex-wrap:wrap;align-items:center;gap:1.1rem;margin-top:clamp(1.75rem,3.2vh,2.75rem)}
+.hero__nota{margin-top:1rem;font-size:var(--sm);color:var(--ash)}
+
+/* o rodapé da dobra carrega a autoridade, como na propellus */
+.selo-faixa{
+  margin-top:clamp(2.5rem,6vh,5rem);padding-top:clamp(1.1rem,2vh,1.6rem);
+  border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;align-items:center;gap:clamp(1.25rem,3.4vw,3.5rem);
+  font-size:var(--sm);color:var(--ash);letter-spacing:-.01em;
+}
+.selo-faixa b{color:var(--bone);font-weight:500}
+
+/* ---------------------------------------------------------------------------
+   TELA 2 · JAIR — foto em escala de pôster, não dentro de card
+   ------------------------------------------------------------------------- */
+.jair{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:center;
+      gap:clamp(2rem,5vw,6rem);min-height:100svh;padding-block:clamp(4rem,10vh,7rem)}
+.jair__f{position:relative;align-self:stretch;min-height:clamp(380px,62vh,760px)}
+.jair__f img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 28%}
+/* a foto sangra para fora da margem: é o que tira a cara de card */
+.jair__f{margin-left:calc(var(--gut) * -1)}
+.jair h2{font-size:var(--d1);max-width:15ch}
+.jair p{margin-top:1.35rem;font-size:var(--lead);color:var(--bone-2);max-width:48ch;line-height:1.45}
+.jair__punch{margin-top:1.75rem;font-size:var(--d2);color:var(--bone);letter-spacing:-.035em;line-height:1.2}
+.jair__go{margin-top:2rem}
+
+/* ---------------------------------------------------------------------------
+   TELA 3 · AS SEIS PORTAS — instrumento, não tabela
+   ------------------------------------------------------------------------- */
+.portas{padding-block:clamp(5rem,12vh,9rem)}
+.portas h2{font-size:var(--d1);max-width:19ch}
+.portas__l{margin-top:1.4rem;font-size:var(--lead);color:var(--bone-2);max-width:60ch;line-height:1.45}
+.grade6{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(.5rem,.9vw,1rem);
+        margin-top:clamp(2.5rem,5vh,4rem);align-items:end}
+.porta{position:relative;border-top:1px solid var(--line-2);padding-top:1.1rem;
+       transition:border-color .4s var(--e)}
+.porta__b{display:block;width:100%;background:linear-gradient(180deg,rgba(226,5,15,.55),rgba(226,5,15,.06));
+          border-radius:3px 3px 0 0;transform-origin:bottom;transform:scaleY(0);
+          transition:transform .9s var(--e)}
+.porta.is-on .porta__b{transform:scaleY(1)}
+.porta__n{font-size:var(--sm);color:var(--ash);letter-spacing:-.01em}
+.porta__t{margin-top:.3rem;font-size:var(--body);font-weight:500;letter-spacing:-.022em;line-height:1.22}
+.porta.is-on{border-color:var(--red)}
+.portas__mais{margin-top:clamp(2rem,4vh,3rem);padding-top:1.4rem;border-top:1px solid var(--line);
+              font-size:var(--sm);color:var(--ash);max-width:90ch;line-height:1.6}
+.portas__mais b{color:var(--bone-2);font-weight:500}
+
+/* ---------------------------------------------------------------------------
+   TELA 4 · PROVA — número em escala editorial, sobre a operação real
+   ------------------------------------------------------------------------- */
+.prova{padding-block:clamp(5rem,12vh,9rem)}
+.prova h2{font-size:var(--d1);max-width:14ch;margin-bottom:clamp(2.5rem,5vh,4rem)}
+.numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1px;background:var(--line)}
+.num{background:var(--ink);padding:clamp(1.5rem,2.6vw,2.4rem) clamp(1.1rem,1.8vw,1.8rem)}
+.num b{display:block;font-size:clamp(2rem,3.1vw,3.1rem);font-weight:500;letter-spacing:-.05em;line-height:1}
+.num span{display:block;margin-top:.7rem;font-size:var(--sm);color:var(--ash);line-height:1.4}
+
+/* ---------------------------------------------------------------------------
+   TELA 5 · RESULTADOS — o depoimento ocupa a tela, como na atlas
+   ------------------------------------------------------------------------- */
+.res{padding-block:clamp(5rem,12vh,9rem)}
+.res h2{font-size:var(--d1);max-width:16ch}
+.res__l{margin-top:1.3rem;font-size:var(--lead);color:var(--bone-2);max-width:56ch;line-height:1.45}
+.depo{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(2rem,4vw,4.5rem);
+      align-items:center;margin-top:clamp(2.5rem,5vh,4rem)}
+.depo__v{position:relative;aspect-ratio:16/10;background:var(--ink-2);overflow:hidden}
+.depo__v img{width:100%;height:100%;object-fit:cover;opacity:.55}
+.depo__play{position:absolute;inset:0;display:grid;place-items:center}
+.depo__play i{width:74px;height:74px;border-radius:50%;background:rgba(245,242,239,.14);
+              backdrop-filter:blur(10px);box-shadow:inset 0 0 0 1px var(--line-2);
+              display:grid;place-items:center;transition:transform .3s var(--e)}
+.depo__v:hover .depo__play i{transform:scale(1.07)}
+.depo__play svg{width:22px;height:22px;margin-left:3px}
+.depo__q{font-size:var(--d2);line-height:1.35;letter-spacing:-.028em;font-weight:400}
+.depo__quem{margin-top:1.75rem;padding-top:1.25rem;border-top:1px solid var(--line);
+            display:flex;flex-wrap:wrap;align-items:baseline;gap:.4rem 1.2rem;font-size:var(--sm)}
+.depo__quem b{font-weight:600}
+.depo__quem span{color:var(--ash)}
+.depo__nav{display:flex;align-items:center;gap:1.1rem;margin-top:1.75rem}
+.depo__seta{width:44px;height:44px;border-radius:50%;box-shadow:inset 0 0 0 1px var(--line-2);
+            display:grid;place-items:center;transition:background .24s var(--e)}
+.depo__seta:hover{background:rgba(245,242,239,.1)}
+.depo__seta svg{width:15px;height:15px}
+.depo__conta{font-size:var(--sm);color:var(--ash);letter-spacing:-.01em}
+
+/* ---------------------------------------------------------------------------
+   TELA 6 · OS TRÊS CAMINHOS — portas de vidro sobre foto, modelo propellus
+   ------------------------------------------------------------------------- */
+.caminhos{padding-block:clamp(5rem,11vh,8rem)}
+.caminhos h2{font-size:var(--d1);max-width:17ch;margin-bottom:clamp(2.5rem,5vh,4rem)}
+.portas3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line)}
+.p3{position:relative;display:block;background:var(--ink);padding:clamp(1.75rem,2.6vw,2.6rem);
+    min-height:clamp(300px,42vh,420px);display:flex;flex-direction:column;justify-content:flex-end;
+    overflow:hidden;transition:background .34s var(--e)}
+.p3__f{position:absolute;inset:0;z-index:0;opacity:.26;transition:opacity .5s var(--e),transform .8s var(--e)}
+.p3__f img{width:100%;height:100%;object-fit:cover}
+.p3::after{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(10,8,7,.45),rgba(10,8,7,.94))}
+.p3 > *{position:relative;z-index:2}
+.p3:hover .p3__f{opacity:.5;transform:scale(1.04)}
+.p3__k{font-size:var(--sm);color:var(--red-2);letter-spacing:.06em}
+.p3__t{margin-top:auto;padding-top:1.5rem;font-size:var(--d2);letter-spacing:-.035em;line-height:1.15}
+.p3__d{margin-top:.8rem;font-size:var(--sm);color:var(--ash);line-height:1.45;max-width:30ch}
+.p3__go{margin-top:1.4rem;display:inline-flex;align-items:center;gap:.5rem;font-size:var(--sm);
+        font-weight:500;border-bottom:1.5px solid currentColor;padding-bottom:2px;align-self:flex-start;
+        transition:gap .24s var(--e)}
+.p3:hover .p3__go{gap:.85rem}
+.p3__go svg{width:13px;height:13px}
+
+/* ---------------------------------------------------------------------------
+   TELA 7 · FECHO
+   ------------------------------------------------------------------------- */
+.fecho{text-align:center;align-items:center}
+.fecho h2{font-size:var(--d1);max-width:18ch;margin-inline:auto}
+.fecho p{margin-top:1.3rem;font-size:var(--lead);color:var(--bone-2);max-width:46ch;margin-inline:auto}
+.fecho__go{margin-top:2.25rem;display:flex;justify-content:center}
+
+.rodape{padding-block:clamp(2.5rem,5vh,4rem);border-top:1px solid var(--line);margin-top:clamp(4rem,9vh,7rem)}
+.rodape__g{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1.5rem;align-items:flex-end}
+.rodape img{height:26px;width:auto;opacity:.9}
+.rodape__l{font-size:var(--sm);color:var(--ash);max-width:72ch;line-height:1.55}
+
+/* ---------------------------------------------------------------------------
+   MOVIMENTO — curva única, tirada do bundle das referências: [.16,1,.3,1]
+   ------------------------------------------------------------------------- */
+[data-sobe]{opacity:0;transform:translateY(22px)}
+@media(prefers-reduced-motion:reduce){
+  [data-sobe]{opacity:1!important;transform:none!important}
+  .porta__b{transform:scaleY(1)!important}
+}
+
+/* ---------------------------------------------------------------------------
+   TELAS ESTREITAS
+   ------------------------------------------------------------------------- */
+@media(max-width:1100px){
+  .jair{grid-template-columns:minmax(0,1fr);gap:2.5rem}
+  .jair__f{margin-left:calc(var(--gut) * -1);margin-right:calc(var(--gut) * -1);min-height:56vh}
+  .depo{grid-template-columns:minmax(0,1fr)}
+  .grade6{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:1.75rem}
+  .portas3{grid-template-columns:minmax(0,1fr)}
+}
+@media(max-width:620px){
+  .grade6{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hero__go{flex-direction:column;align-items:stretch}
+  .hero__go .cta{justify-content:center}
+  .selo-faixa{gap:.75rem 1.5rem;font-size:.9375rem}
+}
+
+/* ---------------------------------------------------------------------------
+   CORREÇÕES DA PRIMEIRA RENDERIZAÇÃO
+   1. `.jair p` (classe+elemento) vencia `.jair__punch` (classe) e roubava o
+      tamanho da frase de fecho. É a mesma armadilha de especificidade de
+      sempre: quem qualifica com elemento ganha.
+   2. A foto do Jair parava na margem do wrap em vez de sangrar na borda da
+      tela, o que a devolvia para dentro de uma caixa.
+   3. Cada porta passa a ser um bloco só, senão o rótulo cola no nome.
+   ------------------------------------------------------------------------- */
+.jair .jair__punch{font-size:var(--d2);letter-spacing:-.035em;line-height:1.2;margin-top:1.75rem;color:var(--bone)}
+
+/* sangra até a borda real da tela, não até a margem do wrap */
+.jair__f{margin-left:calc(50% - 50vw)}
+@media(max-width:1100px){ .jair__f{margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)} }
+
+.porta{display:flex;flex-direction:column;border-top:0;padding-top:0}
+.porta__vao{
+  display:block;height:clamp(130px,23vh,250px);position:relative;overflow:hidden;
+  border-top:1px solid var(--line-2);transition:border-color .5s var(--e);
+}
+.porta.is-on .porta__vao{border-color:var(--red)}
+.porta__b{
+  position:absolute;left:0;right:0;bottom:0;height:100%;
+  background:linear-gradient(180deg,rgba(226,5,15,.06),rgba(226,5,15,.5));
+  transform:scaleY(0);transform-origin:bottom;transition:transform .9s var(--e);
+}
+.porta.is-on .porta__b{transform:scaleY(1)}
+.porta__k{display:block;margin-top:1rem;font-size:var(--sm);color:var(--red-2);letter-spacing:.04em}
+.porta__t{display:block;margin-top:.45rem;font-size:var(--body);font-weight:500;letter-spacing:-.022em;line-height:1.2}
+.porta__n{display:block;margin-top:.3rem;font-size:var(--sm);color:var(--ash)}
+
+/* a marca no topo estava pequena e apagada demais sobre a foto */
+.topo__marca img{height:clamp(30px,2.5vw,44px);filter:brightness(1.25)}
+.rodape img{height:34px}
+
+/* etiqueta do modo demonstração */
+.demo{
+  display:inline-block;margin-bottom:1.1rem;padding:.3rem .7rem;border-radius:999px;
+  font-size:var(--sm);color:#C79A4B;background:rgba(199,154,75,.12);
+  box-shadow:inset 0 0 0 1px rgba(199,154,75,.3);letter-spacing:-.01em;
+}
+[hidden]{display:none!important}
