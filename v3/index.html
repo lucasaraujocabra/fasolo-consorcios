@@ -89,14 +89,30 @@ document.documentElement.className += " js";
 </header>
 
 <nav class="telas" id="telas" data-aberto="0" aria-label="Páginas do site">
-  <a href="#topo"><b>Home</b><em>01</em></a>
-  <a href="#"><b>O Método Fasolo</b><em>02</em></a>
-  <a href="#"><b>Consórcio Imobiliário</b><em>03</em></a>
-  <a href="#"><b>Consórcio de Veículos</b><em>04</em></a>
-  <a href="#"><b>Consórcio Investimento</b><em>05</em></a>
-  <a href="#"><b>A Fasolo</b><em>06</em></a>
-  <a href="#"><b>Tire suas dúvidas</b><em>07</em></a>
-  <a href="#simulacao"><b>Simulação</b><em>08</em></a>
+  <div class="telas__in">
+    <div class="telas__lista">
+      <p class="telas__rot">As páginas</p>
+      <a href="#topo" data-foto="estande"><span class="telas__k">01</span><b>Home</b><svg class="ic"><use href="#i-seta"></use></svg></a>
+      <a href="#" data-foto="diretoria"><span class="telas__k">02</span><b>O Método Fasolo</b><svg class="ic"><use href="#i-seta"></use></svg></a>
+      <a href="#" data-foto="fachada-dia"><span class="telas__k">03</span><b>Consórcio Imobiliário</b><svg class="ic"><use href="#i-seta"></use></svg></a>
+      <a href="#" data-foto="porsche-estande"><span class="telas__k">04</span><b>Consórcio de Veículos</b><svg class="ic"><use href="#i-seta"></use></svg></a>
+      <a href="#" data-foto="lounge"><span class="telas__k">05</span><b>Consórcio Investimento</b><svg class="ic"><use href="#i-seta"></use></svg></a>
+      <a href="#" data-foto="jair-bracos"><span class="telas__k">06</span><b>A Fasolo</b><svg class="ic"><use href="#i-seta"></use></svg></a>
+      <a href="#" data-foto="parede-verde"><span class="telas__k">07</span><b>Tire suas dúvidas</b><svg class="ic"><use href="#i-seta"></use></svg></a>
+      <a href="#simulacao" data-foto="operacao"><span class="telas__k">08</span><b>Simulação</b><svg class="ic"><use href="#i-seta"></use></svg></a>
+    </div>
+    <aside class="telas__lado">
+      <figure class="plate plate--veu telas__ph">
+        <img src="../assets/foto/estande.webp" alt="" id="telasFoto">
+        <figcaption class="plate__cap"><span class="plate__s">Sede da Fasolo, Santa Maria, RS</span></figcaption>
+      </figure>
+      <div class="telas__pe">
+        <p class="telas__rot">Falar com a gente</p>
+        <a class="telas__link" href="#simulacao">Receber minha simulação no WhatsApp</a>
+        <p class="telas__end">Rua Duque de Caxias 1084, Santa Maria, RS</p>
+      </div>
+    </aside>
+  </div>
 </nav>
 
 <!-- ===================== TELA 1 · HERO ===================== -->
@@ -130,12 +146,11 @@ document.documentElement.className += " js";
 <!-- ===================== TELA 2 · JAIR ===================== -->
 <section class="tela tela--meio">
   <div class="wrap jair">
-    <figure class="plate" data-sobe>
-      <img src="../assets/foto/jair-retrato.webp" alt="Jair Fasolo, fundador e diretor da Fasolo Consórcios">
-      <span class="plate__blur" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+    <figure class="plate plate--veu" data-sobe>
+      <img src="../assets/foto/jair-bracos.webp" alt="Jair Fasolo, fundador e diretor da Fasolo Consórcios">
       <figcaption class="plate__cap">
         <span class="plate__n">Jair Fasolo</span>
-        <span class="plate__s">Fundador e diretor. Há 12 anos alavancando vidas e negócios.</span>
+        <span class="plate__s">Fundador e diretor</span>
       </figcaption>
     </figure>
     <div>
@@ -163,34 +178,94 @@ document.documentElement.className += " js";
       <div class="cmp6__lado cmp6__lado--eles">
         <p class="cmp6__t"><svg class="ic"><use href="#i-porta"></use></svg>No consórcio comum</p>
         <div class="cmp6__portas">
-          <span class="pt"><i></i></span>
-          <span class="pt"><i></i></span>
-          <span class="pt"><i></i></span>
-          <span class="pt"><i></i></span>
-          <span class="pt"><i></i></span>
-          <span class="pt is-on"><i></i></span>
+          <span class="pt is-on">
+            <span class="pt__luz"></span>
+            <span class="pt__batente"></span>
+            <span class="pt__maca"></span>
+            <span class="pt__k">01</span>
+          </span>
+          <span class="pt">
+            <span class="pt__luz"></span>
+            <span class="pt__batente"></span>
+            <span class="pt__maca"></span>
+            <span class="pt__k">02</span>
+          </span>
+          <span class="pt">
+            <span class="pt__luz"></span>
+            <span class="pt__batente"></span>
+            <span class="pt__maca"></span>
+            <span class="pt__k">03</span>
+          </span>
+          <span class="pt">
+            <span class="pt__luz"></span>
+            <span class="pt__batente"></span>
+            <span class="pt__maca"></span>
+            <span class="pt__k">04</span>
+          </span>
+          <span class="pt">
+            <span class="pt__luz"></span>
+            <span class="pt__batente"></span>
+            <span class="pt__maca"></span>
+            <span class="pt__k">05</span>
+          </span>
+          <span class="pt">
+            <span class="pt__luz"></span>
+            <span class="pt__batente"></span>
+            <span class="pt__maca"></span>
+            <span class="pt__k">06</span>
+          </span>
         </div>
         <p class="cmp6__l">Uma porta aberta. Quase tudo depende de sorteio ou lance alto.</p>
       </div>
       <div class="cmp6__lado cmp6__lado--nos">
         <p class="cmp6__t"><svg class="ic"><use href="#i-chave"></use></svg>Nos grupos onde alocamos você</p>
         <div class="cmp6__portas">
-          <span class="pt is-on"><i></i></span>
-          <span class="pt is-on"><i></i></span>
-          <span class="pt is-on"><i></i></span>
-          <span class="pt is-on"><i></i></span>
-          <span class="pt is-on"><i></i></span>
-          <span class="pt is-on"><i></i></span>
+          <span class="pt is-on">
+            <span class="pt__luz"></span>
+            <span class="pt__batente"></span>
+            <span class="pt__maca"></span>
+            <span class="pt__k">01</span>
+          </span>
+          <span class="pt is-on">
+            <span class="pt__luz"></span>
+            <span class="pt__batente"></span>
+            <span class="pt__maca"></span>
+            <span class="pt__k">02</span>
+          </span>
+          <span class="pt is-on">
+            <span class="pt__luz"></span>
+            <span class="pt__batente"></span>
+            <span class="pt__maca"></span>
+            <span class="pt__k">03</span>
+          </span>
+          <span class="pt is-on">
+            <span class="pt__luz"></span>
+            <span class="pt__batente"></span>
+            <span class="pt__maca"></span>
+            <span class="pt__k">04</span>
+          </span>
+          <span class="pt is-on">
+            <span class="pt__luz"></span>
+            <span class="pt__batente"></span>
+            <span class="pt__maca"></span>
+            <span class="pt__k">05</span>
+          </span>
+          <span class="pt is-on">
+            <span class="pt__luz"></span>
+            <span class="pt__batente"></span>
+            <span class="pt__maca"></span>
+            <span class="pt__k">06</span>
+          </span>
         </div>
         <p class="cmp6__l">Seis abertas ao mesmo tempo, com aceleradores desde o 1º mês.</p>
       </div>
     </div>
 
     <ul class="mods">
-      <li class="mods__i"><span class="mods__k">01</span><svg class="ic"><use href="#i-dado"></use></svg>Sorteio</li>
-      <li class="mods__i"><span class="mods__k">02</span><svg class="ic"><use href="#i-alvo"></use></svg>Lance Livre</li>
-      <li class="mods__i"><span class="mods__k">03</span><svg class="ic"><use href="#i-escudo"></use></svg>Lance Limitado, custo zero</li>
-      <li class="mods__i mods__i--3"><span class="mods__k">04 · 05 · 06</span><svg class="ic"><use href="#i-relogio"></use></svg>Lance Fidelidade 6, 12 e 18 meses, custo zero</li>
+      <li class="mods__i"><span class="mods__ic"><svg class="ic"><use href="#i-dado"></use></svg></span><span class="mods__k">01</span><span class="mods__t">Sorteio</span></li>
+      <li class="mods__i"><span class="mods__ic"><svg class="ic"><use href="#i-alvo"></use></svg></span><span class="mods__k">02</span><span class="mods__t">Lance Livre</span></li>
+      <li class="mods__i"><span class="mods__ic"><svg class="ic"><use href="#i-escudo"></use></svg></span><span class="mods__k">03</span><span class="mods__t">Lance Limitado, custo zero</span></li>
+      <li class="mods__i mods__i--3"><span class="mods__ic"><svg class="ic"><use href="#i-relogio"></use></svg></span><span class="mods__k">04 · 05 · 06</span><span class="mods__t">Lance Fidelidade 6, 12 e 18 meses, custo zero</span></li>
     </ul>
 
     <p class="portas__mais" data-sobe>
@@ -212,11 +287,7 @@ document.documentElement.className += " js";
         <span class="tag tag--red" data-sobe><svg class="ic"><use href="#i-escudo"></use></svg>A prova</span>
         <h2 data-sobe>Confiança não se pede. Se prova.</h2>
       </div>
-      <figure class="plate plate--sm" data-sobe>
-        <img src="../assets/foto/operacao.webp" alt="Operação da Fasolo Consórcios em Santa Maria" loading="lazy">
-        <span class="plate__blur" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-        <figcaption class="plate__cap"><span class="plate__s">A operação, em Santa Maria</span></figcaption>
-      </figure>
+
     </div>
 
     <div class="pgrid" data-sobe>
@@ -249,15 +320,16 @@ document.documentElement.className += " js";
       Veja quem já saiu da fila do “um dia” e realizou com estratégia.
     </p>
 
-    <div class="depo" data-sobe>
-      <figure class="plate">
-        <img src="../assets/foto/porsche-estande.webp" alt="Entrega da Fasolo Consórcios" id="depoImg">
-        <span class="plate__blur" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-        <figcaption class="plate__cap">
-          <span class="tag"><svg class="ic"><use href="#i-selo"></use></svg><span id="depoBem"></span></span>
-        </figcaption>
-      </figure>
-      <div class="depo__c">
+    <div class="dbox" data-sobe>
+      <div class="dbox__l">
+        <figure class="plate plate--veu dbox__ph">
+          <img src="../assets/foto/porsche-estande.webp" alt="Entrega da Fasolo Consórcios" id="depoImg">
+          <figcaption class="plate__cap">
+            <span class="tag"><svg class="ic"><use href="#i-selo"></use></svg><span id="depoBem"></span></span>
+          </figcaption>
+        </figure>
+      </div>
+      <div class="dbox__r">
         <svg class="depo__aspas ic" aria-hidden="true"><use href="#i-aspas"></use></svg>
         <blockquote class="depo__q" id="depoQ"></blockquote>
         <div class="depo__quem"><b id="depoN"></b><span id="depoC"></span></div>
@@ -268,6 +340,7 @@ document.documentElement.className += " js";
           <span class="depo__conta" id="depoConta"></span>
         </div>
       </div>
+      <div class="dbox__trilho" id="trilho"></div>
     </div>
   </div>
 </section>

@@ -26,6 +26,12 @@
     btn.setAttribute("aria-expanded", String(!aberto));
     document.body.style.overflow = aberto ? "" : "hidden";
   });
+  var telasFoto = $("#telasFoto");
+  $$("#telas a[data-foto]").forEach(function (a) {
+    a.addEventListener("mouseenter", function () {
+      if (telasFoto) telasFoto.src = "../assets/foto/" + a.dataset.foto + ".webp";
+    });
+  });
   $$("#telas a").forEach(function (a) {
     a.addEventListener("click", function () {
       telas.dataset.aberto = "0";
@@ -84,6 +90,9 @@
       elImg.src = "../assets/foto/" + FOTOS[i % FOTOS.length] + ".webp";
       elConta.textContent = (i + 1) + " de " + DEPO.length;
       prog.style.transform = "scaleX(" + ((i + 1) / DEPO.length) + ")";
+      [].forEach.call(document.querySelectorAll(".tcard"), function (c, k) {
+        c.setAttribute("aria-selected", String(k === i));
+      });
     };
     if (anima && temGSAP && !reduz) {
       gsap.fromTo([elQ, elQ.nextElementSibling], { opacity: 0, y: 14 },
@@ -91,6 +100,17 @@
       gsap.fromTo(elImg, { opacity: .2, scale: 1.04 }, { opacity: 1, scale: 1, duration: .7, ease: "power3.out" });
     } else { aplica(); }
   }
+  /* trilho de cidades: o índice visível do depoimento, como no primeiro
+     componente que o Lucas aprovou. Cidade e bem saem da copy. */
+  var trilho = $("#trilho");
+  DEPO.forEach(function (d, k) {
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "tcard"; b.setAttribute("aria-selected", String(k === 0));
+    b.innerHTML = '<b><svg class="ic"><use href="#i-globo"></use></svg>' + d.cidade + "</b><span>" + d.bem + "</span>";
+    b.addEventListener("click", function () { pinta(k, true); });
+    trilho.appendChild(b);
+  });
+
   $("#depoPrev").addEventListener("click", function () { pinta(i - 1, true); });
   $("#depoNext").addEventListener("click", function () { pinta(i + 1, true); });
   pinta(0, false);
@@ -119,6 +139,16 @@
         setTimeout(function () { l.classList.add("is-aberto"); }, k * 260);
       });
     }
+  });
+
+  /* o brilho do bento segue o ponteiro por variável CSS: nada de state,
+     nada de re-render, só duas custom properties por movimento. */
+  $$(".pc").forEach(function (c) {
+    c.addEventListener("pointermove", function (e) {
+      var r = c.getBoundingClientRect();
+      c.style.setProperty("--mx", (e.clientX - r.left) + "px");
+      c.style.setProperty("--my", (e.clientY - r.top) + "px");
+    });
   });
 
   /* a foto de fundo deriva devagar: dá profundidade sem descobrir a borda */
