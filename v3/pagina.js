@@ -164,13 +164,33 @@
 
   /* o brilho do bento segue o ponteiro por variável CSS: nada de state,
      nada de re-render, só duas custom properties por movimento. */
-  $$(".pc").forEach(function (c) {
+  $$(".bc").forEach(function (c) {
+    var luz = document.createElement("span");
+    luz.className = "bc__luz"; c.appendChild(luz);
     c.addEventListener("pointermove", function (e) {
       var r = c.getBoundingClientRect();
       c.style.setProperty("--mx", (e.clientX - r.left) + "px");
       c.style.setProperty("--my", (e.clientY - r.top) + "px");
     });
   });
+
+  /* o medidor da célula principal: doze traços, os quatro últimos na cor da
+     marca. Desenhado aqui e não no HTML para a marcação não virar ruído. */
+  var barras = document.querySelector(".bc__g-barras");
+  if (barras) {
+    var N = 12, larg = 220 / N;
+    for (var k = 0; k < N; k++) {
+      var alt = 14 + Math.round(Math.pow(k / (N - 1), 1.7) * 46);
+      var r = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+      r.setAttribute("x", (k * larg + larg * 0.18).toFixed(1));
+      r.setAttribute("y", (64 - alt).toFixed(1));
+      r.setAttribute("width", (larg * 0.64).toFixed(1));
+      r.setAttribute("height", alt);
+      r.setAttribute("rx", "1.5");
+      if (k >= N - 4) r.setAttribute("class", "on");
+      barras.appendChild(r);
+    }
+  }
 
   /* a foto de fundo deriva devagar: dá profundidade sem descobrir a borda */
   $$(".midia img").forEach(function (img) {
