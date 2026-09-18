@@ -460,3 +460,87 @@ body::after{
 .p3 .p3__f{opacity:.42}
 .p3:hover .p3__f{opacity:.62}
 .p3::after{background:linear-gradient(180deg,rgba(10,8,7,.3) 0%,rgba(10,8,7,.62) 46%,rgba(10,8,7,.93) 100%)}
+
+/* ===========================================================================
+   BULLET DAS REFERÊNCIAS (pedido do Gabriel: registrar de onde veio cada peça)
+     · interstellar  → os boxes, as tags, a iluminação que sobe do rodapé,
+                       o carrossel de prova
+     · midu          → a criatividade: preto + vermelho com grão, wordmark em
+                       escala de pôster, negativo enorme na dobra
+     · aset          → os vetores: arcos finos de traço 1px e a malha de marcação
+     · propellus     → as três portas de vidro dividindo o público
+     · esplora       → mídia sangrando na tela inteira com o tipo por cima
+     · atlas         → o depoimento ocupando uma tela inteira
+   Onde a referência ou o cliente venceram a tasteskill, está anotado na regra.
+   =========================================================================== */
+
+/* --- iluminação e vetores de fundo ---------------------------------------
+   tasteskill 9.F veta "hairline grid como decoração". Aqui a referência vence:
+   o Lucas pediu a iluminação da interstellar e os vetores da aset por nome. */
+.atmos{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.atmos__l{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5}
+.atmos__l--1{width:58vw;height:58vw;left:-16vw;top:-22vw;
+  background:radial-gradient(circle,rgba(226,5,15,.3),transparent 62%)}
+.atmos__l--2{width:46vw;height:46vw;right:-12vw;bottom:-18vw;
+  background:radial-gradient(circle,rgba(255,138,60,.14),transparent 64%)}
+.atmos__v{position:absolute;inset:0;width:100%;height:100%;opacity:.5}
+@media(prefers-reduced-motion:no-preference){
+  .atmos__l--1{animation:respira 14s ease-in-out infinite alternate}
+  .atmos__l--2{animation:respira 18s ease-in-out infinite alternate-reverse}
+}
+@keyframes respira{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(3vw,2vw,0) scale(1.12)}}
+body{position:relative}
+.tela,.topo,.telas{position:relative;z-index:1}
+.topo{z-index:60}.telas{z-index:55}
+
+/* --- modalidades: os rótulos são as 4 linhas exatas da copy -------------- */
+.mods{list-style:none;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));
+      gap:clamp(.5rem,.9vw,1rem);margin-top:1.1rem}
+.mods__i{font-size:var(--body);font-weight:500;letter-spacing:-.022em;line-height:1.25}
+.mods__i--3{grid-column:span 3}
+.mods__k{display:block;margin-bottom:.4rem;font-size:var(--sm);font-weight:400;
+         color:var(--red-2);letter-spacing:.05em}
+
+/* --- CARROSSEL DE PROVA (interstellar) ----------------------------------
+   A copy pede literalmente "forma de carrossel, os videos de provas sociais".
+   O card sangra pela direita, que é o que sinaliza que há mais. */
+.reel{margin-top:clamp(2rem,4vh,3.25rem);overflow:hidden;
+      margin-right:calc(50% - 50vw);
+      -webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);
+      mask-image:linear-gradient(90deg,#000 88%,transparent)}
+.reel__track{display:flex;gap:clamp(.9rem,1.6vw,1.5rem);will-change:transform;
+             transition:transform .78s var(--e)}
+.pcard{
+  position:relative;flex:0 0 clamp(300px,27vw,440px);border-radius:14px;overflow:hidden;
+  background:var(--ink-2);box-shadow:inset 0 0 0 1px var(--line);
+  display:flex;flex-direction:column;
+}
+.pcard__f{position:relative;aspect-ratio:4/3;overflow:hidden}
+.pcard__f img{width:100%;height:100%;object-fit:cover;opacity:.74;
+              transition:transform .8s var(--e),opacity .4s var(--e)}
+.pcard:hover .pcard__f img{transform:scale(1.05);opacity:.9}
+.pcard__f::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(10,8,7,.1),rgba(10,8,7,.72))}
+.pcard__play{position:absolute;left:1rem;bottom:1rem;z-index:2;width:44px;height:44px;
+  border-radius:50%;display:grid;place-items:center;background:rgba(245,242,239,.16);
+  backdrop-filter:blur(10px);box-shadow:inset 0 0 0 1px var(--line-2)}
+.pcard__play .ic{width:17px;height:17px;margin-left:2px;fill:currentColor;stroke:none}
+.pcard__b{padding:clamp(1.1rem,1.6vw,1.5rem);display:flex;flex-direction:column;gap:.85rem;flex:1}
+.pcard__q{font-size:var(--body);line-height:1.42;letter-spacing:-.016em;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.pcard__quem{margin-top:auto;padding-top:.9rem;border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:.3rem .8rem;align-items:baseline;font-size:var(--sm)}
+.pcard__quem b{font-weight:600}
+.pcard__quem span{color:var(--ash)}
+
+.reel__nav{display:flex;align-items:center;gap:1.1rem;margin-top:1.75rem}
+.reel__barra{flex:1;max-width:280px;height:2px;background:var(--line);border-radius:2px;overflow:hidden}
+.reel__barra i{display:block;height:100%;background:var(--red);border-radius:2px;
+               transform-origin:left;transition:transform .5s var(--e)}
+@media(max-width:820px){ .mods{grid-template-columns:repeat(2,minmax(0,1fr))} .mods__i--3{grid-column:span 2} }
+
+/* os números quebravam no meio ("R$ 1,8 / bi") com 7 colunas em 1920 */
+.numeros{grid-template-columns:repeat(auto-fit,minmax(178px,1fr))}
+.num b{font-size:clamp(1.7rem,2.3vw,2.4rem);white-space:nowrap}
+.num{padding:clamp(1.25rem,2vw,1.9rem) clamp(1rem,1.4vw,1.4rem)}
+.num span{margin-top:.55rem}

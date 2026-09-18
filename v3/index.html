@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Fasolo Consórcios | Consórcio não é tudo igual</title>
-<meta name="description" content="O que decide sua contemplação não é a parcela. É a configuração do grupo. Há 12 anos colocamos cada cliente no grupo certo, com aceleradores de contemplação a partir do 1º mês.">
+<meta name="description" content="O que decide sua contemplação não é a parcela — é a configuração do grupo. Há 12 anos colocamos cada cliente no grupo certo, com aceleradores de contemplação a partir do 1º mês.">
 <meta property="og:title" content="Fasolo Consórcios | Consórcio não é tudo igual">
 <meta property="og:description" content="Aqui você não compra uma cota. Compra estratégia.">
 <meta property="og:type" content="website">
@@ -21,12 +21,31 @@
 <symbol id="i-casa" viewBox="0 0 24 24"><path d="M3.5 10.6 12 3.5l8.5 7.1V20a.5.5 0 0 1-.5.5H4a.5.5 0 0 1-.5-.5z"/><path class="a" d="M9.6 20.5v-6.3h4.8v6.3"/></symbol>
 <symbol id="i-carro" viewBox="0 0 24 24"><path d="M2.5 14.2h19M4.8 14.2 6.9 8.6a1 1 0 0 1 .94-.65h8.32a1 1 0 0 1 .94.65l2.1 5.6M3.5 14.2v3.4h17v-3.4"/><path class="a" d="M6.6 17.6v1.6M17.4 17.6v1.6"/></symbol>
 <symbol id="i-grafico" viewBox="0 0 24 24"><path d="M3.5 3.5v17h17"/><path class="a" d="m7 15.5 4-4.4 3 2.6 6-6.8"/></symbol>
-<symbol id="i-porta" viewBox="0 0 24 24"><path d="M6.5 3.5h11v17h-11z"/><path class="a" d="M14 12.4v.9"/></symbol>
+<symbol id="i-porta" viewBox="0 0 24 24"><path d="M4.5 20.5h15M7.5 20.5V4.2a.7.7 0 0 1 .84-.69l7 1.4a.7.7 0 0 1 .56.69V20.5"/><path class="a" d="M13.1 12.2v1.5"/></symbol>
 <symbol id="i-escudo" viewBox="0 0 24 24"><path d="M12 3.2 4.6 6v6.1c0 4.5 3 7.4 7.4 8.7 4.4-1.3 7.4-4.2 7.4-8.7V6z"/><path class="a" d="m8.8 11.9 2.3 2.3 4.1-4.6"/></symbol>
 <symbol id="i-alvo" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.2"/><path class="a" d="M12 10.4v3.2"/></symbol>
 <symbol id="i-chave" viewBox="0 0 24 24"><circle cx="8.2" cy="8.2" r="4.7"/><path d="m11.6 11.6 8 8"/><path class="a" d="m16.4 16.4 2.1-2.1"/></symbol>
 <symbol id="play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></symbol>
 </defs></svg>
+
+
+<!-- iluminação + vetores de fundo. interstellar: a luz que sobe do rodapé de
+     cada tela. aset: os arcos finos e a grade de marcação nas margens. -->
+<div class="atmos" aria-hidden="true">
+  <span class="atmos__l atmos__l--1"></span>
+  <span class="atmos__l atmos__l--2"></span>
+  <svg class="atmos__v" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <linearGradient id="gv" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#E2050F" stop-opacity=".55"/>
+        <stop offset=".55" stop-color="#E2050F" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <circle cx="1180" cy="300" r="520" fill="none" stroke="url(#gv)" stroke-width="1"/>
+    <circle cx="1180" cy="300" r="720" fill="none" stroke="url(#gv)" stroke-width="1"/>
+    <path d="M-100 780 Q 420 520 1540 700" fill="none" stroke="url(#gv)" stroke-width="1"/>
+  </svg>
+</div>
 
 <!-- ===================== NAVBAR ===================== -->
 <header class="topo" id="topo">
@@ -34,7 +53,6 @@
     <img src="../assets/marca/horizontal-claro.webp" alt="Fasolo Consórcios">
   </a>
   <div class="topo__dir">
-    <span class="vivo"><i></i>Santa Maria, RS · atendendo agora</span>
     <a class="btn btn--red" href="#simulacao"><span class="btn__t">Receber minha simulação no WhatsApp</span><span class="btn__c" aria-hidden="true"><svg class="ic"><use href="#i-seta"></use></svg><svg class="ic"><use href="#i-seta"></use></svg></span></a>
     <button class="menu-btn" type="button" id="menuBtn" aria-expanded="false" aria-controls="telas">
       Menu <span aria-hidden="true"><i></i><i></i></span>
@@ -62,7 +80,7 @@
     <p class="hero__cred" data-sobe><i></i>Corretora autorizada · HS Consórcios</p>
     <h1 data-sobe>Consórcio não é tudo igual.</h1>
     <p class="hero__l" data-sobe>
-      O que decide sua contemplação não é a parcela. É a configuração do grupo.
+      O que decide sua contemplação não é a parcela — é a configuração do grupo.
       Há 12 anos colocamos cada cliente no grupo certo, com aceleradores de
       contemplação a partir do 1º mês.
     </p>
@@ -109,43 +127,19 @@
     </p>
 
     <div class="grade6" id="grade6">
-      <div class="porta">
-        <span class="porta__vao"><span class="porta__b"></span></span>
-        <span class="porta__k">01</span>
-        <span class="porta__t">Sorteio</span>
-        <span class="porta__n">a partir do 1º mês</span>
-      </div>
-      <div class="porta">
-        <span class="porta__vao"><span class="porta__b"></span></span>
-        <span class="porta__k">02</span>
-        <span class="porta__t">Lance Livre</span>
-        <span class="porta__n">a partir do 1º mês</span>
-      </div>
-      <div class="porta">
-        <span class="porta__vao"><span class="porta__b"></span></span>
-        <span class="porta__k">03</span>
-        <span class="porta__t">Lance Limitado</span>
-        <span class="porta__n">custo zero</span>
-      </div>
-      <div class="porta">
-        <span class="porta__vao"><span class="porta__b"></span></span>
-        <span class="porta__k">04</span>
-        <span class="porta__t">Lance Fidelidade 6</span>
-        <span class="porta__n">custo zero</span>
-      </div>
-      <div class="porta">
-        <span class="porta__vao"><span class="porta__b"></span></span>
-        <span class="porta__k">05</span>
-        <span class="porta__t">Lance Fidelidade 12</span>
-        <span class="porta__n">custo zero</span>
-      </div>
-      <div class="porta">
-        <span class="porta__vao"><span class="porta__b"></span></span>
-        <span class="porta__k">06</span>
-        <span class="porta__t">Lance Fidelidade 18</span>
-        <span class="porta__n">custo zero</span>
-      </div>
+      <div class="porta"><span class="porta__vao"><span class="porta__b"></span></span></div>
+      <div class="porta"><span class="porta__vao"><span class="porta__b"></span></span></div>
+      <div class="porta"><span class="porta__vao"><span class="porta__b"></span></span></div>
+      <div class="porta"><span class="porta__vao"><span class="porta__b"></span></span></div>
+      <div class="porta"><span class="porta__vao"><span class="porta__b"></span></span></div>
+      <div class="porta"><span class="porta__vao"><span class="porta__b"></span></span></div>
     </div>
+    <ul class="mods">
+      <li class="mods__i"><span class="mods__k">01</span>Sorteio</li>
+      <li class="mods__i"><span class="mods__k">02</span>Lance Livre</li>
+      <li class="mods__i"><span class="mods__k">03</span>Lance Limitado, custo zero</li>
+      <li class="mods__i mods__i--3"><span class="mods__k">04 · 05 · 06</span>Lance Fidelidade 6, 12 e 18 meses, custo zero</li>
+    </ul>
 
     <p class="portas__mais" data-sobe>
       <b>Aceleradores a partir do 1º, 6º, 12º e 18º mês.</b>
@@ -170,7 +164,7 @@
       <div class="num"><b>R$ 1,8 bi</b><span>em créditos sob gestão</span></div>
       <div class="num"><b>R$ 1,2 bi</b><span>em bens entregues</span></div>
       <div class="num"><b>+6.000</b><span>clientes ativos</span></div>
-      <div class="num"><b>17 e 11</b><span>17 estados e 11 países</span></div>
+      <div class="num"><b>17</b><span>estados e 11 países</span></div>
       <div class="num"><b>12 anos</b><span>de mercado</span></div>
       <div class="num"><b>TOP 10</b><span>Ranking Brasil de Corretoras de Consórcio</span></div>
       <div class="num"><b>2 anos</b><span>verificada no Reclame AQUI, sem reclamações</span></div>
@@ -188,22 +182,14 @@
       Veja quem já saiu da fila do “um dia” e realizou com estratégia.
     </p>
 
-    <div class="depo" data-sobe>
-      <div class="depo__v">
-        <img src="../assets/foto/porsche-estande.webp" alt="Entrega da Fasolo Consórcios no estande do shopping" loading="lazy">
-        <span class="depo__play"><i><svg aria-hidden="true"><use href="#play"></use></svg></i></span>
-      </div>
-      <div>
-        <blockquote class="depo__q" id="depoQ"></blockquote>
-        <div class="depo__quem">
-          <b id="depoN"></b><span id="depoC"></span><span id="depoB"></span>
-        </div>
-        <div class="depo__nav">
-          <button class="depo__seta" type="button" id="depoPrev" aria-label="Depoimento anterior"><svg aria-hidden="true"><use href="#i-seta-e"></use></svg></button>
-          <button class="depo__seta" type="button" id="depoNext" aria-label="Próximo depoimento"><svg aria-hidden="true"><use href="#i-seta"></use></svg></button>
-          <span class="depo__conta" id="depoConta"></span>
-        </div>
-      </div>
+    <div class="reel" data-sobe>
+      <div class="reel__track" id="reelTrack"></div>
+    </div>
+    <div class="reel__nav" data-sobe>
+      <button class="depo__seta" type="button" id="depoPrev" aria-label="Anterior"><svg class="ic"><use href="#i-seta-e"></use></svg></button>
+      <button class="depo__seta" type="button" id="depoNext" aria-label="Próximo"><svg class="ic"><use href="#i-seta"></use></svg></button>
+      <span class="reel__barra"><i id="reelProg"></i></span>
+      <span class="depo__conta" id="depoConta"></span>
     </div>
   </div>
 </section>
