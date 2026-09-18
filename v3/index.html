@@ -15,9 +15,16 @@
 </head>
 <body>
 
-<svg aria-hidden="true" style="position:absolute;width:0;height:0"><defs>
-<symbol id="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
-<symbol id="seta-e" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></symbol>
+<svg aria-hidden="true" class="sprite" style="position:absolute;width:0;height:0"><defs>
+<symbol id="i-seta-e" viewBox="0 0 24 24"><path d="M20 12H5M10.5 6.5 4 12l6.5 5.5"/></symbol>
+<symbol id="i-seta" viewBox="0 0 24 24"><path d="M4 12h15M13.5 6.5 20 12l-6.5 5.5"/></symbol>
+<symbol id="i-casa" viewBox="0 0 24 24"><path d="M3.5 10.6 12 3.5l8.5 7.1V20a.5.5 0 0 1-.5.5H4a.5.5 0 0 1-.5-.5z"/><path class="a" d="M9.6 20.5v-6.3h4.8v6.3"/></symbol>
+<symbol id="i-carro" viewBox="0 0 24 24"><path d="M2.5 14.2h19M4.8 14.2 6.9 8.6a1 1 0 0 1 .94-.65h8.32a1 1 0 0 1 .94.65l2.1 5.6M3.5 14.2v3.4h17v-3.4"/><path class="a" d="M6.6 17.6v1.6M17.4 17.6v1.6"/></symbol>
+<symbol id="i-grafico" viewBox="0 0 24 24"><path d="M3.5 3.5v17h17"/><path class="a" d="m7 15.5 4-4.4 3 2.6 6-6.8"/></symbol>
+<symbol id="i-porta" viewBox="0 0 24 24"><path d="M6.5 3.5h11v17h-11z"/><path class="a" d="M14 12.4v.9"/></symbol>
+<symbol id="i-escudo" viewBox="0 0 24 24"><path d="M12 3.2 4.6 6v6.1c0 4.5 3 7.4 7.4 8.7 4.4-1.3 7.4-4.2 7.4-8.7V6z"/><path class="a" d="m8.8 11.9 2.3 2.3 4.1-4.6"/></symbol>
+<symbol id="i-alvo" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.2"/><path class="a" d="M12 10.4v3.2"/></symbol>
+<symbol id="i-chave" viewBox="0 0 24 24"><circle cx="8.2" cy="8.2" r="4.7"/><path d="m11.6 11.6 8 8"/><path class="a" d="m16.4 16.4 2.1-2.1"/></symbol>
 <symbol id="play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></symbol>
 </defs></svg>
 
@@ -28,7 +35,7 @@
   </a>
   <div class="topo__dir">
     <span class="vivo"><i></i>Santa Maria, RS · atendendo agora</span>
-    <a class="cta cta--red" href="#simulacao">Receber minha simulação no WhatsApp</a>
+    <a class="btn btn--red" href="#simulacao"><span class="btn__t">Receber minha simulação no WhatsApp</span><span class="btn__c" aria-hidden="true"><svg class="ic"><use href="#i-seta"></use></svg><svg class="ic"><use href="#i-seta"></use></svg></span></a>
     <button class="menu-btn" type="button" id="menuBtn" aria-expanded="false" aria-controls="telas">
       Menu <span aria-hidden="true"><i></i><i></i></span>
     </button>
@@ -60,12 +67,12 @@
       contemplação a partir do 1º mês.
     </p>
     <div class="hero__go" data-sobe>
-      <a class="cta cta--red cta--lg" href="#simulacao">Receber minha simulação no WhatsApp <svg aria-hidden="true"><use href="#seta"></use></svg></a>
+      <a class="btn btn--red btn--lg" href="#simulacao"><span class="btn__t">Receber minha simulação no WhatsApp</span><span class="btn__c" aria-hidden="true"><svg class="ic"><use href="#i-seta"></use></svg><svg class="ic"><use href="#i-seta"></use></svg></span></a>
     </div>
     <p class="hero__nota" data-sobe>Grátis, sem compromisso e sem taxa de adesão.</p>
 
     <div class="selo-faixa" data-sobe>
-      <span><b>R$ 1,8 bi</b> sob gestão</span>
+      <span><b>R$ 1,8 bi</b> em créditos sob gestão</span>
       <span><b>R$ 1,2 bi</b> em bens entregues</span>
       <span><b>+6.000</b> clientes ativos</span>
       <span><b>12 anos</b> de mercado</span>
@@ -81,11 +88,12 @@
       <img src="../assets/foto/jair-retrato.webp" alt="Jair Fasolo, fundador e diretor da Fasolo Consórcios">
     </div>
     <div>
+      <span class="tag tag--red" data-sobe><svg class="ic"><use href="#i-alvo"></use></svg>O fundador</span>
       <h2 data-sobe>Não é um vendedor de cotas falando. É um dos maiores investidores de consórcio do país.</h2>
       <p data-sobe>Jair Fasolo também comprava olhando parcela e taxa. Até descobrir o que mudou seu jogo, e criar a Fasolo.</p>
       <p data-sobe>Hoje aplicamos com os clientes as mesmas estratégias usadas no patrimônio dele: estudo de grupos, análise contábil, histórico e modalidades de contemplação.</p>
       <p class="jair__punch" data-sobe>Aqui você não compra uma cota. Compra estratégia.</p>
-      <div class="jair__go" data-sobe><a class="cta" href="#">Conhecer a Fasolo <svg aria-hidden="true"><use href="#seta"></use></svg></a></div>
+      <div class="jair__go" data-sobe><a class="btn" href="#"><span class="btn__t">Conhecer a Fasolo</span><span class="btn__c" aria-hidden="true"><svg class="ic"><use href="#i-seta"></use></svg><svg class="ic"><use href="#i-seta"></use></svg></span></a></div>
     </div>
   </div>
 </section>
@@ -93,6 +101,7 @@
 <!-- ===================== TELA 3 · AS SEIS PORTAS ===================== -->
 <section class="tela tela--meio portas" id="portas">
   <div class="wrap">
+    <span class="tag tag--red" data-sobe><svg class="ic"><use href="#i-porta"></use></svg>A grade de contemplação</span>
     <h2 data-sobe>E sabe qual o nosso grande diferencial? Seis portas de contemplação abertas ao mesmo tempo.</h2>
     <p class="portas__l" data-sobe>
       No consórcio comum, quase tudo depende de sorteio ou lance alto. Nos grupos da HS
@@ -144,7 +153,7 @@
       lance com imóvel usado, veículo usado, FGTS, embutido ou dinheiro.
     </p>
     <div style="margin-top:clamp(2rem,4vh,3rem)" data-sobe>
-      <a class="cta cta--red" href="#simulacao">Simular na melhor configuração do país <svg aria-hidden="true"><use href="#seta"></use></svg></a>
+      <a class="btn btn--red" href="#simulacao"><span class="btn__t">Simular na melhor configuração do país</span><span class="btn__c" aria-hidden="true"><svg class="ic"><use href="#i-seta"></use></svg><svg class="ic"><use href="#i-seta"></use></svg></span></a>
     </div>
   </div>
 </section>
@@ -155,12 +164,13 @@
     <img src="../assets/foto/operacao.webp" alt="Equipe da Fasolo Consórcios na operação, em Santa Maria" loading="lazy">
   </div>
   <div class="wrap">
+    <span class="tag tag--red" data-sobe><svg class="ic"><use href="#i-escudo"></use></svg>A prova</span>
     <h2 data-sobe>Confiança não se pede. Se prova.</h2>
     <div class="numeros" data-sobe>
       <div class="num"><b>R$ 1,8 bi</b><span>em créditos sob gestão</span></div>
       <div class="num"><b>R$ 1,2 bi</b><span>em bens entregues</span></div>
       <div class="num"><b>+6.000</b><span>clientes ativos</span></div>
-      <div class="num"><b>17 e 11</b><span>estados e países</span></div>
+      <div class="num"><b>17 e 11</b><span>17 estados e 11 países</span></div>
       <div class="num"><b>12 anos</b><span>de mercado</span></div>
       <div class="num"><b>TOP 10</b><span>Ranking Brasil de Corretoras de Consórcio</span></div>
       <div class="num"><b>2 anos</b><span>verificada no Reclame AQUI, sem reclamações</span></div>
@@ -189,8 +199,8 @@
           <b id="depoN"></b><span id="depoC"></span><span id="depoB"></span>
         </div>
         <div class="depo__nav">
-          <button class="depo__seta" type="button" id="depoPrev" aria-label="Depoimento anterior"><svg aria-hidden="true"><use href="#seta-e"></use></svg></button>
-          <button class="depo__seta" type="button" id="depoNext" aria-label="Próximo depoimento"><svg aria-hidden="true"><use href="#seta"></use></svg></button>
+          <button class="depo__seta" type="button" id="depoPrev" aria-label="Depoimento anterior"><svg aria-hidden="true"><use href="#i-seta-e"></use></svg></button>
+          <button class="depo__seta" type="button" id="depoNext" aria-label="Próximo depoimento"><svg aria-hidden="true"><use href="#i-seta"></use></svg></button>
           <span class="depo__conta" id="depoConta"></span>
         </div>
       </div>
@@ -201,28 +211,32 @@
 <!-- ===================== TELA 6 · OS TRÊS CAMINHOS ===================== -->
 <section class="tela tela--meio caminhos">
   <div class="wrap">
+    <span class="tag tag--red" data-sobe><svg class="ic"><use href="#i-chave"></use></svg>Os caminhos</span>
     <h2 data-sobe>Não importa o tamanho do seu objetivo. Existe um caminho para ele.</h2>
     <div class="portas3" data-sobe>
       <a class="p3" href="#">
         <span class="p3__f"><img src="../assets/foto/fachada-dia.webp" alt="" loading="lazy"></span>
-        <span class="p3__k">01</span>
+        <span class="p3__topo"><span class="p3__ic"><svg class="ic"><use href="#i-casa"></use></svg></span><span class="p3__k">01</span></span>
         <span class="p3__t">Consórcio Imobiliário</span>
         <span class="p3__d">Casa, comercial, rural, terreno, construção e reforma.</span>
-        <span class="p3__go">Conhecer os planos imobiliários <svg aria-hidden="true"><use href="#seta"></use></svg></span>
+        <span class="tags"><span class="tag">Sem juros de financiamento</span><span class="tag">Sem taxa de adesão</span><span class="tag">Lance com FGTS</span></span>
+        <span class="p3__go"><span>Conhecer os planos imobiliários</span><span class="btn__c btn__c--sm" aria-hidden="true"><svg class="ic"><use href="#i-seta"></use></svg><svg class="ic"><use href="#i-seta"></use></svg></span></span>
       </a>
       <a class="p3" href="#">
         <span class="p3__f"><img src="../assets/foto/porsche-detalhe.webp" alt="" loading="lazy"></span>
-        <span class="p3__k">02</span>
+        <span class="p3__topo"><span class="p3__ic"><svg class="ic"><use href="#i-carro"></use></svg></span><span class="p3__k">02</span></span>
         <span class="p3__t">Consórcio de Veículos</span>
         <span class="p3__d">Leves, pesados, motos, náuticos, agro e linha amarela.</span>
-        <span class="p3__go">Conhecer os planos de veículos <svg aria-hidden="true"><use href="#seta"></use></svg></span>
+        <span class="tags"><span class="tag">6 modalidades</span><span class="tag">Lance definido antes</span><span class="tag">Frota e maquinário</span></span>
+        <span class="p3__go"><span>Conhecer os planos de veículos</span><span class="btn__c btn__c--sm" aria-hidden="true"><svg class="ic"><use href="#i-seta"></use></svg><svg class="ic"><use href="#i-seta"></use></svg></span></span>
       </a>
       <a class="p3" href="#">
         <span class="p3__f"><img src="../assets/foto/diretoria.webp" alt="" loading="lazy"></span>
-        <span class="p3__k">03</span>
+        <span class="p3__topo"><span class="p3__ic"><svg class="ic"><use href="#i-grafico"></use></svg></span><span class="p3__k">03</span></span>
         <span class="p3__t">Consórcio Investimento</span>
         <span class="p3__d">Alavancagem, renda imobiliária e capital para o seu negócio.</span>
-        <span class="p3__go">Conhecer o consórcio como investimento <svg aria-hidden="true"><use href="#seta"></use></svg></span>
+        <span class="tags"><span class="tag">Alavancagem sem juros</span><span class="tag">Renda de aluguel</span><span class="tag">Ecossistema Fas</span></span>
+        <span class="p3__go"><span>Conhecer o consórcio como investimento</span><span class="btn__c btn__c--sm" aria-hidden="true"><svg class="ic"><use href="#i-seta"></use></svg><svg class="ic"><use href="#i-seta"></use></svg></span></span>
       </a>
     </div>
   </div>
@@ -237,7 +251,7 @@
     <h2 data-sobe>Você pode continuar comparando parcelas. Ou escolher com estratégia.</h2>
     <p data-sobe>Preencha o formulário e receba sua simulação no WhatsApp.</p>
     <div class="fecho__go" data-sobe>
-      <a class="cta cta--red cta--lg" href="#">Receber minha simulação no WhatsApp <svg aria-hidden="true"><use href="#seta"></use></svg></a>
+      <a class="btn btn--red btn--lg" href="#"><span class="btn__t">Receber minha simulação no WhatsApp</span><span class="btn__c" aria-hidden="true"><svg class="ic"><use href="#i-seta"></use></svg><svg class="ic"><use href="#i-seta"></use></svg></span></a>
     </div>
 
     <div class="rodape">

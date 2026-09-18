@@ -348,3 +348,115 @@ body::after{
   box-shadow:inset 0 0 0 1px rgba(199,154,75,.3);letter-spacing:-.01em;
 }
 [hidden]{display:none!important}
+
+/* ===========================================================================
+   COMPONENTES · pedido do Lucas em 18/09
+   "quero componentes diferenciados, ícones nos box, tags bem construídas,
+    o botão tá muito simples, quero um botão com elipse e a seta dentro"
+   =========================================================================== */
+
+/* --- o conjunto de ícones é PRÓPRIO, não de biblioteca ---------------------
+   Grade 24, traço único de 1.6, e exatamente UM traço de acento vermelho por
+   glifo, que é o que dá leitura bicolor. Nunca dentro de bolinha tingida:
+   é isso que denuncia template.                                             */
+.sprite symbol{fill:none}
+.ic{width:1em;height:1em;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;
+    stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.ic .a{stroke:var(--red-2)}
+
+/* --- BOTÃO: pílula + elipse com a seta dentro -----------------------------
+   A seta sai na diagonal e a de trás chega pela mesma linha. É o gesto que
+   faz o botão parecer um controle, não um retângulo com texto.             */
+.btn{
+  position:relative;display:inline-flex;align-items:center;gap:.9rem;isolation:isolate;
+  padding:.44rem .44rem .44rem 1.5rem;border-radius:999px;white-space:nowrap;
+  font-size:var(--sm);font-weight:600;letter-spacing:-.018em;
+  background:var(--bone);color:var(--ink);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 1px 2px rgba(0,0,0,.35),0 12px 26px -16px rgba(0,0,0,.9);
+  transition:transform .18s var(--e),box-shadow .36s var(--e),filter .3s var(--e);
+}
+.btn:hover{transform:translateY(-1.5px);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 2px 5px rgba(0,0,0,.35),0 22px 44px -18px rgba(0,0,0,.95)}
+.btn:active{transform:translateY(.5px)}
+.btn__t{position:relative;z-index:2}
+.btn__c{
+  position:relative;z-index:2;width:38px;height:38px;flex:none;border-radius:50%;
+  display:grid;place-items:center;overflow:hidden;
+  background:rgba(10,8,7,.11);box-shadow:inset 0 0 0 1px rgba(10,8,7,.1);
+  transition:background .3s var(--e);
+}
+.btn__c .ic{grid-area:1/1;width:16px;height:16px;transition:transform .44s var(--e)}
+.btn__c .ic:last-child{transform:translate(-150%,150%)}
+.btn:hover .btn__c{background:rgba(10,8,7,.18)}
+.btn:hover .btn__c .ic:first-child{transform:translate(150%,-150%)}
+.btn:hover .btn__c .ic:last-child{transform:none;transition-delay:.09s}
+
+.btn--red{
+  background:linear-gradient(180deg,#F0141E,var(--red) 52%,#C50710);color:#fff;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.34),inset 0 -1px 0 rgba(0,0,0,.24),
+             0 1px 2px rgba(0,0,0,.4),0 16px 34px -14px rgba(226,5,15,.6);
+}
+.btn--red:hover{filter:saturate(1.06);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.34),inset 0 -1px 0 rgba(0,0,0,.24),
+             0 2px 5px rgba(0,0,0,.4),0 26px 52px -16px rgba(226,5,15,.78)}
+.btn--red .btn__c{background:rgba(255,255,255,.2);box-shadow:inset 0 1px 0 rgba(255,255,255,.3)}
+.btn--red:hover .btn__c{background:rgba(255,255,255,.3)}
+.btn--lg{padding:.52rem .52rem .52rem 1.9rem;font-size:1.0625rem;gap:1.1rem}
+.btn--lg .btn__c{width:46px;height:46px}
+.btn--lg .btn__c .ic{width:18px;height:18px}
+.btn__c--sm{width:30px;height:30px;background:rgba(245,242,239,.1);box-shadow:inset 0 0 0 1px var(--line)}
+.btn__c--sm .ic{width:13px;height:13px}
+.topo .btn{padding:.36rem .36rem .36rem 1.2rem}
+.topo .btn__c{width:32px;height:32px}
+.topo .btn__c .ic{width:14px;height:14px}
+
+/* --- TAG: caixa de fio com barra de acento, não pílula genérica ---------- */
+.tag{
+  display:inline-flex;align-items:center;gap:.5rem;position:relative;
+  padding:.4rem .78rem .4rem .82rem;border-radius:5px;
+  font-size:var(--sm);font-weight:500;letter-spacing:-.012em;line-height:1.1;
+  color:var(--bone-2);background:rgba(245,242,239,.05);
+  box-shadow:inset 0 0 0 1px var(--line);
+}
+.tag::before{content:"";position:absolute;left:0;top:22%;bottom:22%;width:2px;
+             border-radius:0 2px 2px 0;background:var(--line-2)}
+.tag .ic{width:15px;height:15px;color:var(--bone-2)}
+.tag--red{color:var(--bone);background:rgba(226,5,15,.1);box-shadow:inset 0 0 0 1px rgba(226,5,15,.32)}
+.tag--red::before{background:var(--red)}
+.tag--red .ic{color:var(--red-2)}
+.tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.1rem}
+.tags .tag{font-size:var(--sm);padding:.3rem .62rem .3rem .66rem;background:rgba(245,242,239,.04)}
+
+/* a tag de contexto substitui o registro numerado que abria toda seção */
+.portas .tag,.prova .tag,.caminhos .tag,.jair .tag{margin-bottom:clamp(1.1rem,2vh,1.6rem)}
+
+/* --- CAMINHOS: ícone no topo do box, tags no pé ------------------------- */
+.p3__topo{display:flex;align-items:center;justify-content:space-between}
+.p3__ic{
+  width:46px;height:46px;border-radius:12px;display:grid;place-items:center;flex:none;
+  background:rgba(245,242,239,.06);box-shadow:inset 0 0 0 1px var(--line);
+  transition:background .3s var(--e),box-shadow .3s var(--e);
+}
+.p3__ic .ic{width:23px;height:23px}
+.p3:hover .p3__ic{background:rgba(226,5,15,.14);box-shadow:inset 0 0 0 1px rgba(226,5,15,.4)}
+.p3__k{font-size:var(--sm);color:var(--red-2);letter-spacing:.06em}
+.p3__go{display:flex;align-items:center;justify-content:space-between;gap:1rem;
+        margin-top:1.4rem;padding-top:1.1rem;border-top:1px solid var(--line);
+        font-size:var(--sm);font-weight:500;border-bottom:0;align-self:stretch}
+.p3:hover .p3__go .btn__c--sm{background:rgba(226,5,15,.22)}
+.p3:hover .p3__go .ic:first-child{transform:translate(150%,-150%)}
+.p3:hover .p3__go .ic:last-child{transform:none;transition-delay:.09s}
+.p3{min-height:clamp(360px,50vh,500px)}
+.p3__t{margin-top:auto;padding-top:1.6rem}
+
+/* `.p3 > *` (classe + filho universal) empata com `.p3__f` e vem depois, então
+   ganhava e matava o position:absolute da foto: ela virava bloco no topo do
+   card em vez de ficar como fundo. Qualificar com o pai resolve. */
+.p3 .p3__f{position:absolute;inset:0;z-index:0;height:100%}
+.p3 .p3__f img{width:100%;height:100%;object-fit:cover}
+.p3{padding-top:clamp(1.6rem,2.4vw,2.2rem)}
+
+/* as fotos dos boxes estavam a 26% e sumiam: o pedido é justamente valorizar
+   a foto, então elas sobem e o véu fica mais seletivo */
+.p3 .p3__f{opacity:.42}
+.p3:hover .p3__f{opacity:.62}
+.p3::after{background:linear-gradient(180deg,rgba(10,8,7,.3) 0%,rgba(10,8,7,.62) 46%,rgba(10,8,7,.93) 100%)}
