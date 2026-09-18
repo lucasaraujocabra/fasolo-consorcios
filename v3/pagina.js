@@ -61,42 +61,38 @@
   if (DEPO_DEMO && tag) tag.hidden = false;
   if (DEPO_DEMO) console.warn("[Fasolo] Depoimentos em MODO DEMONSTRAÇÃO: fictícios. Vire DEPO_DEMO para false antes de publicar.");
 
-  /* o carrossel de prova: um card por depoimento, com a foto da entrega.
-     Citação limitada a 3 linhas por CSS, que é o teto da tasteskill 4.10. */
+  /* Painel grande de volta. Sem play: são FOTOS de entrega, e um play que
+     não toca vídeo é promessa que a interface não cumpre. */
   var FOTOS = ["porsche-estande","fachada-dia","operacao","porsche-detalhe"];
-  var track = $("#reelTrack"), elConta = $("#depoConta"), prog = $("#reelProg");
-  DEPO.forEach(function (d, k) {
-    var c = document.createElement("article");
-    c.className = "pcard";
-    c.innerHTML =
-      '<span class="pcard__f"><img src="../assets/foto/' + FOTOS[k % FOTOS.length] + '.webp" alt="" loading="lazy">' +
-      '<span class="pcard__play"><svg class="ic"><use href="#play"></use></svg></span></span>' +
-      '<span class="pcard__b">' +
-        '<span class="tag"><svg class="ic"><use href="#i-escudo"></use></svg>' + d.bem + '</span>' +
-        '<blockquote class="pcard__q">' + (d.citacao || "O cliente conta o objetivo, a estratégia que usamos e o bem que recebeu.") + '</blockquote>' +
-        '<span class="pcard__quem"><b>' + (d.nome || "Cliente contemplado") + '</b><span>' + d.cidade + '</span></span>' +
-      '</span>';
-    track.appendChild(c);
-  });
-
+  var elQ = $("#depoQ"), elN = $("#depoN"), elC = $("#depoC"), elBem = $("#depoBem"),
+      elImg = $("#depoImg"), elConta = $("#depoConta"), prog = $("#reelProg");
   var i = 0;
   function pinta(n, anima) {
-    var cards = track.children, max = cards.length - 1;
-    i = Math.max(0, Math.min(n, max));
-    var passo = cards[0].getBoundingClientRect().width + 16;
-    track.style.transform = "translate3d(" + (-i * passo) + "px,0,0)";
-    elConta.textContent = (i + 1) + " de " + cards.length;
-    prog.style.transform = "scaleX(" + ((i + 1) / cards.length) + ")";
+    i = (n + DEPO.length) % DEPO.length;
+    var d = DEPO[i];
+    var aplica = function () {
+      elQ.textContent = d.citacao || "O cliente conta o objetivo, a estratégia que usamos e o bem que recebeu.";
+      elN.textContent = d.nome || "Cliente contemplado";
+      elC.textContent = d.cidade;
+      elBem.textContent = d.bem;
+      elImg.src = "../assets/foto/" + FOTOS[i % FOTOS.length] + ".webp";
+      elConta.textContent = (i + 1) + " de " + DEPO.length;
+      prog.style.transform = "scaleX(" + ((i + 1) / DEPO.length) + ")";
+    };
+    if (anima && temGSAP && !reduz) {
+      gsap.fromTo([elQ, elQ.nextElementSibling], { opacity: 0, y: 14 },
+        { opacity: 1, y: 0, duration: .46, stagger: .05, ease: "power2.out", onStart: aplica });
+      gsap.fromTo(elImg, { opacity: .2, scale: 1.04 }, { opacity: 1, scale: 1, duration: .7, ease: "power3.out" });
+    } else { aplica(); }
   }
   $("#depoPrev").addEventListener("click", function () { pinta(i - 1, true); });
   $("#depoNext").addEventListener("click", function () { pinta(i + 1, true); });
-  window.addEventListener("resize", function () { pinta(i, false); });
   pinta(0, false);
 
   /* ------------------------------------------------------------ movimento */
   if (!temGSAP || reduz) {
     $$("[data-sobe]").forEach(function (n) { n.style.opacity = 1; n.style.transform = "none"; });
-    $$(".porta").forEach(function (p) { p.classList.add("is-on"); });
+    $$(".cmp6__lado").forEach(function (l) { l.classList.add("is-aberto"); });
     return;
   }
 
@@ -113,8 +109,8 @@
   ScrollTrigger.create({
     trigger: "#portas", start: "top 62%", once: true,
     onEnter: function () {
-      $$(".porta").forEach(function (p, k) {
-        setTimeout(function () { p.classList.add("is-on"); }, k * 110);
+      $$(".cmp6__lado").forEach(function (l, k) {
+        setTimeout(function () { l.classList.add("is-aberto"); }, k * 260);
       });
     }
   });
