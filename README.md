@@ -304,11 +304,18 @@ do texto não está no `innerText` e a auditoria mente dizendo que falta.
    `assets/logo-fasolo-dark.webp` (tipo escuro, para o tema claro). São PNGs
    recortados do pacote oficial e convertidos para WebP com alfa. Se aparecer
    um SVG da marca, troca direto.
-2. **Depoimentos.** O módulo está pronto e é a prioridade do projeto, mas roda em
-   estado de espera. As cidades e os tipos de bem são reais, da copy aprovada.
-   Falta `nome`, `citacao` e `video` no array `DEPOIMENTOS` no topo do `app.js`.
-   Preencher os três campos por entrada e o módulo vai ao ar sem mais nenhuma
-   alteração. O briefing é explícito: depoimento sem identificação e prova não entra.
+2. **Depoimentos.** O módulo está pronto e é a prioridade do projeto.
+   As cidades e os tipos de bem são reais, da copy aprovada. Falta `nome`,
+   `citacao` e `video` reais em `DEPO_ESPERA`, no topo do `app.js`. Preencher os
+   três campos por entrada e o módulo vai ao ar sem mais nenhuma alteração. O
+   briefing é explícito: depoimento sem identificação e prova não entra.
+
+   ⛔ **A seção está em MODO DEMONSTRAÇÃO.** `DEPO_DEMO = true` no `app.js`
+   troca os dados por quatro depoimentos **fictícios**, para o Lucas apresentar
+   ao cliente com a seção cheia. `DEPO_AVISO = true` mostra a etiqueta
+   "exemplo ilustrativo" ao lado do registro da seção, e o console avisa a cada
+   carga. **Virar `DEPO_DEMO` para `false` antes de qualquer publicação
+   definitiva.** Nome e citação inventados no ar são prova social falsa.
 3. **Artes dos selos de premiação.** Hoje são blocos com ícone Phosphor.
 4. **Vídeos dos depoimentos.**
 5. **Fotos de entregas reais** (Bento Gonçalves, Porto Alegre, Santa Maria,

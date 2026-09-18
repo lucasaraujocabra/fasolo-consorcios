@@ -239,12 +239,77 @@
      identification and proof. Fill these three fields per entry and the
      module is live, no other change needed.
      ====================================================================== */
-  var DEPOIMENTOS = [
+  /* -------------------------------------------------------------------------
+     ⛔ MODO DEMONSTRAÇÃO
+     Os nomes e as citações abaixo são FICTÍCIOS. Existem só para a
+     apresentação ao cliente mostrar como o módulo se comporta cheio.
+
+     Vire DEPO_DEMO para false e a seção volta ao estado de espera, que é
+     como ela tem que ir ao ar. O briefing é explícito: depoimento sem nome,
+     cidade e prova não entra na página.
+
+     DEPO_AVISO liga uma etiqueta discreta de "exemplo ilustrativo" ao lado do
+     registro da seção, para ninguém confundir na reunião. Desligue só ela se
+     quiser a tela limpa.
+
+     As cidades e os tipos de bem NÃO são fictícios: saem da copy aprovada.
+     ---------------------------------------------------------------------- */
+  var DEPO_DEMO = true;
+  var DEPO_AVISO = true;
+
+  var DEPO_ESPERA = [
     { nome: "", cidade: "Bento Gonçalves, RS", bem: "Imóvel residencial",   citacao: "", video: "" },
     { nome: "", cidade: "Porto Alegre, RS",    bem: "Imóvel comercial",     citacao: "", video: "" },
     { nome: "", cidade: "Santa Maria, RS",     bem: "Veículo pesado",       citacao: "", video: "" },
     { nome: "", cidade: "Capão da Canoa, RS",  bem: "Terreno e construção", citacao: "", video: "" }
   ];
+
+  var DEPO_FICTICIOS = [
+    {
+      nome: "Marcelo Bertoldi", cidade: "Bento Gonçalves, RS", bem: "Imóvel residencial",
+      citacao: "Eu ia entrar num grupo qualquer, olhando parcela. A Fasolo me mostrou que o " +
+               "meu perfil não combinava com aquele grupo e me realocou. Fui contemplado por " +
+               "lance no sétimo mês, com a estratégia montada antes de eu assinar.",
+      video: ""
+    },
+    {
+      nome: "Daniela Rocha", cidade: "Porto Alegre, RS", bem: "Imóvel comercial",
+      citacao: "O que me convenceu foi ouvir um não. Perguntei se dava para garantir a " +
+               "contemplação e me explicaram, com o contrato na mão, que ninguém garante. " +
+               "Foi a primeira vez que alguém do setor falou comigo desse jeito.",
+      video: ""
+    },
+    {
+      nome: "Anderson Klein", cidade: "Santa Maria, RS", bem: "Veículo pesado",
+      citacao: "A diferença apareceu depois da assinatura. Toda assembleia eu recebia o " +
+               "resultado explicado e a orientação do que fazer. Não precisei correr atrás " +
+               "de ninguém para entender o que estava acontecendo com a minha cota.",
+      video: ""
+    },
+    {
+      nome: "Simone Vargas", cidade: "Capão da Canoa, RS", bem: "Terreno e construção",
+      citacao: "Eles estudaram o grupo antes e me disseram em que mês fazia sentido ofertar " +
+               "lance. Eu só segui o plano. O terreno saiu, e a construção começou dentro do " +
+               "prazo que a gente tinha desenhado lá no começo.",
+      video: ""
+    }
+  ];
+
+  var DEPOIMENTOS = DEPO_DEMO ? DEPO_FICTICIOS : DEPO_ESPERA;
+
+  if (DEPO_DEMO) {
+    console.warn("[Fasolo] Depoimentos em MODO DEMONSTRAÇÃO: nomes e citações são " +
+                 "fictícios. Vire DEPO_DEMO para false em app.js antes de publicar.");
+    if (DEPO_AVISO) {
+      var regRes = document.querySelector("#resultados .reg");
+      if (regRes) {
+        var av = document.createElement("span");
+        av.className = "reg__demo";
+        av.textContent = "exemplo ilustrativo";
+        regRes.appendChild(av);
+      }
+    }
+  }
 
   var reel = $("#reel"), player = $("#player"), pTag = $("#pTag"),
       elQ = $("#quote"), elN = $("#whoN"), elC = $("#whoC"), elB = $("#whoB"),

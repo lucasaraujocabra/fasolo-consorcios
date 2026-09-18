@@ -2221,3 +2221,15 @@ h1,h2,h3,h4,.hmedia__n,.strip__n,.out__big,.gcol__ratio{font-family:var(--font-s
     radial-gradient(120% 110% at 6% 0%,rgba(226,5,15,.14),transparent 58%),
     linear-gradient(0deg,rgba(74,50,36,.18),rgba(74,50,36,.18));
 }
+
+/* ---------------------------------------------------------------------------
+   Etiqueta de modo demonstração no registro de (006) Os resultados.
+   Fica discreta ao lado do rótulo, só para ninguém confundir depoimento
+   fictício com depoimento real na reunião. Some junto com DEPO_AVISO.
+   ------------------------------------------------------------------------- */
+.reg__demo{
+  margin-left:.75rem;padding:.2rem .55rem;border-radius:var(--r-pill);
+  font-family:"Geist Mono",monospace;font-size:var(--mono);line-height:1.35;
+  color:var(--gold);background:rgba(199,154,75,.12);
+  box-shadow:inset 0 0 0 1px rgba(199,154,75,.3);
+}
