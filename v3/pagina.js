@@ -46,6 +46,27 @@
   marcaFundo();
   window.addEventListener("scroll", marcaFundo, { passive: true });
 
+  /* A navbar vira junto com o ato que está por baixo dela. Sem isso, a barra
+     escura atravessa a seção clara como uma laje cinza. Observador, não
+     listener de scroll: só dispara quando a seção cruza a linha da navbar. */
+  var marcaImg = topo.querySelector(".topo__marca img");
+  var claras = $$(".tela--claro");
+  if (claras.length && "IntersectionObserver" in window) {
+    var altura = topo.getBoundingClientRect().height || 88;
+    var io = new IntersectionObserver(function (entradas) {
+      var sob = entradas.some(function (e) {
+        var r = e.target.getBoundingClientRect();
+        return r.top <= altura * 0.6 && r.bottom >= altura * 0.6;
+      });
+      topo.classList.toggle("is-claro", sob);
+      if (marcaImg) {
+        var nova = sob ? marcaImg.dataset.claro : marcaImg.dataset.escuro;
+        if (nova && marcaImg.getAttribute("src") !== nova) marcaImg.src = nova;
+      }
+    }, { rootMargin: "-" + Math.round(altura * 0.6) + "px 0px -" + (window.innerHeight - Math.round(altura * 0.6) - 1) + "px 0px", threshold: 0 });
+    claras.forEach(function (c) { io.observe(c); });
+  }
+
   /* --------------------------------------------------------- depoimentos */
   /* ⛔ MODO DEMONSTRAÇÃO. Nomes e citações são FICTÍCIOS, existem só para a
      apresentação. Vire para false e a seção volta ao estado de espera, que é

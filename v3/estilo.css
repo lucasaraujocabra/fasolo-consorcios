@@ -822,3 +822,69 @@ html.js [data-sobe]{opacity:0;transform:translateY(22px)}
   .mods{grid-template-columns:repeat(2,minmax(0,1fr))}
   .mods__i--3{grid-column:span 2}
 }
+
+/* ===========================================================================
+   ATO CLARO · "Confiança não se pede. Se prova."
+   Pedido do Lucas em 18/09. A seção inteira redefine os MESMOS tokens, então
+   todo componente dentro dela funciona sem regra própria: é a mesma peça,
+   noutro fundo.
+   ⚠️ O vermelho de acento NÃO é o mesmo nos dois atos. #FF3B45 existe para
+   passar contraste no preto; em fundo claro ele reprova. O de texto pequeno
+   em claro é #A8060E.
+   =========================================================================== */
+.tela--claro{
+  --ink:#FBF9F7;
+  --ink-2:#F3EFEA;
+  --ink-3:#E9E3DB;
+  --bone:#0A0807;
+  --bone-2:#241E1A;
+  --ash:#6B615B;
+  --line:rgba(10,8,7,.13);
+  --line-2:rgba(10,8,7,.24);
+  --red-2:#A8060E;
+  background:var(--ink);
+  color:var(--bone);
+  isolation:isolate;
+}
+/* a atmosfera vermelha do fundo não atravessa o ato claro */
+.tela--claro::before{
+  content:"";position:absolute;inset:0;z-index:0;background:var(--ink);
+}
+.tela--claro > .wrap{z-index:2}
+
+/* os fios de acabamento que marcam a virada de ato */
+.tela--claro{box-shadow:inset 0 1px 0 rgba(10,8,7,.1),inset 0 -1px 0 rgba(10,8,7,.1)}
+
+/* peças que usavam branco translúcido e sumiriam no claro */
+.tela--claro .pc__ic{background:rgba(10,8,7,.05);box-shadow:inset 0 0 0 1px var(--line)}
+.tela--claro .pc--g{background:linear-gradient(140deg,rgba(226,5,15,.09),transparent 58%),var(--ink)}
+.tela--claro .pc--g .pc__ic{background:rgba(226,5,15,.1);box-shadow:inset 0 0 0 1px rgba(226,5,15,.28)}
+.tela--claro .pc--g .pc__ic .ic{color:var(--red)}
+.tela--claro .pc:hover{background:var(--ink-2)}
+.tela--claro .pc::before{
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(226,5,15,.14),transparent 62%);
+}
+.tela--claro .pc--g::after{background:radial-gradient(circle,rgba(226,5,15,.1),transparent 62%)}
+
+/* a tag no claro: mesma peça, contraste refeito */
+.tela--claro .tag--red{
+  color:var(--bone);background:rgba(226,5,15,.09);
+  box-shadow:inset 0 0 0 1px rgba(226,5,15,.3);
+}
+.tela--claro .tag--red .ic{color:var(--red)}
+.tela--claro .tag::before{background:var(--line-2)}
+.tela--claro .tag--red::before{background:var(--red)}
+
+/* a última célula cobria 3 de 4 colunas e deixava uma vazia ao lado */
+.pc:last-child{grid-column:span 4}
+@media(max-width:1100px){ .pc:last-child{grid-column:span 2} }
+
+/* a navbar escura virava uma laje cinza atravessando o ato claro.
+   Ela passa a virar junto com a seção que está por baixo. */
+.topo.is-claro{background:rgba(251,249,247,.82);color:var(--ink)}
+.topo.is-claro .menu-btn{
+  background:rgba(10,8,7,.06);color:#0A0807;
+  box-shadow:inset 0 0 0 1px rgba(10,8,7,.14);
+}
+.topo.is-claro .menu-btn:hover{background:rgba(10,8,7,.12)}
+.topo.is-claro .topo__marca img{filter:none}
