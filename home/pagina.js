@@ -136,6 +136,38 @@
   $("#depoNext").addEventListener("click", function () { pinta(i + 1, true); });
   pinta(0, false);
 
+  /* Entregas reais. A foto É o card. Cidade e bem saem da copy aprovada;
+     quando os nomes reais chegarem, entram aqui sem mexer no layout. */
+  var ENTREGAS = [
+    { foto: "porsche-estande", bem: "Veículo leve",        cidade: "Santa Maria, RS" },
+    { foto: "entrega-2",       bem: "Veículo leve",        cidade: "Santa Maria, RS" },
+    { foto: "entrega-4",       bem: "Veículo leve",        cidade: "Santa Maria, RS" },
+    { foto: "estande",         bem: "Sede própria",        cidade: "Santa Maria, RS" },
+    { foto: "entrega-1",       bem: "Veículo leve",        cidade: "Santa Maria, RS" },
+    { foto: "entrega-3",       bem: "Veículo leve",        cidade: "Santa Maria, RS" },
+    { foto: "fachada-dia",     bem: "Imóvel comercial",    cidade: "Santa Maria, RS" },
+    { foto: "sede-1",          bem: "Imóvel comercial",    cidade: "Santa Maria, RS" }
+  ];
+  var pista = $("#entregas");
+  if (pista) {
+    ENTREGAS.forEach(function (e, k) {
+      var c = document.createElement("article");
+      c.className = "ent";
+      c.innerHTML =
+        '<img src="../assets/foto/' + e.foto + '.webp" alt="Entrega da Fasolo Consórcios em ' + e.cidade + '" loading="lazy">' +
+        '<span class="ent__tag">' + String(k + 1).padStart(2, "0") + '</span>' +
+        '<span class="ent__b"><span class="ent__bem">' + e.bem + '</span>' +
+        '<span class="ent__cid"><svg class="ic"><use href="#i-globo"></use></svg>' + e.cidade + '</span></span>';
+      pista.appendChild(c);
+    });
+    var passo = function () {
+      var c = pista.querySelector(".ent");
+      return c ? c.getBoundingClientRect().width + 14 : 300;
+    };
+    $("#entPrev").addEventListener("click", function () { pista.scrollBy({ left: -passo() * 2, behavior: "smooth" }); });
+    $("#entNext").addEventListener("click", function () { pista.scrollBy({ left:  passo() * 2, behavior: "smooth" }); });
+  }
+
   /* ------------------------------------------------------------ movimento */
   if (!temGSAP || reduz) {
     $$("[data-sobe]").forEach(function (n) { n.style.opacity = 1; n.style.transform = "none"; });

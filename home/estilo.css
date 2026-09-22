@@ -1004,3 +1004,147 @@ html.js [data-sobe]{opacity:0;transform:translateY(22px)}
   .bc--alto,.bc--largo{grid-column:span 1}
   .bc--selo{flex-direction:column;align-items:flex-start}
 }
+
+/* ===========================================================================
+   REVISÃO 22/09 · ESCALA TIPOGRÁFICA DO GABRIEL
+   Ele deu os números por escrito em 19/09 23:57 e a régua da referência dele
+   (web-journey-ashen.vercel.app) confirma:
+     "Subtexto 18 ou 20 de tamanho e títulos no máximo 60 pra hero
+      e 50/45 para o restante da página"
+   Medido antes: nosso H1 estava em 120px, o DOBRO do teto. A referência dele
+   usa H1 60, H2 45 e corpo 16/18/20. É isso o "letras pequenas e enormes".
+   =========================================================================== */
+:root{
+  --d0:clamp(2.4rem,3.45vw,3.75rem);   /* hero ...... teto 60px */
+  --d1:clamp(1.9rem,2.7vw,3.125rem);   /* seção ..... teto 50px */
+  --d2:clamp(1.4rem,1.75vw,1.9rem);    /* sub ....... teto 30px */
+  --lead:clamp(1.0625rem,1.05vw,1.25rem); /* subtexto  teto 20px */
+  --body:1.0625rem;                    /* corpo ..... 17px */
+  --sm:.9375rem;                       /* apoio ..... 15px */
+}
+.hero h1{font-size:var(--d0);max-width:19ch}
+.tela h2{font-size:var(--d1)}
+
+/* o número do bento passava de 83px e ficava maior que o próprio H1: número
+   não é título, mas "letra enorme" ele é do mesmo jeito */
+.bc--alto .bc__n{font-size:clamp(2.4rem,3.4vw,3.6rem)}
+.bc--largo .bc__n{font-size:clamp(1.9rem,2.4vw,2.6rem)}
+.bc__n{font-size:clamp(1.4rem,1.7vw,1.85rem)}
+.depo__q{font-size:clamp(1.15rem,1.5vw,1.55rem)}
+.telas__lista a b{font-size:clamp(1.3rem,1.9vw,1.9rem)}
+
+/* ⚠️ "palavra mês sozinho na linha" (18/09 16:02): viúva tipográfica.
+   O balanceamento do navegador não resolve sozinho em caixa estreita. */
+.hero__l,.portas__l,.res__l,.jair p,.fecho p{text-wrap:pretty}
+
+/* "sem excessos de texturas" (21/09 14:14): o grão e a atmosfera baixam */
+body::after{opacity:.03}
+.atmos__l{opacity:.34}
+.atmos__v{opacity:.3}
+
+/* a cifra do bento ainda passava do teto de 50 que ele deu para o resto */
+.bc--alto .bc__n{font-size:clamp(2.2rem,3vw,3.125rem)}
+
+/* ===========================================================================
+   ENTREGAS REAIS · pedido do Gabriel em 19/09 23:50 e 23:54
+   "Usar os números e FOTOS REAIS de quem recebeu sua contemplação. A Fasolo
+    é uma das maiores do Brasil, contemplam muito, precisamos mostrar isso."
+   "Imagina foto dos contemplados de fundo nos cards rodando num carrossel
+    horizontal."
+   É literalmente isso: a foto É o card, não uma miniatura dentro dele.
+   =========================================================================== */
+.entregas{margin-top:clamp(2rem,3.5vh,3rem)}
+.entregas__cab{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;
+               padding-bottom:1rem;margin-bottom:1.1rem;border-bottom:1px solid var(--line)}
+.entregas__t{font-size:var(--body);font-weight:500;letter-spacing:-.02em}
+.entregas__nav{display:flex;gap:.6rem}
+.entregas__pista{
+  display:flex;gap:clamp(.7rem,1vw,1.1rem);overflow-x:auto;scroll-snap-type:x mandatory;
+  scrollbar-width:none;padding-bottom:.4rem;
+  margin-right:calc(50% - 50vw);        /* sangra pela direita: tem mais */
+  -webkit-mask-image:linear-gradient(90deg,#000 90%,transparent);
+  mask-image:linear-gradient(90deg,#000 90%,transparent);
+}
+.entregas__pista::-webkit-scrollbar{display:none}
+.ent{
+  position:relative;flex:0 0 clamp(240px,21vw,320px);aspect-ratio:4/5;
+  border-radius:12px;overflow:hidden;scroll-snap-align:start;isolation:isolate;
+  background:var(--ink-3);
+}
+.ent img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+         transition:transform .9s var(--e)}
+.ent:hover img{transform:scale(1.05)}
+/* véu FIXO: o contraste do rótulo não pode depender de quão clara é a foto */
+.ent::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(10,8,7,.05) 38%,rgba(10,8,7,.84) 100%)}
+.ent__b{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:1rem 1.1rem;
+        display:flex;flex-direction:column;gap:.3rem}
+.ent__bem{font-size:var(--body);font-weight:600;letter-spacing:-.02em;color:#F5F2EF}
+.ent__cid{display:flex;align-items:center;gap:.4rem;font-size:var(--sm);color:#D9D0C9}
+.ent__cid .ic{width:14px;height:14px;color:var(--red-2)}
+.ent__tag{position:absolute;top:.9rem;left:.9rem;z-index:2;
+  padding:.28rem .6rem;border-radius:6px;font-size:var(--sm);color:#F5F2EF;
+  background:rgba(10,8,7,.6);backdrop-filter:blur(8px);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
+/* no ato claro a seta e o título viram, mas o card continua escuro por cima
+   da foto, que é o que garante o contraste do rótulo */
+.tela--claro .entregas__t{color:var(--bone)}
+@media(max-width:620px){ .ent{flex-basis:76vw} }
+
+/* ===========================================================================
+   O FUNDADOR · 19/09: "não protagonizou o dono da empresa" e "card sem
+   cuidado e foto dentro de card".
+   A foto sai do wrap e sangra na borda REAL da tela, ocupando metade dela.
+   Sem raio, sem fio, sem placa. Ele vira a estrutura da seção, não o conteúdo
+   de um cartão.
+   ⚠️ E sem `calc(50% - 50vw)`: aquilo resolve contra a coluna do grid e já
+   arrancou a foto 388px para fora da tela uma vez. A foto fica FORA do wrap.
+   =========================================================================== */
+.fundador{
+  display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+  align-items:stretch;gap:0;position:relative;overflow:hidden;
+}
+.fundador__f{position:relative;margin:0;min-height:100svh}
+.fundador__f img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 16%}
+.fundador__f::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(10,8,7,.22) 0%,rgba(10,8,7,0) 34%,rgba(10,8,7,.88) 100%),
+             linear-gradient(90deg,rgba(10,8,7,.4),transparent 26%,rgba(10,8,7,.55))}
+.fundador__cap{position:absolute;left:0;right:0;bottom:0;z-index:2;
+  padding:clamp(1.5rem,2.4vw,2.4rem);display:flex;flex-direction:column;gap:.25rem}
+.fundador__n{font-size:var(--d2);font-weight:500;letter-spacing:-.035em;line-height:1.1}
+.fundador__s{font-size:var(--sm);color:var(--bone-2)}
+.fundador__c{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(3rem,7vh,6rem) var(--gut) clamp(3rem,7vh,6rem) clamp(2rem,4.5vw,5rem);
+  max-width:calc(var(--maxw) / 2 + 6rem);
+}
+.fundador__c h2{max-width:17ch;margin-bottom:1.5rem}
+.fundador__c p{font-size:var(--lead);color:var(--bone-2);line-height:1.5;max-width:46ch;margin-bottom:1rem}
+.fundador__c .jair__punch{font-size:var(--d2);color:var(--bone);letter-spacing:-.035em;
+  line-height:1.2;margin-top:.75rem;margin-bottom:0}
+.fundador__c .jair__go{margin-top:2rem}
+
+/* ===========================================================================
+   O SÍMBOLO DA MARCA · 19/09: "Explorar o icon da marca em mais detalhes da
+   página, assim como tu fez na primeira versão."
+   Ele entra em escala de pôster, recortado pela borda, como marca-d'água.
+   =========================================================================== */
+.marca-dagua{
+  position:absolute;right:-6%;bottom:-14%;z-index:0;pointer-events:none;
+  width:clamp(260px,26vw,520px);height:auto;opacity:.05;
+  filter:grayscale(1) brightness(2);
+}
+.fundador > *:not(.marca-dagua){position:relative;z-index:1}
+
+@media(max-width:1000px){
+  .fundador{grid-template-columns:minmax(0,1fr)}
+  .fundador__f{min-height:62vh}
+  .fundador__c{padding:clamp(2.5rem,6vh,4rem) var(--gut);max-width:none}
+}
+
+/* a tag é inline-flex, mas numa coluna flex o padrão estica: ela virava uma
+   faixa vermelha atravessando a coluna inteira */
+.fundador__c .tag,.tela h2 + *,.tela .tag{align-self:flex-start}
+
+/* a marca-d'água passa a ser o SÍMBOLO, não o logo inteiro com o wordmark */
+.marca-dagua{width:clamp(220px,20vw,400px);right:-3%;bottom:-8%;opacity:.055}
