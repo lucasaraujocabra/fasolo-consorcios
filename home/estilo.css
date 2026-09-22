@@ -1427,3 +1427,35 @@ body::after{opacity:.03}
                 transition:opacity .4s var(--e)}
 .pista .ent:hover img{opacity:.82}
 @media(max-width:620px){ .pista .ent{flex-basis:64vw} }
+
+/* ===========================================================================
+   PISTA · o componente do print, sem a distorção
+   O que entortava os boxes no original era um SKEW atrelado à velocidade do
+   arraste. Ele não existe aqui: a única transformação é translateX no trilho,
+   e o card não recebe transformação nenhuma.
+   O resto do componente é igual: foto, título e subtítulo DENTRO do card,
+   barra de progresso e a dica "arraste, ou deixe rolar".
+   =========================================================================== */
+.pista .ent{
+  flex:0 0 clamp(250px,22vw,340px);aspect-ratio:4/3.1;border-radius:14px;
+  box-shadow:inset 0 0 0 1px var(--line);
+}
+.pista .ent::after{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(10,8,7,.04) 40%,rgba(10,8,7,.9) 100%)}
+.pista .ent__b{position:absolute;left:0;right:0;bottom:0;z-index:2;
+  padding:clamp(.9rem,1.3vw,1.2rem);display:flex;flex-direction:column;gap:.18rem}
+.pista .ent__bem{font-size:var(--body);font-weight:600;letter-spacing:-.022em;color:#F5F2EF}
+.pista .ent__cid{display:flex;align-items:center;gap:.4rem;font-size:var(--sm);color:#C8BEB7}
+
+/* o pé: dica à esquerda, progresso à direita */
+.pista__pe{display:flex;align-items:center;gap:1.5rem;margin-top:1.1rem}
+.pista__dica{display:flex;align-items:center;gap:.6rem;font-size:var(--sm);color:var(--ash);flex:none}
+.pista__dica i{width:7px;height:7px;border-radius:50%;background:var(--red);flex:none;
+               box-shadow:0 0 10px rgba(226,5,15,.8)}
+.pista__barra{flex:1;height:2px;background:var(--line);border-radius:2px;overflow:hidden;max-width:420px}
+.pista__barra i{display:block;height:100%;width:100%;background:var(--red);border-radius:2px;
+                transform-origin:left;transform:scaleX(.18)}
+.tela--claro .pista .ent__bem,.tela--claro .pista .ent__cid{color:inherit}
+.tela--claro .pista .ent__bem{color:#F5F2EF}
+.tela--claro .pista .ent__cid{color:#C8BEB7}
+@media(max-width:620px){ .pista .ent{flex-basis:72vw} }

@@ -196,10 +196,16 @@
     pista.addEventListener("pointercancel", solta);
     pista.addEventListener("pointerleave", solta);
 
+    var prog = $("#pistaProg");
     (function anda() {
       if (!arrastando) { x += deriva + v; v *= 0.94; if (Math.abs(v) < 0.02) v = 0; }
       if (metade) { if (x <= -metade) x += metade; if (x > 0) x -= metade; }
       trilho.style.transform = "translate3d(" + x.toFixed(2) + "px,0,0)";
+      if (prog && metade) {
+        /* a barra mostra onde a volta está, e nunca some: piso de 14% */
+        var f = 0.14 + (1 - 0.14) * (Math.abs(x % metade) / metade);
+        prog.style.transform = "scaleX(" + f.toFixed(3) + ")";
+      }
       requestAnimationFrame(anda);
     })();
   }
