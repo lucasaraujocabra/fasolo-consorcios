@@ -1148,3 +1148,91 @@ body::after{opacity:.03}
 
 /* a marca-d'água passa a ser o SÍMBOLO, não o logo inteiro com o wordmark */
 .marca-dagua{width:clamp(220px,20vw,400px);right:-3%;bottom:-8%;opacity:.055}
+
+/* ===========================================================================
+   REFERÊNCIAS QUE O GABRIEL NOMEOU (19/09 23:31)
+     cirqle.studio  -> "navbar diferenciada": cápsula flutuante centralizada,
+                       logo em disco, e o rótulo de seção SOBRE a régua
+     gojiberry.ai   -> "pattern bem trabalhado com icon do cliente": o símbolo
+                       da marca repetido no fundo, e a palavra em destaque na
+                       cor da marca dentro do título
+     youratlas.com  -> "degradês modernos"
+   =========================================================================== */
+
+/* --- NAVBAR: cápsula flutuante, não barra de ponta a ponta --------------- */
+.topo{
+  justify-content:center;background:none!important;backdrop-filter:none!important;
+  padding-top:clamp(.9rem,1.6vh,1.5rem);pointer-events:none;
+}
+.capsula{
+  pointer-events:auto;display:flex;align-items:center;gap:clamp(.5rem,1vw,1rem);
+  padding:.4rem .4rem .4rem .45rem;border-radius:999px;
+  background:rgba(18,16,14,.72);backdrop-filter:blur(22px) saturate(1.3);
+  box-shadow:inset 0 0 0 1px rgba(245,242,239,.1),inset 0 1px 0 rgba(255,255,255,.08),
+             0 18px 44px -20px rgba(0,0,0,.9);
+}
+.capsula__disco{
+  width:42px;height:42px;border-radius:50%;flex:none;display:grid;place-items:center;
+  background:linear-gradient(150deg,#1E1A17,#0A0807);
+  box-shadow:inset 0 0 0 1px rgba(245,242,239,.14);
+}
+.capsula__disco img{width:22px;height:auto;filter:brightness(2.4)}
+.capsula__links{display:none;gap:clamp(.9rem,1.5vw,1.6rem);padding-inline:.6rem}
+@media(min-width:1000px){ .capsula__links{display:flex} }
+.capsula__links a{font-size:var(--sm);color:var(--bone-2);letter-spacing:-.012em;
+                  transition:color .22s var(--e)}
+.capsula__links a:hover{color:var(--bone)}
+.capsula__cta{
+  display:flex;align-items:center;gap:.6rem;white-space:nowrap;
+  padding:.4rem .4rem .4rem 1.1rem;border-radius:999px;
+  background:linear-gradient(180deg,#F0141E,var(--red) 52%,#C50710);color:#fff;
+  font-size:var(--sm);font-weight:600;letter-spacing:-.015em;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.34),0 10px 24px -12px rgba(226,5,15,.7);
+  transition:filter .3s var(--e);
+}
+.capsula__cta:hover{filter:saturate(1.08)}
+.capsula__cta .btn__c--sm{background:rgba(255,255,255,.22);box-shadow:none}
+.capsula .menu-btn{padding:.6rem;border-radius:50%;background:rgba(245,242,239,.08);
+                   width:42px;height:42px;justify-content:center;flex:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.topo.is-claro{background:none!important}
+.topo.is-claro .capsula{background:rgba(251,249,247,.82);
+  box-shadow:inset 0 0 0 1px rgba(10,8,7,.12),0 18px 44px -22px rgba(0,0,0,.28)}
+.topo.is-claro .capsula__links a{color:#3A322E}
+.topo.is-claro .capsula__links a:hover{color:#0A0807}
+.topo.is-claro .capsula__disco{background:#0A0807}
+.topo.is-claro .menu-btn{background:rgba(10,8,7,.07);color:#0A0807;
+  box-shadow:inset 0 0 0 1px rgba(10,8,7,.12)}
+
+/* --- RÓTULO DE SEÇÃO SOBRE A RÉGUA (cirqle) ----------------------------- */
+.rot{
+  display:flex;align-items:center;gap:.7rem;width:100%;
+  font-size:var(--sm);letter-spacing:.1em;text-transform:uppercase;color:var(--ash);
+  margin-bottom:clamp(1.1rem,2vh,1.75rem);
+}
+.rot i{flex:1;height:1px;background:var(--line)}
+.rot i:first-child{flex:0 0 clamp(18px,3vw,52px)}
+.rot .ic{width:16px;height:16px;color:var(--red-2)}
+
+/* --- PALAVRA EM DESTAQUE NO TÍTULO (gojiberry) -------------------------- */
+.tela h2 em{font-style:normal;color:var(--red-2)}
+.tela--claro h2 em{color:var(--red)}
+
+/* --- PATTERN DO SÍMBOLO DA MARCA (gojiberry) ---------------------------- */
+.atmos__pat{
+  position:absolute;inset:0;
+  background-image:url("../assets/marca/simbolo.webp");
+  background-repeat:repeat;background-size:clamp(120px,9vw,170px);
+  opacity:.022;filter:grayscale(1) brightness(3.2);
+}
+
+/* --- DEGRADÊ MODERNO (youratlas): luz que nasce do rodapé da tela ------- */
+.tela:not(.tela--claro)::before{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:34%;z-index:0;
+  pointer-events:none;
+  background:linear-gradient(180deg,transparent,rgba(226,5,15,.055) 62%,rgba(226,5,15,.1));
+}
+.hero::before,.fundador::before{display:none}
+
+/* o medidor do bento não depende mais de esticar o SVG */
+.bc__g{width:auto;right:auto;left:clamp(1.2rem,1.7vw,1.7rem);height:clamp(48px,6.5vh,70px)}

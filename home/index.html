@@ -32,7 +32,7 @@ document.documentElement.className += " js";
   }, 2500);
 })();
 </script>
-<link rel="stylesheet" href="estilo.css?v=20260922134140">
+<link rel="stylesheet" href="estilo.css?v=20260922145632">
 </head>
 <body>
 
@@ -62,6 +62,7 @@ document.documentElement.className += " js";
 <!-- iluminação + vetores de fundo. interstellar: a luz que sobe do rodapé de
      cada tela. aset: os arcos finos e a grade de marcação nas margens. -->
 <div class="atmos" aria-hidden="true">
+  <span class="atmos__pat"></span>
   <span class="atmos__l atmos__l--1"></span>
   <span class="atmos__l atmos__l--2"></span>
   <svg class="atmos__v" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
@@ -79,13 +80,18 @@ document.documentElement.className += " js";
 
 <!-- ===================== NAVBAR ===================== -->
 <header class="topo" id="topo">
-  <a class="topo__marca" href="#topo" aria-label="Fasolo Consórcios, início">
-    <img src="../assets/marca/horizontal-claro.webp" alt="Fasolo Consórcios" data-claro="../assets/marca/horizontal-escuro.webp" data-escuro="../assets/marca/horizontal-claro.webp">
-  </a>
-  <div class="topo__dir">
-    <a class="btn btn--red" href="#simulacao"><span class="btn__t">Receber minha simulação no WhatsApp</span><span class="btn__c" aria-hidden="true"><svg class="ic"><use href="#i-seta"></use></svg><svg class="ic"><use href="#i-seta"></use></svg></span></a>
+  <div class="capsula">
+    <a class="capsula__disco" href="#topo" aria-label="Fasolo Consórcios, início">
+      <img src="../assets/marca/simbolo.webp" alt="">
+    </a>
+    <nav class="capsula__links" aria-label="Seções">
+      <a href="#portas">A grade</a>
+      <a href="#resultados">Resultados</a>
+      <a href="#simulacao">Simulação</a>
+    </nav>
+    <a class="capsula__cta" href="#simulacao">Receber minha simulação<span class="btn__c btn__c--sm" aria-hidden="true"><svg class="ic"><use href="#i-seta"></use></svg><svg class="ic"><use href="#i-seta"></use></svg></span></a>
     <button class="menu-btn" type="button" id="menuBtn" aria-expanded="false" aria-controls="telas">
-      Menu <span aria-hidden="true"><i></i><i></i></span>
+      <span aria-hidden="true"><i></i><i></i></span><span class="sr">Menu</span>
     </button>
   </div>
 </header>
@@ -158,7 +164,7 @@ document.documentElement.className += " js";
     </figcaption>
   </figure>
   <div class="fundador__c">
-    <span class="tag tag--red" data-sobe><svg class="ic"><use href="#i-alvo"></use></svg>O fundador</span>
+    <p class="rot" data-sobe><i></i><svg class="ic"><use href="#i-alvo"></use></svg>O fundador<i></i></p>
     <h2 data-sobe>Não é um vendedor de cotas falando. É um dos maiores investidores de consórcio do país.</h2>
     <p data-sobe>Jair Fasolo também comprava olhando parcela e taxa. Até descobrir o que mudou seu jogo, e criar a Fasolo.</p>
     <p data-sobe>Hoje aplicamos com os clientes as mesmas estratégias usadas no patrimônio dele: estudo de grupos, análise contábil, histórico e modalidades de contemplação.</p>
@@ -171,8 +177,8 @@ document.documentElement.className += " js";
 <!-- ===================== TELA 3 · AS SEIS PORTAS ===================== -->
 <section class="tela tela--meio portas" id="portas">
   <div class="wrap">
-    <span class="tag tag--red" data-sobe><svg class="ic"><use href="#i-porta"></use></svg>A grade de contemplação</span>
-    <h2 data-sobe>E sabe qual o nosso grande diferencial? Seis portas de contemplação abertas ao mesmo tempo.</h2>
+    <p class="rot" data-sobe><i></i><svg class="ic"><use href="#i-porta"></use></svg>A grade de contemplação<i></i></p>
+    <h2 data-sobe>E sabe qual o nosso grande diferencial? <em>Seis portas de contemplação</em> abertas ao mesmo tempo.</h2>
     <p class="portas__l" data-sobe>
       No consórcio comum, quase tudo depende de sorteio ou lance alto. Nos grupos da HS
       onde alocamos nossos clientes, você participa de 6 modalidades simultâneas:
@@ -288,8 +294,8 @@ document.documentElement.className += " js";
   <div class="wrap">
     <div class="prova__head">
       <div>
-        <span class="tag tag--red" data-sobe><svg class="ic"><use href="#i-escudo"></use></svg>A prova</span>
-        <h2 data-sobe>Confiança não se pede. Se prova.</h2>
+        <p class="rot" data-sobe><i></i><svg class="ic"><use href="#i-escudo"></use></svg>A prova<i></i></p>
+        <h2 data-sobe>Confiança não se pede. <em>Se prova.</em></h2>
       </div>
 
     </div>
@@ -367,7 +373,7 @@ document.documentElement.className += " js";
 <section class="tela tela--meio res" id="resultados">
   <div class="wrap">
     <p class="demo" data-sobe id="demoTag" hidden>exemplo ilustrativo</p>
-    <h2 data-sobe>Quem contemplou não fala de promessa. Fala de resultado.</h2>
+    <h2 data-sobe>Quem contemplou não fala de promessa. <em>Fala de resultado.</em></h2>
     <p class="res__l" data-sobe>
       São mais de 6.000 clientes ativos e R$ 1,2 bilhão em bens entregues.
       Veja quem já saiu da fila do “um dia” e realizou com estratégia.
@@ -401,7 +407,7 @@ document.documentElement.className += " js";
 <!-- ===================== TELA 6 · OS TRÊS CAMINHOS ===================== -->
 <section class="tela tela--meio caminhos">
   <div class="wrap">
-    <span class="tag tag--red" data-sobe><svg class="ic"><use href="#i-chave"></use></svg>Os caminhos</span>
+    <p class="rot" data-sobe><i></i><svg class="ic"><use href="#i-chave"></use></svg>Os caminhos<i></i></p>
     <h2 data-sobe>Não importa o tamanho do seu objetivo. Existe um caminho para ele.</h2>
     <div class="portas3" data-sobe>
       <a class="p3" href="#">
@@ -459,6 +465,6 @@ document.documentElement.className += " js";
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="pagina.js?v=20260922134140"></script>
+<script src="pagina.js?v=20260922145632"></script>
 </body>
 </html>
