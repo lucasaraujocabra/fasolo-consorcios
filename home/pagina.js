@@ -136,36 +136,72 @@
   $("#depoNext").addEventListener("click", function () { pinta(i + 1, true); });
   pinta(0, false);
 
-  /* Entregas reais. A foto É o card. Cidade e bem saem da copy aprovada;
-     quando os nomes reais chegarem, entram aqui sem mexer no layout. */
+  /* =========================================================================
+     PISTA DE ENTREGAS
+     Anda sozinha, aceita arraste com inércia e emenda sem costura. O trilho
+     é duplicado e o x volta ao zero a cada metade, então não existe salto.
+     ⚠️ SEM SKEW. A versão antiga atrelava um skew à velocidade e era isso
+     que entortava os boxes. Aqui a única transformação é translateX.
+     ====================================================================== */
   var ENTREGAS = [
-    { foto: "porsche-estande", bem: "Veículo leve",        cidade: "Santa Maria, RS" },
-    { foto: "entrega-2",       bem: "Veículo leve",        cidade: "Santa Maria, RS" },
-    { foto: "entrega-4",       bem: "Veículo leve",        cidade: "Santa Maria, RS" },
-    { foto: "estande",         bem: "Sede própria",        cidade: "Santa Maria, RS" },
-    { foto: "entrega-1",       bem: "Veículo leve",        cidade: "Santa Maria, RS" },
-    { foto: "entrega-3",       bem: "Veículo leve",        cidade: "Santa Maria, RS" },
-    { foto: "fachada-dia",     bem: "Imóvel comercial",    cidade: "Santa Maria, RS" },
-    { foto: "sede-1",          bem: "Imóvel comercial",    cidade: "Santa Maria, RS" }
+    { foto: "porsche-estande", bem: "Veículo leve",     cidade: "Santa Maria, RS" },
+    { foto: "entrega-2",       bem: "Veículo leve",     cidade: "Santa Maria, RS" },
+    { foto: "sede-3",          bem: "Imóvel comercial", cidade: "Santa Maria, RS" },
+    { foto: "entrega-4",       bem: "Veículo leve",     cidade: "Santa Maria, RS" },
+    { foto: "estande",         bem: "Sede própria",     cidade: "Santa Maria, RS" },
+    { foto: "entrega-1",       bem: "Veículo leve",     cidade: "Santa Maria, RS" },
+    { foto: "sede-2",          bem: "Imóvel comercial", cidade: "Santa Maria, RS" },
+    { foto: "entrega-3",       bem: "Veículo leve",     cidade: "Santa Maria, RS" },
+    { foto: "fachada-dia",     bem: "Imóvel comercial", cidade: "Santa Maria, RS" },
+    { foto: "sede-1",          bem: "Imóvel comercial", cidade: "Santa Maria, RS" }
   ];
-  var pista = $("#entregas");
-  if (pista) {
-    ENTREGAS.forEach(function (e, k) {
+  var pista = $("#pista"), trilho = $("#trilho2");
+  if (trilho) {
+    var cartao = function (e, k) {
       var c = document.createElement("article");
       c.className = "ent";
       c.innerHTML =
-        '<img src="../assets/foto/' + e.foto + '.webp" alt="Entrega da Fasolo Consórcios em ' + e.cidade + '" loading="lazy">' +
+        '<img src="../assets/foto/' + e.foto + '.webp" alt="Entrega da Fasolo Consórcios em ' + e.cidade + '" loading="lazy" draggable="false">' +
         '<span class="ent__tag">' + String(k + 1).padStart(2, "0") + '</span>' +
         '<span class="ent__b"><span class="ent__bem">' + e.bem + '</span>' +
         '<span class="ent__cid"><svg class="ic"><use href="#i-globo"></use></svg>' + e.cidade + '</span></span>';
-      pista.appendChild(c);
-    });
-    var passo = function () {
-      var c = pista.querySelector(".ent");
-      return c ? c.getBoundingClientRect().width + 14 : 300;
+      return c;
     };
-    $("#entPrev").addEventListener("click", function () { pista.scrollBy({ left: -passo() * 2, behavior: "smooth" }); });
-    $("#entNext").addEventListener("click", function () { pista.scrollBy({ left:  passo() * 2, behavior: "smooth" }); });
+    ENTREGAS.forEach(function (e, k) { trilho.appendChild(cartao(e, k)); });
+    /* a cópia é o que permite emendar sem costura */
+    ENTREGAS.forEach(function (e, k) {
+      var c = cartao(e, k); c.setAttribute("aria-hidden", "true"); trilho.appendChild(c);
+    });
+
+    var x = 0, v = 0, deriva = reduz ? 0 : -0.42, metade = 0, arrastando = false, ultimoX = 0;
+    var mede = function () { metade = trilho.scrollWidth / 2; };
+    mede();
+    window.addEventListener("resize", mede);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(mede);
+
+    pista.addEventListener("pointerdown", function (e) {
+      arrastando = true; ultimoX = e.clientX; v = 0;
+      pista.classList.add("is-arrastando");
+      pista.setPointerCapture(e.pointerId);
+    });
+    pista.addEventListener("pointermove", function (e) {
+      if (!arrastando) return;
+      var d = e.clientX - ultimoX; ultimoX = e.clientX;
+      x += d; v = d;
+    });
+    var solta = function () {
+      arrastando = false; pista.classList.remove("is-arrastando");
+    };
+    pista.addEventListener("pointerup", solta);
+    pista.addEventListener("pointercancel", solta);
+    pista.addEventListener("pointerleave", solta);
+
+    (function anda() {
+      if (!arrastando) { x += deriva + v; v *= 0.94; if (Math.abs(v) < 0.02) v = 0; }
+      if (metade) { if (x <= -metade) x += metade; if (x > 0) x -= metade; }
+      trilho.style.transform = "translate3d(" + x.toFixed(2) + "px,0,0)";
+      requestAnimationFrame(anda);
+    })();
   }
 
   /* ------------------------------------------------------------ movimento */
