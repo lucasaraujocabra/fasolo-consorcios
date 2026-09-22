@@ -171,7 +171,7 @@
   /* ------------------------------------------------------------ movimento */
   if (!temGSAP || reduz) {
     $$("[data-sobe]").forEach(function (n) { n.style.opacity = 1; n.style.transform = "none"; });
-    $$(".orbita").forEach(function (o) { o.classList.add("is-aberto"); });
+    $$(".gbento").forEach(function (g) { g.classList.add("is-aberto"); });
     return;
   }
 
@@ -188,12 +188,9 @@
   ScrollTrigger.create({
     trigger: "#portas", start: "top 62%", once: true,
     onEnter: function () {
-      /* mede o comprimento real de cada arco e anima o traço se desenhando */
-      $$(".orbita__svg .seg").forEach(function (s) {
-        try { s.style.setProperty("--len", s.getTotalLength().toFixed(0)); } catch (e) {}
-      });
-      var orb = $(".orbita");
-      if (orb) setTimeout(function () { orb.classList.add("is-aberto"); }, 120);
+      /* as cápsulas acendem em sequência: as seis juntas é o argumento */
+      var gb = $(".gbento");
+      if (gb) setTimeout(function () { gb.classList.add("is-aberto"); }, 140);
     }
   });
 
