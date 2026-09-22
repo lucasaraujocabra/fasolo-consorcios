@@ -171,7 +171,7 @@
   /* ------------------------------------------------------------ movimento */
   if (!temGSAP || reduz) {
     $$("[data-sobe]").forEach(function (n) { n.style.opacity = 1; n.style.transform = "none"; });
-    $$(".cmp6__lado").forEach(function (l) { l.classList.add("is-aberto"); });
+    $$(".orbita").forEach(function (o) { o.classList.add("is-aberto"); });
     return;
   }
 
@@ -188,9 +188,12 @@
   ScrollTrigger.create({
     trigger: "#portas", start: "top 62%", once: true,
     onEnter: function () {
-      $$(".cmp6__lado").forEach(function (l, k) {
-        setTimeout(function () { l.classList.add("is-aberto"); }, k * 260);
+      /* mede o comprimento real de cada arco e anima o traço se desenhando */
+      $$(".orbita__svg .seg").forEach(function (s) {
+        try { s.style.setProperty("--len", s.getTotalLength().toFixed(0)); } catch (e) {}
       });
+      var orb = $(".orbita");
+      if (orb) setTimeout(function () { orb.classList.add("is-aberto"); }, 120);
     }
   });
 
